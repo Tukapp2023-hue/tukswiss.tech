@@ -1,0 +1,3425 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TUK SWISS – Die Zukunft der Mobilität in der Schweiz</title>
+  <meta name="description" content="TUK SWISS ist die Schweizer Mobilitätsplattform für Ride, Care & Delivery. Fahrten buchen, Medikamente liefern, Kurierdienste – alles in einer App. 100% elektrisch bis 2027." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+:root{--green:#2cc917;--green-dark:#22a012;--green-light:#eaf9e7;--green-tint:#f4fff2;--green-mid:#d4f5ce;--text-dark:#1a2e1a;--text-body:#334433;--text-muted:#6a8a6a;--white:#ffffff;--bg-light:#f8fef6;--shadow-sm:0 2px 12px rgba(44,201,23,.1);--shadow-md:0 6px 30px rgba(44,201,23,.15);--shadow-lg:0 16px 56px rgba(44,201,23,.2);--radius:16px;--radius-sm:10px;--radius-xl:28px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px;scroll-padding-top:80px}
+body{font-family:'Inter','Helvetica Neue',Arial,sans-serif;background:var(--white);color:var(--text-body);line-height:1.65;overflow-x:hidden}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+.section{padding:90px 0}
+.section-dark{background:var(--text-dark);color:var(--white)}
+.section-light{background:var(--green-tint)}
+.text-green{color:var(--green)}
+.text-center{text-align:center}
+.badge{display:inline-block;background:var(--green-light);color:var(--green-dark);font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:6px 16px;border-radius:100px;margin-bottom:16px;border:1.5px solid var(--green-mid)}
+.section-dark .badge{background:rgba(44,201,23,.15);color:var(--green);border-color:rgba(44,201,23,.3)}
+h1,h2,h3,h4{font-weight:800;line-height:1.18;color:var(--text-dark);letter-spacing:-.02em}
+.section-dark h1,.section-dark h2,.section-dark h3{color:var(--white)}
+h1{font-size:clamp(2.2rem,5vw,3.6rem)}
+h2{font-size:clamp(1.7rem,3.5vw,2.6rem);margin-bottom:18px}
+h3{font-size:1.2rem;margin-bottom:10px}
+p{margin-bottom:16px}
+p:last-child{margin-bottom:0}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:100px;font-weight:700;font-size:.95rem;text-decoration:none;cursor:pointer;transition:all .22s ease;border:2px solid transparent;white-space:nowrap}
+.btn-primary{background:var(--green);color:var(--white);border-color:var(--green);box-shadow:0 4px 20px rgba(44,201,23,.35)}
+.btn-primary:hover{background:var(--green-dark);border-color:var(--green-dark);box-shadow:0 6px 28px rgba(44,201,23,.45);transform:translateY(-2px)}
+.btn-outline{background:transparent;color:var(--green);border-color:var(--green)}
+.btn-outline:hover{background:var(--green-light);transform:translateY(-2px)}
+.btn-outline-white{background:transparent;color:var(--white);border-color:rgba(255,255,255,.6)}
+.btn-outline-white:hover{background:rgba(255,255,255,.12);border-color:var(--white)}
+.btn-white{background:var(--white);color:var(--green-dark);border-color:var(--white);box-shadow:0 4px 20px rgba(0,0,0,.12)}
+.btn-white:hover{box-shadow:0 6px 28px rgba(0,0,0,.18);transform:translateY(-2px)}
+.btn-group{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+/* NAV */
+#navbar{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-bottom:1.5px solid var(--green-mid);transition:box-shadow .3s}
+#navbar.scrolled{box-shadow:0 4px 24px rgba(44,201,23,.12)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px;gap:24px}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
+.nav-logo-mark{width:38px;height:38px;background:var(--green);border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.05rem;color:var(--white);letter-spacing:-.03em}
+.nav-logo-text{font-weight:800;font-size:1.18rem;color:var(--text-dark);letter-spacing:-.03em;line-height:1}
+.nav-logo-text span{color:var(--green)}
+.nav-links{display:flex;align-items:center;gap:6px;list-style:none}
+.nav-links a{display:block;padding:8px 14px;border-radius:8px;text-decoration:none;font-weight:600;font-size:.9rem;color:var(--text-body);transition:all .18s}
+.nav-links a:hover,.nav-links a.active{color:var(--green);background:var(--green-light)}
+.nav-app-highlight{color:var(--green)!important;font-weight:800!important;border:2px solid var(--green)!important;border-radius:100px!important;padding:6px 16px!important;background:transparent!important;transition:background .2s,color .2s!important}
+.nav-app-highlight:hover{background:var(--green)!important;color:white!important}
+.nav-actions{display:flex;align-items:center;gap:10px}
+.nav-actions .btn{padding:9px 20px;font-size:.85rem}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px}
+.hamburger span{display:block;width:24px;height:2px;background:var(--text-dark);border-radius:2px;transition:all .3s}
+.mobile-nav{display:none;position:fixed;top:68px;left:0;right:0;background:var(--white);border-bottom:1.5px solid var(--green-mid);padding:20px 24px;z-index:999;box-shadow:0 8px 32px rgba(44,201,23,.12)}
+.mobile-nav.open{display:block}
+.mobile-nav a{display:block;padding:12px 0;font-weight:600;color:var(--text-body);text-decoration:none;border-bottom:1px solid var(--green-mid);transition:color .18s}
+.mobile-nav a:last-child{border-bottom:none}
+.mobile-nav a:hover{color:var(--green)}
+/* HERO */
+#home{padding-top:120px;padding-bottom:80px;background:linear-gradient(135deg,var(--white) 0%,var(--green-tint) 50%,var(--green-light) 100%);position:relative;overflow:hidden}
+#home::before{content:'';position:absolute;top:-180px;right:-180px;width:700px;height:700px;background:radial-gradient(circle,rgba(44,201,23,.12) 0%,transparent 70%);pointer-events:none}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.hero-content{max-width:620px}
+.hero-title{margin-bottom:24px}
+.hero-title .highlight{color:var(--green)}
+.hero-lead{font-size:1.12rem;color:var(--text-body);margin-bottom:32px;line-height:1.7}
+.hero-stats{display:flex;gap:32px;margin-top:40px;flex-wrap:wrap}
+.hero-stat{text-align:center}
+.hero-stat-number{font-size:2rem;font-weight:900;color:var(--green);line-height:1}
+.hero-stat-label{font-size:.8rem;color:var(--text-muted);font-weight:600;margin-top:4px}
+.hero-visual{display:flex;justify-content:center;align-items:center;position:relative}
+.phone-mockup-wrapper{position:relative;display:inline-block}
+.phone-mockup-wrapper img{width:280px;max-width:100%;border-radius:32px;box-shadow:var(--shadow-lg);display:block}
+.phone-float-card{position:absolute;background:var(--white);border-radius:14px;padding:12px 16px;box-shadow:0 8px 32px rgba(0,0,0,.13);font-size:.78rem;font-weight:700;color:var(--text-dark);white-space:nowrap;animation:floatCard 3s ease-in-out infinite}
+.phone-float-card.left{left:-80px;top:120px;animation-delay:.5s}
+.phone-float-card.right{right:-80px;bottom:120px;animation-delay:1s}
+.float-icon{font-size:1.2rem;margin-right:6px}
+.float-label{color:var(--green);font-size:.72rem;font-weight:600;display:block;margin-top:2px}
+@keyframes floatCard{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+/* WHY */
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.why-card{background:var(--white);border-radius:var(--radius);padding:32px 28px;border:1.5px solid var(--green-mid);transition:all .25s;box-shadow:var(--shadow-sm)}
+.why-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-md);border-color:var(--green)}
+.why-icon{width:52px;height:52px;background:var(--green-light);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin-bottom:18px}
+.why-title{font-size:1.05rem;font-weight:800;margin-bottom:10px}
+.why-text{font-size:.9rem;color:var(--text-muted);line-height:1.6}
+/* DRIVER */
+.driver-hero{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-bottom:60px}
+.driver-badge-bar{display:flex;flex-wrap:wrap;gap:10px;margin:24px 0}
+.driver-chip{display:inline-flex;align-items:center;gap:6px;background:var(--green-light);color:var(--green-dark);border:1.5px solid var(--green-mid);border-radius:100px;padding:7px 16px;font-size:.82rem;font-weight:700}
+.driver-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.driver-card{background:var(--white);border-radius:var(--radius);padding:28px 24px;border:1.5px solid var(--green-mid);box-shadow:var(--shadow-sm);transition:all .25s}
+.driver-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-md);border-color:var(--green)}
+.driver-card-icon{font-size:2rem;margin-bottom:14px;display:block}
+.driver-card h3{font-size:1rem;color:var(--text-dark)}
+.driver-card p{font-size:.88rem;color:var(--text-muted);margin:0}
+.perks-bar{display:flex;flex-wrap:wrap;gap:14px;margin-top:48px;justify-content:center}
+.perk-chip{background:var(--white);border:1.5px solid var(--green-mid);border-radius:12px;padding:14px 22px;font-size:.88rem;font-weight:700;color:var(--text-dark);box-shadow:var(--shadow-sm);display:flex;align-items:center;gap:8px}
+.perk-chip .perk-icon{font-size:1.3rem}
+/* TEAM */
+.team-intro{max-width:680px;margin:0 auto 56px;text-align:center}
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.team-card{background:var(--white);border-radius:var(--radius);padding:28px 20px 24px;text-align:center;border:1.5px solid var(--green-mid);box-shadow:var(--shadow-sm);transition:all .25s}
+.team-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-md);border-color:var(--green)}
+.team-avatar-ring{width:88px;height:88px;border-radius:50%;overflow:hidden;margin:0 auto 16px;border:3px solid var(--green);box-shadow:0 0 0 5px var(--green-light)}
+.team-avatar-ring img{width:100%;height:100%;object-fit:cover}
+.team-initials-ring{width:88px;height:88px;border-radius:50%;overflow:hidden;margin:0 auto 16px;border:3px solid var(--green);box-shadow:0 0 0 5px var(--green-light);background:linear-gradient(135deg,var(--green-light),var(--green-mid));display:flex;align-items:center;justify-content:center;font-size:1.6rem;font-weight:900;color:var(--green-dark)}
+.team-name{font-size:.95rem;font-weight:800;color:var(--text-dark);margin-bottom:5px}
+.team-role{font-size:.78rem;color:var(--text-muted);font-weight:600;line-height:1.4}
+.team-role-badge{display:inline-block;background:var(--green-light);color:var(--green-dark);border-radius:100px;padding:3px 10px;font-size:.7rem;font-weight:700;margin-top:8px;border:1px solid var(--green-mid)}
+/* TECH */
+.tech-intro{max-width:720px;margin:0 auto 56px;text-align:center}
+.tech-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:60px}
+.tech-card{background:var(--white);border-radius:var(--radius);padding:32px 26px;border:1.5px solid var(--green-mid);box-shadow:var(--shadow-sm);transition:all .25s}
+.tech-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-md);border-color:var(--green)}
+.tech-card-icon{width:52px;height:52px;background:var(--green-light);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin-bottom:18px}
+.tech-card h3{font-size:1rem;margin-bottom:10px}
+.tech-card p{font-size:.88rem;color:var(--text-muted);margin:0}
+.tech-timeline-section{background:var(--text-dark);border-radius:var(--radius-xl);padding:56px 48px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.timeline-list{display:flex;flex-direction:column;gap:32px}
+.timeline-item{display:flex;gap:20px;align-items:flex-start}
+.timeline-dot{width:44px;height:44px;border-radius:50%;background:var(--green);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.1rem;box-shadow:0 0 0 6px rgba(44,201,23,.18)}
+.timeline-content h4{font-size:1rem;color:var(--white);margin-bottom:6px;font-weight:800}
+.timeline-content p{font-size:.85rem;color:rgba(255,255,255,.65);line-height:1.55;margin:0}
+.timeline-year{color:var(--green);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;display:block;margin-bottom:4px}
+.timeline-phone{display:flex;justify-content:center;align-items:center}
+.timeline-phone img{width:260px;max-width:100%;border-radius:28px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.tech-tagline{text-align:center;margin-top:48px;font-size:1.4rem;font-weight:800;color:var(--text-dark);letter-spacing:-.02em}
+.tech-tagline span{color:var(--green)}
+/* CO2 */
+.co2-hero{text-align:center;max-width:800px;margin:0 auto 64px}
+.co2-hero h2{margin-bottom:20px}
+.co2-hero p{font-size:1.05rem;color:var(--text-muted)}
+.co2-pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-bottom:56px}
+.co2-pillar{background:var(--white);border-radius:var(--radius);padding:28px 22px;text-align:center;border:1.5px solid var(--green-mid);box-shadow:var(--shadow-sm);transition:all .25s}
+.co2-pillar:hover{transform:translateY(-5px);box-shadow:var(--shadow-md);border-color:var(--green)}
+.co2-pillar-icon{font-size:2.4rem;margin-bottom:14px;display:block}
+.co2-pillar h3{font-size:.95rem;margin-bottom:10px}
+.co2-pillar p{font-size:.83rem;color:var(--text-muted);margin:0;line-height:1.55}
+.co2-principles{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-bottom:48px}
+.principle-card{background:var(--white);border-radius:var(--radius);padding:26px 24px;border:1.5px solid var(--green-mid);box-shadow:var(--shadow-sm)}
+.principle-card h4{font-size:.88rem;font-weight:800;color:var(--green-dark);text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px}
+.principle-list{list-style:none}
+.principle-list li{font-size:.85rem;color:var(--text-body);padding:5px 0;border-bottom:1px solid var(--green-tint);display:flex;align-items:flex-start;gap:8px}
+.principle-list li:last-child{border-bottom:none}
+.principle-list li::before{content:'✓';color:var(--green);font-weight:900;flex-shrink:0;margin-top:1px}
+.co2-gamification{background:linear-gradient(135deg,var(--green),var(--green-dark));border-radius:var(--radius-xl);padding:48px 40px;color:var(--white);text-align:center;position:relative;overflow:hidden}
+.co2-gamification::before{content:'';position:absolute;top:-60px;right:-60px;width:260px;height:260px;background:rgba(255,255,255,.08);border-radius:50%}
+.co2-gamification h3{color:var(--white);font-size:1.4rem;margin-bottom:14px}
+.co2-gamification p{color:rgba(255,255,255,.85);font-size:.95rem;margin-bottom:28px}
+.gamification-chips{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.game-chip{background:rgba(255,255,255,.15);border:1.5px solid rgba(255,255,255,.3);border-radius:100px;padding:9px 20px;font-size:.85rem;font-weight:700;color:var(--white);display:flex;align-items:center;gap:7px}
+.co2-2027-banner{background:var(--text-dark);border-radius:var(--radius-xl);padding:40px;display:flex;align-items:center;justify-content:space-between;gap:32px;margin-top:40px;flex-wrap:wrap}
+.co2-2027-text h3{color:var(--white);font-size:1.3rem;margin-bottom:8px}
+.co2-2027-text p{color:rgba(255,255,255,.7);font-size:.9rem;margin:0}
+.co2-2027-badge{background:var(--green);border-radius:var(--radius);padding:20px 32px;text-align:center;flex-shrink:0}
+.co2-2027-badge .year{font-size:2.5rem;font-weight:900;color:var(--white);line-height:1}
+.co2-2027-badge .label{font-size:.78rem;font-weight:700;color:rgba(255,255,255,.85);text-transform:uppercase;letter-spacing:.06em;margin-top:4px}
+/* INVESTORS */
+.investor-hero{background:linear-gradient(135deg,var(--text-dark) 0%,#0f2010 100%);border-radius:var(--radius-xl);padding:72px 56px;text-align:center;margin-bottom:56px;position:relative;overflow:hidden}
+.investor-hero::before{content:'';position:absolute;bottom:-80px;left:-80px;width:320px;height:320px;background:radial-gradient(circle,rgba(44,201,23,.15) 0%,transparent 70%)}
+.investor-hero h2{color:var(--white);font-size:clamp(1.8rem,3.5vw,2.8rem);margin-bottom:18px}
+.investor-hero p{color:rgba(255,255,255,.75);font-size:1.05rem;max-width:700px;margin:0 auto 36px}
+.investor-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-bottom:40px}
+.investor-card{background:var(--white);border-radius:var(--radius);padding:28px 24px;border:1.5px solid var(--green-mid);box-shadow:var(--shadow-sm);transition:all .25s}
+.investor-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-md);border-color:var(--green)}
+.investor-card-icon{font-size:2rem;margin-bottom:14px;display:block}
+.investor-card h3{font-size:1rem;margin-bottom:8px}
+.investor-card p{font-size:.86rem;color:var(--text-muted);margin:0}
+.investor-quote{background:var(--green-tint);border-left:4px solid var(--green);border-radius:0 var(--radius) var(--radius) 0;padding:28px 32px;margin-bottom:36px;font-style:italic;font-size:1rem;color:var(--text-body)}
+.investor-ctas{display:flex;flex-wrap:wrap;gap:16px;justify-content:center}
+/* FOOTER */
+footer{background:var(--text-dark);color:rgba(255,255,255,.7);padding:56px 0 32px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px}
+.footer-logo{display:flex;align-items:center;gap:10px;text-decoration:none;margin-bottom:16px}
+.footer-logo-mark{width:36px;height:36px;background:var(--green);border-radius:9px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.95rem;color:var(--white)}
+.footer-logo-text{font-weight:800;font-size:1.08rem;color:var(--white);letter-spacing:-.03em}
+.footer-logo-text span{color:var(--green)}
+.footer-tagline{font-size:.85rem;color:rgba(255,255,255,.55);line-height:1.6}
+.footer-col h4{font-size:.8rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--white);margin-bottom:16px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer-col ul a{font-size:.87rem;color:rgba(255,255,255,.6);text-decoration:none;transition:color .18s;display:flex;align-items:center;gap:6px}
+.footer-col ul a:hover{color:var(--green)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:28px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.footer-bottom p{font-size:.82rem;margin:0}
+.footer-bottom-links{display:flex;gap:20px}
+.footer-bottom-links a{font-size:.82rem;color:rgba(255,255,255,.5);text-decoration:none;transition:color .18s}
+.footer-bottom-links a:hover{color:var(--green)}
+/* ANIMATION */
+/* ── SCROLL STORYTELLING ── */
+.fade-up{opacity:0;transform:translateY(40px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+/* Slide-in von links */
+.fade-left{opacity:0;transform:translateX(-48px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+.fade-left.visible{opacity:1;transform:translateX(0)}
+/* Slide-in von rechts */
+.fade-right{opacity:0;transform:translateX(48px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+.fade-right.visible{opacity:1;transform:translateX(0)}
+/* Zoom-in */
+.fade-zoom{opacity:0;transform:scale(.92);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+.fade-zoom.visible{opacity:1;transform:scale(1)}
+/* Gestaffelte Delays */
+.delay-1{transition-delay:.1s}
+.delay-2{transition-delay:.2s}
+.delay-3{transition-delay:.3s}
+.delay-4{transition-delay:.4s}
+.delay-5{transition-delay:.5s}
+.delay-6{transition-delay:.6s}
+/* Sektions-Trennlinie Effekt */
+section{--section-progress:0}
+.section-enter{opacity:0;transform:translateY(24px);transition:opacity .9s ease,transform .9s ease}
+.section-enter.visible{opacity:1;transform:translateY(0)}
+
+/* ── APP DEMO ── */
+.demo-wrapper{display:grid;grid-template-columns:240px 1fr 260px;gap:32px;align-items:start;max-width:960px;margin:0 auto}
+/* Steps Panel */
+.demo-steps-panel{display:flex;flex-direction:column;padding:8px 0}
+.demo-step-item{display:flex;align-items:center;gap:14px;cursor:pointer;padding:10px 14px;border-radius:14px;transition:all .25s}
+.demo-step-item:hover{background:var(--green-light)}
+.demo-step-item.active{background:var(--green-light);box-shadow:0 2px 12px rgba(44,201,23,.15)}
+.demo-step-num{width:34px;height:34px;border-radius:50%;background:var(--green-mid);color:var(--green-dark);font-weight:900;font-size:.88rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .25s}
+.demo-step-item.active .demo-step-num{background:var(--green);color:white;box-shadow:0 0 0 4px rgba(44,201,23,.2)}
+.demo-step-item.done .demo-step-num{background:var(--green);color:white}
+.demo-step-title{font-size:.88rem;font-weight:700;color:var(--text-dark)}
+.demo-step-desc{font-size:.75rem;color:var(--text-muted);margin-top:2px}
+.demo-step-connector{width:2px;height:22px;background:var(--green-mid);margin-left:30px;border-radius:2px}
+/* Phone Frame */
+.demo-phone-area{display:flex;flex-direction:column;align-items:center;gap:16px}
+.demo-phone-frame{width:260px;height:520px;background:#fff;border-radius:38px;border:8px solid #1a2e1a;box-shadow:0 8px 0 #0d1a0d,0 24px 60px rgba(0,0,0,.25),inset 0 0 0 1px rgba(255,255,255,.1);overflow:hidden;position:relative;display:flex;flex-direction:column}
+.demo-statusbar{display:flex;justify-content:space-between;align-items:center;padding:8px 14px 4px;background:#fff;font-size:.65rem;font-weight:700;color:#333;flex-shrink:0}
+.demo-statusbar-icons{display:flex;gap:4px;font-size:.6rem}
+/* Screens */
+.demo-screen{display:none;flex-direction:column;flex:1;overflow:hidden;animation:screenIn .3s ease}
+.demo-screen.active{display:flex}
+@keyframes screenIn{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:translateX(0)}}
+/* Screen 0 */
+.ds-header{background:linear-gradient(135deg,var(--green),var(--green-dark));padding:14px 14px 10px;flex-shrink:0}
+.ds-logo-bar{display:flex;align-items:center;gap:7px;margin-bottom:8px}
+.ds-logo-mark{width:24px;height:24px;background:white;border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.7rem;color:var(--green)}
+.ds-logo-text{font-size:.78rem;font-weight:700;color:white}
+.ds-greeting{font-size:.88rem;font-weight:800;color:white;margin-bottom:2px}
+.ds-subtitle{font-size:.75rem;color:rgba(255,255,255,.8)}
+.ds-search-bar{display:flex;align-items:center;gap:8px;background:white;margin:10px 12px 8px;border-radius:10px;padding:9px 12px;box-shadow:0 2px 8px rgba(0,0,0,.08);cursor:pointer;flex-shrink:0}
+.ds-search-icon{font-size:.9rem}
+.ds-search-placeholder{font-size:.78rem;color:#aaa;font-weight:500}
+.ds-quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:0 12px;flex-shrink:0}
+.ds-quick-card{background:var(--green-tint);border-radius:10px;padding:8px 4px;text-align:center;font-size:.6rem;font-weight:700;color:var(--text-dark);display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;transition:all .2s;border:1.5px solid var(--green-mid)}
+.ds-quick-card:hover{background:var(--green-light);border-color:var(--green)}
+.ds-services-row{display:flex;gap:6px;padding:8px 12px;overflow-x:auto;flex-shrink:0;scrollbar-width:none}
+.ds-services-row::-webkit-scrollbar{display:none}
+.ds-service-chip{white-space:nowrap;font-size:.68rem;font-weight:700;padding:5px 10px;border-radius:100px;background:var(--green-tint);color:var(--text-muted);border:1.5px solid var(--green-mid);cursor:pointer;transition:all .2s;flex-shrink:0}
+.ds-service-chip.active-service{background:var(--green);color:white;border-color:var(--green)}
+.ds-main-btn{margin:8px 12px 12px;padding:12px;border-radius:14px;background:var(--green);color:white;font-weight:800;font-size:.82rem;border:none;cursor:pointer;transition:all .22s;box-shadow:0 4px 16px rgba(44,201,23,.4);flex-shrink:0}
+.ds-main-btn:hover{background:var(--green-dark);transform:translateY(-1px);box-shadow:0 6px 20px rgba(44,201,23,.5)}
+.ds-btn-hidden{display:none!important}
+.ds-btn-hidden.visible{display:flex!important}
+/* Screen 1 */
+.ds-header-sm{display:flex;align-items:center;gap:10px;padding:10px 12px 8px;border-bottom:1px solid var(--green-mid);flex-shrink:0}
+.ds-back-btn{background:var(--green-light);border:none;border-radius:8px;padding:5px 10px;font-size:.72rem;font-weight:700;color:var(--green-dark);cursor:pointer}
+.ds-header-title{font-size:.82rem;font-weight:800;color:var(--text-dark)}
+.ds-route-box{padding:10px 12px;flex-shrink:0}
+.ds-route-row{display:flex;align-items:center;gap:10px}
+.ds-route-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.ds-route-dot.green{background:var(--green);box-shadow:0 0 0 3px rgba(44,201,23,.2)}
+.ds-route-dot.blue{background:#1565C0;box-shadow:0 0 0 3px rgba(21,101,192,.2)}
+.ds-route-line{width:2px;height:14px;background:var(--green-mid);margin-left:4px;border-radius:2px}
+.ds-route-field{flex:1;background:var(--green-tint);border-radius:10px;padding:7px 10px;border:1.5px solid var(--green-mid)}
+.ds-route-field.typing{border-color:var(--green);background:white;box-shadow:0 0 0 3px rgba(44,201,23,.12)}
+.ds-field-label{font-size:.62rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px}
+.ds-field-value{font-size:.78rem;font-weight:700;color:var(--text-dark)}
+.ds-cursor{animation:blink .8s infinite;color:var(--green)}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.ds-suggestions{padding:4px 12px;flex:1;overflow:hidden}
+.ds-suggest-item{display:flex;align-items:center;gap:8px;padding:8px;border-radius:10px;cursor:pointer;transition:all .2s;border:1.5px solid transparent;margin-bottom:4px}
+.ds-suggest-item:hover{background:var(--green-light);border-color:var(--green)}
+.ds-suggest-item.muted{opacity:.5}
+.ds-suggest-icon{font-size:1.1rem;flex-shrink:0}
+.ds-suggest-name{font-size:.76rem;font-weight:700;color:var(--text-dark)}
+.ds-suggest-dist{font-size:.68rem;color:var(--text-muted)}
+.ds-suggest-arrow{color:var(--green);font-weight:900;margin-left:auto;flex-shrink:0}
+.ds-route-info-bar{display:flex;justify-content:space-around;padding:6px 12px;background:var(--green-tint);border-top:1px solid var(--green-mid);flex-shrink:0}
+.ds-route-info-item{font-size:.68rem;font-weight:700;color:var(--text-dark)}
+/* Screen 2 */
+.ds-map-area{flex:1;position:relative;overflow:hidden;background:#e8f5e9;margin:0 0 2px}
+.ds-map-bg{width:100%;height:100%;position:relative}
+.ds-map-bg svg{position:absolute;top:0;left:0}
+.ds-search-pulse{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
+.ds-pulse-ring{position:absolute;border-radius:50%;border:2px solid var(--green);top:50%;left:50%;transform:translate(-50%,-50%);opacity:0;animation:pulseRing 2s ease-out infinite}
+.ring1{width:40px;height:40px;animation-delay:0s}
+.ring2{width:70px;height:70px;animation-delay:.5s}
+.ring3{width:100px;height:100px;animation-delay:1s}
+@keyframes pulseRing{0%{opacity:.8;transform:translate(-50%,-50%) scale(.5)}100%{opacity:0;transform:translate(-50%,-50%) scale(1)}}
+.ds-pulse-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:1.1rem;z-index:2}
+.ds-car-dot{position:absolute;font-size:.9rem;animation:carFloat 3s ease-in-out infinite}
+@keyframes carFloat{0%,100%{transform:translateY(0) translateX(0)}33%{transform:translateY(-6px) translateX(4px)}66%{transform:translateY(3px) translateX(-3px)}}
+.ds-searching-label{display:flex;align-items:center;gap:8px;padding:8px 12px;font-size:.75rem;font-weight:600;color:var(--text-body);flex-shrink:0}
+.ds-spinner{width:16px;height:16px;border:2.5px solid var(--green-mid);border-top-color:var(--green);border-radius:50%;animation:spin .7s linear infinite;flex-shrink:0}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ds-progress-bar-outer{height:4px;background:var(--green-light);margin:0 12px 4px;border-radius:100px;overflow:hidden;flex-shrink:0}
+.ds-progress-bar-inner{height:100%;background:var(--green);width:0%;border-radius:100px;transition:width .1s linear}
+/* Screen 3 */
+.ds-confirm-header{background:linear-gradient(135deg,var(--green),var(--green-dark));padding:14px 14px 12px;text-align:center;flex-shrink:0}
+.ds-confirm-check{width:36px;height:36px;background:white;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 6px;font-size:1.1rem;font-weight:900;color:var(--green)}
+.ds-confirm-title{font-size:.95rem;font-weight:900;color:white;margin-bottom:2px}
+.ds-confirm-sub{font-size:.72rem;color:rgba(255,255,255,.8)}
+.ds-driver-card{display:flex;align-items:center;gap:10px;margin:10px 12px;background:var(--green-tint);border-radius:14px;padding:10px;border:1.5px solid var(--green-mid);flex-shrink:0}
+.ds-driver-avatar{width:44px;height:44px;border-radius:50%;overflow:hidden;border:2.5px solid var(--green);flex-shrink:0}
+.ds-driver-name{font-size:.82rem;font-weight:800;color:var(--text-dark)}
+.ds-driver-rating{font-size:.72rem;font-weight:700;margin:2px 0}
+.ds-driver-car{font-size:.68rem;color:var(--text-muted)}
+.ds-eta-row{display:flex;justify-content:space-around;margin:0 12px 8px;flex-shrink:0}
+.ds-eta-block{background:var(--green-tint);border-radius:12px;padding:8px 12px;text-align:center;border:1.5px solid var(--green-mid);flex:1;margin:0 3px}
+.ds-eta-block.green{background:var(--green);border-color:var(--green)}
+.ds-eta-num{font-size:1.1rem;font-weight:900;color:var(--text-dark);line-height:1}
+.ds-eta-block.green .ds-eta-num{color:white}
+.ds-eta-label{font-size:.6rem;font-weight:700;color:var(--text-muted);margin-top:2px;text-transform:uppercase}
+.ds-eta-block.green .ds-eta-label{color:rgba(255,255,255,.85)}
+.ds-live-bar{display:flex;align-items:center;gap:7px;margin:0 12px 8px;background:white;border-radius:10px;padding:6px 10px;border:1.5px solid var(--green-mid);font-size:.7rem;font-weight:600;color:var(--text-body);flex-shrink:0}
+.ds-live-dot{width:8px;height:8px;background:var(--green);border-radius:50%;animation:liveBlink 1s ease-in-out infinite;flex-shrink:0}
+@keyframes liveBlink{0%,100%{box-shadow:0 0 0 0 rgba(44,201,23,.6)}50%{box-shadow:0 0 0 5px rgba(44,201,23,0)}}
+.ds-action-row{display:flex;gap:5px;padding:0 12px;flex-shrink:0}
+.ds-action-btn{flex:1;padding:7px 4px;border-radius:10px;font-size:.68rem;font-weight:700;border:1.5px solid var(--green-mid);background:white;color:var(--text-dark);cursor:pointer;transition:all .2s}
+.ds-action-btn:hover{background:var(--green-light);border-color:var(--green)}
+.ds-action-btn.danger{border-color:#ffcdd2;color:#c62828}
+.ds-action-btn.danger:hover{background:#ffebee;border-color:#c62828}
+/* Dot Nav */
+.demo-dot-row{display:flex;gap:8px;justify-content:center}
+.demo-dot{width:8px;height:8px;border-radius:50%;background:var(--green-mid);cursor:pointer;transition:all .25s}
+.demo-dot.active{width:24px;border-radius:100px;background:var(--green)}
+/* Info Panel */
+.demo-info-panel{padding:8px 0}
+.demo-info-content{display:none;animation:fadeInfo .3s ease}
+.demo-info-content.active{display:block}
+@keyframes fadeInfo{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.demo-info-icon{font-size:2.4rem;margin-bottom:14px}
+.demo-info-panel h3{font-size:1.15rem;font-weight:800;color:var(--text-dark);margin-bottom:10px}
+.demo-info-panel p{font-size:.88rem;color:var(--text-muted);line-height:1.65;margin-bottom:16px}
+.demo-info-list{list-style:none;display:flex;flex-direction:column;gap:7px}
+.demo-info-list li{font-size:.85rem;font-weight:600;color:var(--text-body);display:flex;align-items:center;gap:8px}
+/* Demo Responsive */
+@media(max-width:960px){.demo-wrapper{grid-template-columns:1fr;justify-items:center}.demo-steps-panel{flex-direction:row;flex-wrap:wrap;gap:6px;justify-content:center;max-width:520px}.demo-step-connector{display:none}.demo-info-panel{max-width:520px;text-align:center}.demo-info-list{align-items:center}}
+@media(max-width:480px){.demo-phone-frame{width:240px;height:480px}}
+/* ── HERO UPGRADES ── */
+/* Blobs */
+#home{position:relative;overflow:hidden}
+.hero-blob{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;opacity:.55}
+.blob1{width:520px;height:520px;background:radial-gradient(circle,rgba(44,201,23,.18),transparent 70%);top:-160px;right:-100px;animation:blobMove1 12s ease-in-out infinite}
+.blob2{width:360px;height:360px;background:radial-gradient(circle,rgba(44,201,23,.12),transparent 70%);bottom:-80px;left:-80px;animation:blobMove2 15s ease-in-out infinite}
+.blob3{width:260px;height:260px;background:radial-gradient(circle,rgba(44,201,23,.09),transparent 70%);top:40%;left:40%;animation:blobMove3 10s ease-in-out infinite}
+@keyframes blobMove1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-40px,30px) scale(1.08)}}
+@keyframes blobMove2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(30px,-20px) scale(1.05)}}
+@keyframes blobMove3{0%,100%{transform:translate(0,0)}50%{transform:translate(-20px,20px)}}
+/* Badge row */
+.hero-badge-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+.hero-live-pill{display:inline-flex;align-items:center;gap:7px;background:white;border:1.5px solid var(--green-mid);border-radius:100px;padding:5px 14px;font-size:.75rem;font-weight:700;color:var(--text-dark);box-shadow:var(--shadow-sm)}
+.hero-live-dot{width:8px;height:8px;background:var(--green);border-radius:50%;animation:liveBlink 1.2s ease-in-out infinite;flex-shrink:0}
+/* Typed */
+.typed-wrap{display:inline;position:relative}
+.typed-cursor-hero{color:var(--green);font-weight:400;animation:blink .75s infinite;margin-left:2px}
+/* Stat dividers */
+.hero-stat-divider{width:1px;height:36px;background:var(--green-mid);align-self:center}
+/* Pulse button */
+.btn-pulse{animation:btnPulse 2.8s ease-in-out infinite}
+@keyframes btnPulse{0%,100%{box-shadow:0 4px 20px rgba(44,201,23,.35)}50%{box-shadow:0 4px 32px rgba(44,201,23,.6),0 0 0 8px rgba(44,201,23,.08)}}
+/* Services Karussell */
+.hero-services-label{font-size:.75rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;margin:24px 0 10px}
+.hero-services-track-wrap{overflow:hidden;position:relative;mask-image:linear-gradient(to right,transparent,black 12%,black 88%,transparent);-webkit-mask-image:linear-gradient(to right,transparent,black 12%,black 88%,transparent)}
+.hero-services-track{display:flex;gap:10px;width:max-content;animation:serviceScroll 28s linear infinite}
+.hero-services-track:hover{animation-play-state:paused}
+@keyframes serviceScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.hero-service-chip{white-space:nowrap;background:white;border:1.5px solid var(--green-mid);border-radius:100px;padding:7px 16px;font-size:.82rem;font-weight:700;color:var(--text-dark);box-shadow:var(--shadow-sm);transition:all .2s;cursor:default;flex-shrink:0}
+.hero-service-chip:hover{background:var(--green-light);border-color:var(--green);transform:translateY(-2px)}
+/* Phone Glow – mehrschichtig */
+.phone-mockup-wrapper{position:relative;z-index:1;display:inline-block}
+.phone-glow-ring{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);border-radius:50%;pointer-events:none;z-index:0}
+/* Schicht 1: großes weiches Halo */
+.phone-glow-ring::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:460px;height:460px;border-radius:50%;background:radial-gradient(circle,rgba(44,201,23,.22) 0%,rgba(44,201,23,.08) 45%,transparent 70%);animation:glowPulse 3.5s ease-in-out infinite;pointer-events:none}
+/* Schicht 2: mittlerer Ring – leuchtender Rand */
+.phone-glow-ring::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:340px;height:340px;border-radius:50%;border:2px solid rgba(44,201,23,.35);box-shadow:0 0 32px 8px rgba(44,201,23,.2),inset 0 0 20px rgba(44,201,23,.08);animation:glowRingPulse 3.5s ease-in-out infinite;pointer-events:none}
+/* Orbit-Punkt der um das Handy kreist */
+.phone-orbit{position:absolute;top:50%;left:50%;width:340px;height:340px;margin-top:-170px;margin-left:-170px;border-radius:50%;animation:orbitSpin 8s linear infinite;pointer-events:none;z-index:2}
+.phone-orbit::before{content:'';position:absolute;top:-6px;left:50%;width:12px;height:12px;border-radius:50%;background:var(--green);box-shadow:0 0 12px 4px rgba(44,201,23,.7);transform:translateX(-50%)}
+/* Innerer Glow-Boden (Schatten unter Handy) */
+.phone-floor-glow{position:absolute;bottom:-30px;left:50%;transform:translateX(-50%);width:180px;height:24px;border-radius:50%;background:radial-gradient(ellipse,rgba(44,201,23,.35) 0%,transparent 70%);animation:floorGlow 3.5s ease-in-out infinite;pointer-events:none;z-index:0}
+@keyframes glowPulse{0%,100%{opacity:.6;transform:translate(-50%,-50%) scale(1)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.12)}}
+@keyframes glowRingPulse{0%,100%{opacity:.5;transform:translate(-50%,-50%) scale(1)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.08)}}
+@keyframes orbitSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes floorGlow{0%,100%{opacity:.5;transform:translateX(-50%) scaleX(1)}50%{opacity:1;transform:translateX(-50%) scaleX(1.2)}}
+.phone-float-card.bottom-card{bottom:-20px;left:50%;transform:translateX(-50%);white-space:nowrap;display:flex;align-items:center;gap:4px;padding:8px 16px;animation:floatCard 3s ease-in-out infinite;animation-delay:1.5s}
+/* Trust Bar */
+.hero-trust-bar{background:white;border-top:1.5px solid var(--green-mid);border-bottom:1.5px solid var(--green-mid);padding:16px 0;margin-top:40px}
+.hero-trust-inner{display:flex;align-items:center;gap:20px;overflow-x:auto;scrollbar-width:none}
+.hero-trust-inner::-webkit-scrollbar{display:none}
+.hero-trust-label{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted);white-space:nowrap;flex-shrink:0}
+.hero-trust-items{display:flex;align-items:center;gap:16px;flex-wrap:nowrap}
+.hero-trust-item{font-size:.82rem;font-weight:700;color:var(--text-dark);white-space:nowrap;transition:color .2s}
+.hero-trust-item:hover{color:var(--green)}
+.hero-trust-sep{color:var(--green-mid);font-size:1.2rem;flex-shrink:0}
+
+/* ── CO₂ RECHNER ── */
+.co2calc-wrap{background:white;border-radius:var(--radius-xl);border:1.5px solid var(--green-mid);box-shadow:var(--shadow-md);padding:40px 40px 36px;margin-bottom:48px;overflow:hidden;position:relative}
+.co2calc-wrap::before{content:'';position:absolute;top:-60px;right:-60px;width:280px;height:280px;background:radial-gradient(circle,rgba(44,201,23,.08),transparent 70%);pointer-events:none}
+/* Header */
+.co2calc-header{display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;margin-bottom:36px}
+.co2calc-header-left h3{font-size:1.5rem;margin-bottom:8px;color:var(--text-dark)}
+.co2calc-saving-badge{background:linear-gradient(135deg,var(--green),var(--green-dark));border-radius:var(--radius-xl);padding:24px 32px;text-align:center;box-shadow:var(--shadow-md);min-width:160px;transition:transform .3s}
+.co2calc-saving-badge.bump{animation:badgeBump .4s ease}
+@keyframes badgeBump{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+.co2calc-saving-num{font-size:2.8rem;font-weight:900;color:white;line-height:1;font-variant-numeric:tabular-nums;transition:all .3s}
+.co2calc-saving-unit{font-size:.9rem;font-weight:800;color:rgba(255,255,255,.85);margin-top:4px}
+.co2calc-saving-label{font-size:.72rem;color:rgba(255,255,255,.65);font-weight:600;margin-top:2px;text-transform:uppercase;letter-spacing:.06em}
+/* Body grid */
+.co2calc-body{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+/* Inputs */
+.co2calc-inputs{display:flex;flex-direction:column;gap:28px}
+.co2calc-field{display:flex;flex-direction:column;gap:10px}
+.co2calc-label{font-size:.85rem;font-weight:800;color:var(--text-dark);display:flex;justify-content:space-between;align-items:center;gap:8px}
+.co2calc-val-display{background:var(--green-light);color:var(--green-dark);font-size:.8rem;font-weight:800;padding:3px 12px;border-radius:100px;border:1.5px solid var(--green-mid);white-space:nowrap}
+/* Vehicle Buttons */
+.co2calc-vehicle-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.co2calc-vehicle-btn{background:var(--green-tint);border:1.5px solid var(--green-mid);border-radius:var(--radius-sm);padding:10px 12px;cursor:pointer;transition:all .2s;display:flex;flex-direction:column;align-items:center;gap:3px;text-align:center}
+.co2calc-vehicle-btn:hover{background:var(--green-light);border-color:var(--green);transform:translateY(-2px)}
+.co2calc-vehicle-btn.active{background:var(--green);border-color:var(--green);box-shadow:0 4px 16px rgba(44,201,23,.3)}
+.co2calc-vehicle-btn.active .co2calc-v-name,.co2calc-vehicle-btn.active .co2calc-v-co2{color:white}
+.co2calc-v-icon{font-size:1.4rem}
+.co2calc-v-name{font-size:.78rem;font-weight:800;color:var(--text-dark)}
+.co2calc-v-co2{font-size:.68rem;color:var(--text-muted);font-weight:600}
+/* Slider */
+.co2calc-slider{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:100px;background:var(--green-mid);outline:none;cursor:pointer}
+.co2calc-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:22px;height:22px;border-radius:50%;background:var(--green);cursor:pointer;border:3px solid white;box-shadow:0 2px 8px rgba(44,201,23,.4);transition:transform .15s}
+.co2calc-slider::-webkit-slider-thumb:hover{transform:scale(1.2)}
+.co2calc-slider::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--green);cursor:pointer;border:3px solid white;box-shadow:0 2px 8px rgba(44,201,23,.4)}
+.co2calc-slider-labels{display:flex;justify-content:space-between;font-size:.68rem;color:var(--text-muted);font-weight:600;margin-top:4px}
+/* Results */
+.co2calc-results{display:flex;flex-direction:column;gap:20px}
+/* Bars */
+.co2calc-bars{background:var(--green-tint);border-radius:var(--radius);padding:20px;border:1.5px solid var(--green-mid);display:flex;flex-direction:column;gap:16px}
+.co2calc-bar-row{display:flex;align-items:center;gap:12px}
+.co2calc-bar-label{display:flex;align-items:center;gap:7px;font-size:.82rem;font-weight:700;color:var(--text-dark);min-width:64px;flex-shrink:0}
+.co2calc-bar-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.co2calc-bar-dot.red{background:#f44336}
+.co2calc-bar-dot.green{background:var(--green)}
+.co2calc-bar-outer{flex:1;height:16px;background:rgba(255,255,255,.8);border-radius:100px;overflow:hidden;border:1px solid var(--green-mid)}
+.co2calc-bar-fill{height:100%;border-radius:100px;transition:width .6s cubic-bezier(.4,0,.2,1)}
+.red-fill{background:linear-gradient(90deg,#ef9a9a,#f44336)}
+.green-fill{background:linear-gradient(90deg,var(--green-light),var(--green))}
+.co2calc-bar-num{font-size:.8rem;font-weight:800;color:var(--text-dark);min-width:56px;text-align:right;flex-shrink:0}
+/* Equivalents */
+.co2calc-equivalents{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.co2calc-equiv-card{background:white;border:1.5px solid var(--green-mid);border-radius:var(--radius);padding:14px 10px;text-align:center;transition:all .25s;box-shadow:var(--shadow-sm)}
+.co2calc-equiv-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:var(--green)}
+.co2calc-equiv-icon{font-size:1.6rem;margin-bottom:6px}
+.co2calc-equiv-num{font-size:1.3rem;font-weight:900;color:var(--green);line-height:1;margin-bottom:4px;transition:all .3s;font-variant-numeric:tabular-nums}
+.co2calc-equiv-label{font-size:.68rem;color:var(--text-muted);font-weight:600;line-height:1.4}
+/* Personal Badge */
+.co2calc-personal-badge{background:linear-gradient(135deg,var(--text-dark),#0f2010);border-radius:var(--radius);padding:14px 18px;display:flex;align-items:center;gap:14px;border:1.5px solid rgba(44,201,23,.25)}
+.co2calc-badge-icon{font-size:1.8rem;flex-shrink:0}
+.co2calc-badge-title{font-size:.9rem;font-weight:800;color:var(--green);margin-bottom:3px}
+.co2calc-badge-sub{font-size:.78rem;color:rgba(255,255,255,.65)}
+/* Responsive */
+@media(max-width:860px){.co2calc-body{grid-template-columns:1fr}.co2calc-header{grid-template-columns:1fr;text-align:center}.co2calc-saving-badge{margin:0 auto}}
+@media(max-width:480px){.co2calc-wrap{padding:24px 20px}.co2calc-vehicle-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* ── INVESTOR SECTION ── */
+/* Hero */
+.inv-hero{display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center;margin-bottom:64px}
+.inv-hero-content h2{margin-bottom:14px}
+.inv-hero-badge-stack{display:flex;flex-direction:column;gap:12px;flex-shrink:0}
+.inv-badge-big{background:var(--white);border:1.5px solid var(--green-mid);border-radius:var(--radius);padding:16px 22px;text-align:center;box-shadow:var(--shadow-sm);min-width:130px;transition:all .25s}
+.inv-badge-big:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:var(--green)}
+.inv-badge-big.green{background:var(--green);border-color:var(--green)}
+.inv-badge-icon{font-size:1.6rem;margin-bottom:6px}
+.inv-badge-label{font-size:.88rem;font-weight:800;color:var(--text-dark)}
+.inv-badge-big.green .inv-badge-label{color:white}
+.inv-badge-sub{font-size:.72rem;color:var(--text-muted);font-weight:600}
+.inv-badge-big.green .inv-badge-sub{color:rgba(255,255,255,.8)}
+/* Counters */
+.inv-counters-wrap{background:var(--text-dark);border-radius:var(--radius-xl);padding:40px 40px 36px;margin-bottom:48px}
+.inv-counters-label{font-size:.8rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.5);margin-bottom:24px}
+.inv-counters-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.inv-counter-card{text-align:center;padding:24px 16px;border-radius:var(--radius);background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.1);transition:all .25s;cursor:default}
+.inv-counter-card:hover{background:rgba(255,255,255,.1);border-color:rgba(44,201,23,.4)}
+.inv-counter-card.highlight{background:rgba(44,201,23,.15);border-color:var(--green)}
+.inv-counter-num{font-size:1.9rem;font-weight:900;color:var(--green);line-height:1;margin-bottom:8px;font-variant-numeric:tabular-nums}
+.inv-counter-title{font-size:.88rem;font-weight:800;color:white;margin-bottom:4px}
+.inv-counter-sub{font-size:.72rem;color:rgba(255,255,255,.45);line-height:1.4}
+/* Chart */
+.inv-chart-section{background:white;border-radius:var(--radius-xl);padding:36px 36px 28px;border:1.5px solid var(--green-mid);box-shadow:var(--shadow-sm);margin-bottom:48px}
+.inv-chart-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:24px;flex-wrap:wrap;gap:16px}
+.inv-chart-legend{display:flex;align-items:center;gap:8px;font-size:.82rem;font-weight:600;color:var(--text-muted)}
+.inv-legend-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0}
+.inv-legend-dot.green{background:var(--green)}
+.inv-legend-dot.teal{background:#0097a7}
+/* Problem/Solution */
+.inv-problem-solution{display:grid;grid-template-columns:1fr auto 1fr;gap:24px;align-items:center;margin-bottom:48px}
+.inv-problem-col,.inv-solution-col{background:white;border-radius:var(--radius-xl);padding:28px 28px;border:1.5px solid var(--green-mid);box-shadow:var(--shadow-sm)}
+.inv-ps-label{font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;padding:6px 14px;border-radius:100px;margin-bottom:20px;display:inline-block}
+.inv-ps-label.problem{background:#fff3e0;color:#e65100;border:1.5px solid #ffcc80}
+.inv-ps-label.solution{background:var(--green-light);color:var(--green-dark);border:1.5px solid var(--green-mid)}
+.inv-ps-list{display:flex;flex-direction:column;gap:14px}
+.inv-ps-item{display:flex;align-items:flex-start;gap:12px}
+.inv-ps-icon{width:36px;height:36px;border-radius:10px;background:#fff3e0;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.inv-ps-icon.green{background:var(--green-light)}
+.inv-ps-item strong{font-size:.88rem;font-weight:800;color:var(--text-dark);display:block;margin-bottom:2px}
+.inv-ps-item span{font-size:.8rem;color:var(--text-muted)}
+.inv-ps-arrow{font-size:2.5rem;color:var(--green);font-weight:900;text-align:center;flex-shrink:0}
+/* Flip Cards */
+.inv-bm-section{margin-bottom:48px}
+.inv-flip-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.inv-flip-card{height:260px;perspective:1000px;cursor:pointer}
+.inv-flip-inner{position:relative;width:100%;height:100%;transition:transform .6s cubic-bezier(.4,0,.2,1);transform-style:preserve-3d}
+.inv-flip-card:hover .inv-flip-inner{transform:rotateY(180deg)}
+.inv-flip-front,.inv-flip-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;border-radius:var(--radius-xl);padding:32px 28px;display:flex;flex-direction:column;justify-content:center}
+.inv-flip-front{background:white;border:1.5px solid var(--green-mid);box-shadow:var(--shadow-sm);text-align:center;align-items:center}
+.inv-flip-back{background:var(--green-tint);border:1.5px solid var(--green);box-shadow:var(--shadow-md);transform:rotateY(180deg)}
+.inv-flip-icon{width:56px;height:56px;background:var(--green-light);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin-bottom:14px}
+.inv-flip-front h3{font-size:1.1rem;margin-bottom:6px}
+.inv-flip-front p{font-size:.82rem;color:var(--text-muted);margin:0}
+.inv-flip-hint{font-size:.7rem;color:var(--green);font-weight:700;margin-top:12px;opacity:.7}
+.inv-flip-back h3{font-size:1rem;margin-bottom:14px;color:#ffffff}
+.inv-flip-back ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.inv-flip-back li{font-size:.82rem;font-weight:600;color:#ffffff}
+.inv-flip-tag{margin-top:14px;font-size:.7rem;font-weight:700;background:var(--green-mid);color:var(--green-dark);padding:5px 12px;border-radius:100px;display:inline-block}
+/* ESG Timeline */
+.inv-esg-section{display:grid;grid-template-columns:280px 1fr;gap:56px;align-items:start;background:var(--text-dark);border-radius:var(--radius-xl);padding:48px 48px;margin-bottom:48px}
+.inv-esg-header .badge{background:rgba(44,201,23,.15);color:var(--green);border-color:rgba(44,201,23,.3)}
+.inv-esg-header h3{color:white;margin-top:8px}
+.inv-esg-timeline{display:flex;flex-direction:column;gap:0}
+.inv-esg-item{display:flex;gap:20px;align-items:flex-start;position:relative}
+.inv-esg-dot{width:44px;height:44px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;box-shadow:0 0 0 6px rgba(44,201,23,.18);position:relative;z-index:1}
+.inv-esg-line{position:absolute;left:21px;top:44px;width:2px;height:calc(100% + 4px);background:rgba(44,201,23,.25)}
+.inv-esg-line.last{display:none}
+.inv-esg-content{padding-bottom:32px}
+.inv-esg-tag{font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--green);margin-bottom:4px}
+.inv-esg-content h4{font-size:.95rem;font-weight:800;color:white;margin-bottom:5px}
+.inv-esg-content p{font-size:.82rem;color:rgba(255,255,255,.6);margin:0;line-height:1.55}
+/* Pitch Deck + CTA */
+.inv-deck-section{margin-bottom:0}
+.inv-deck-card{background:linear-gradient(135deg,var(--text-dark),#0f2010);border-radius:var(--radius-xl);padding:28px 36px;display:flex;align-items:center;justify-content:space-between;gap:24px;margin-bottom:24px;flex-wrap:wrap;border:1.5px solid rgba(44,201,23,.2)}
+.inv-deck-left{display:flex;align-items:center;gap:20px}
+.inv-deck-icon{font-size:2.4rem;flex-shrink:0}
+.inv-deck-btn{background:var(--green);color:white;font-weight:800;font-size:.9rem;padding:14px 28px;border-radius:100px;text-decoration:none;white-space:nowrap;transition:all .22s;border:2px solid var(--green);flex-shrink:0;box-shadow:0 4px 20px rgba(44,201,23,.4)}
+.inv-deck-btn:hover{background:var(--green-dark);transform:translateY(-2px);box-shadow:0 6px 28px rgba(44,201,23,.5)}
+.inv-cta-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.inv-cta-card{background:white;border-radius:var(--radius);padding:24px;border:1.5px solid var(--green-mid);box-shadow:var(--shadow-sm);transition:all .25s}
+.inv-cta-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:var(--green)}
+.inv-cta-icon{font-size:1.8rem;margin-bottom:10px}
+.inv-cta-card h4{font-size:.95rem;font-weight:800;margin-bottom:6px;color:var(--text-dark)}
+.inv-cta-card p{font-size:.82rem;color:var(--text-muted);margin:0}
+/* Responsive Investor */
+@media(max-width:1000px){.inv-flip-grid{grid-template-columns:repeat(2,1fr)}.inv-counters-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:860px){.inv-hero{grid-template-columns:1fr}.inv-hero-badge-stack{flex-direction:row;justify-content:center}.inv-problem-solution{grid-template-columns:1fr}.inv-ps-arrow{display:none}.inv-esg-section{grid-template-columns:1fr}.inv-cta-grid{grid-template-columns:1fr}}
+@media(max-width:600px){.inv-flip-grid{grid-template-columns:1fr}.inv-counters-grid{grid-template-columns:1fr 1fr}.inv-deck-card{flex-direction:column}.inv-deck-btn{width:100%;text-align:center;justify-content:center}.inv-esg-section{padding:32px 24px}}
+
+/* ── SWISS MAP ── */
+.swiss-map-section{margin-top:40px;padding:32px 0 16px}
+.swiss-map-outer{display:grid;grid-template-columns:260px 1fr;gap:28px;align-items:start;max-width:960px;margin:0 auto}
+.swiss-map-container{position:relative;background:linear-gradient(145deg,#f0fff0,#e4f9e0);border-radius:20px;padding:20px;box-shadow:0 8px 40px rgba(44,201,23,.13);border:1.5px solid var(--green-mid);overflow:visible}
+.swiss-map-svg{width:100%;height:auto;display:block}
+
+/* Fahrer Stats */
+.map-driver-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:960px;margin:0 auto 44px;padding:0 4px}
+.map-stat-card{background:white;border:1.5px solid var(--green-mid);border-radius:18px;padding:24px 20px;text-align:center;box-shadow:0 4px 20px rgba(44,201,23,.08);transition:transform .25s,box-shadow .25s}
+.map-stat-card:hover{transform:translateY(-4px);box-shadow:0 10px 32px rgba(44,201,23,.16)}
+.map-stat-card.highlight{background:linear-gradient(135deg,var(--green-light),#d4f8ce);border-color:var(--green)}
+.map-stat-icon{font-size:2rem;margin-bottom:8px}
+.map-stat-num{font-size:2.4rem;font-weight:900;color:var(--green-dark);line-height:1;margin-bottom:6px}
+.map-stat-label{font-size:.88rem;font-weight:700;color:var(--text);margin-bottom:4px}
+.map-stat-sub{font-size:.75rem;color:var(--text-muted)}
+
+/* Info-Panel links */
+.map-info-panel{display:flex;flex-direction:column;gap:16px}
+.map-phase-block{display:flex;align-items:flex-start;gap:12px;background:white;border-radius:14px;padding:14px 16px;border:1.5px solid var(--green-mid);box-shadow:0 2px 12px rgba(44,201,23,.07)}
+.map-phase-dot{width:14px;height:14px;border-radius:50%;flex-shrink:0;margin-top:3px}
+.map-phase-dot.launch{background:var(--green);box-shadow:0 0 8px rgba(44,201,23,.6)}
+.map-phase-dot.expand{background:#7ed957}
+.map-phase-dot.germany{background:#3b82f6;box-shadow:0 0 7px rgba(59,130,246,.5)}
+.map-phase-dot.austria{background:#dc2626;box-shadow:0 0 7px rgba(220,38,38,.45)}
+.map-phase-dot.future{background:transparent;border:2.5px dashed var(--green)}
+.map-phase-block strong{font-size:.85rem;font-weight:800;color:var(--text);display:block;margin-bottom:3px}
+.map-phase-block p{font-size:.78rem;color:var(--text-muted);margin:0 0 5px}
+.map-phase-tag{display:inline-block;background:var(--green-light);color:var(--green-dark);font-size:.68rem;font-weight:700;padding:2px 8px;border-radius:100px;border:1px solid var(--green-mid)}
+.map-phase-tag.phase-tag-de{background:#eff6ff;color:#1e40af;border-color:#bfdbfe}
+.map-phase-tag.phase-tag-at{background:#fef2f2;color:#991b1b;border-color:#fecaca}
+/* Stadt Info Box */
+.city-info-box{background:linear-gradient(135deg,#f0fff0,#e0fada);border:2px solid var(--green);border-radius:14px;padding:14px 16px;margin-top:4px;animation:fadeInBox .3s ease}
+@keyframes fadeInBox{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.city-info-name{font-size:1rem;font-weight:900;color:var(--green-dark);margin-bottom:4px}
+.city-info-phase{font-size:.8rem;font-weight:700;color:var(--green);margin-bottom:6px}
+.city-info-detail{font-size:.78rem;color:var(--text-muted);line-height:1.5}
+
+/* Tooltip */
+.city-node{cursor:pointer}
+.city-node:hover text{font-weight:900}
+.city-pulse-bg{animation:cityPulse 2.8s ease-in-out infinite}
+.city-node.phase1 .city-pulse-bg{animation-duration:2s}
+.city-node.phase2 .city-pulse-bg{animation-duration:3.5s}
+.city-node.phase3 .city-pulse-bg{animation:none}
+@keyframes cityPulse{0%,100%{opacity:.25;r:20}50%{opacity:.7;r:28}}
+.map-tooltip{position:absolute;background:white;border:2px solid var(--green);border-radius:12px;padding:10px 16px;pointer-events:none;z-index:10;box-shadow:0 4px 20px rgba(44,201,23,.2);min-width:170px}
+.map-tooltip-city{font-weight:800;font-size:.95rem;color:var(--green-dark);margin-bottom:4px}
+.map-tooltip-status{font-size:.8rem;color:var(--green);font-weight:600}
+.map-tooltip-rides{font-size:.75rem;color:var(--text-muted);margin-top:2px}
+
+/* Legende */
+.swiss-map-legend{display:flex;gap:28px;justify-content:center;flex-wrap:wrap;margin-top:24px;max-width:960px;margin-left:auto;margin-right:auto}
+.legend-item{display:flex;align-items:center;gap:9px;font-size:.85rem;color:var(--text-muted);font-weight:500}
+.legend-dot{width:13px;height:13px;border-radius:50%}
+.legend-dot.launch-dot{background:var(--green);box-shadow:0 0 7px rgba(44,201,23,.55)}
+.legend-dot.expand-dot{background:#7ed957}
+.legend-dot.germany-dot{background:#3b82f6}
+.legend-dot.austria-dot{background:#dc2626}
+.legend-dot.future-dot{background:transparent;border:2.5px dashed var(--green)}
+.map-line{animation:dashFlow 2s linear infinite}
+@keyframes dashFlow{to{stroke-dashoffset:-20}}
+
+/* ── APP COMING SOON BANNER ── */
+.app-banner-section{position:relative;padding:80px 0;overflow:hidden;background:linear-gradient(135deg,#0d2b0a 0%,#1a4f14 50%,#0d2b0a 100%)}
+.app-banner-bg{position:absolute;inset:0;pointer-events:none}
+.app-banner-blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.3}
+.app-banner-blob.b1{width:400px;height:400px;background:radial-gradient(circle,rgba(44,201,23,.6),transparent);top:-100px;left:-50px;animation:blobDrift 8s ease-in-out infinite}
+.app-banner-blob.b2{width:350px;height:350px;background:radial-gradient(circle,rgba(44,201,23,.4),transparent);bottom:-80px;right:-30px;animation:blobDrift 10s ease-in-out infinite reverse}
+@keyframes blobDrift{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(30px,-20px) scale(1.1)}}
+.app-banner-inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.app-banner-tag{display:inline-block;background:rgba(44,201,23,.2);color:rgba(44,201,23,1);border:1px solid rgba(44,201,23,.4);padding:6px 16px;border-radius:100px;font-size:.8rem;font-weight:700;letter-spacing:.05em;margin-bottom:20px}
+.app-banner-title{font-size:2.4rem;font-weight:900;color:white;line-height:1.2;margin:0 0 16px}
+.app-banner-title span{color:var(--green)}
+.app-banner-sub{color:rgba(255,255,255,.7);font-size:1rem;line-height:1.6;margin:0 0 32px}
+.app-form-group{display:flex;gap:12px;background:rgba(255,255,255,.08);border:1.5px solid rgba(44,201,23,.4);border-radius:100px;padding:6px 6px 6px 20px;max-width:500px}
+.app-email-input{flex:1;background:transparent;border:none;outline:none;color:white;font-size:.95rem}
+.app-email-input::placeholder{color:rgba(255,255,255,.4)}
+.app-submit-btn{border-radius:100px;padding:10px 24px;white-space:nowrap;font-size:.9rem;gap:8px;display:flex;align-items:center}
+.app-form-note{color:rgba(255,255,255,.4);font-size:.78rem;margin:10px 0 0 4px}
+/* Neues Formular-Styling */
+.app-input-row{margin-bottom:14px;max-width:500px}
+.app-input-label{display:block;color:rgba(255,255,255,.65);font-size:.78rem;font-weight:600;margin-bottom:6px;letter-spacing:.03em}
+.app-input-wrap{display:flex;align-items:center;background:rgba(255,255,255,.08);border:1.5px solid rgba(44,201,23,.35);border-radius:14px;padding:10px 16px;gap:10px;transition:border-color .2s,background .2s}
+.app-input-wrap:focus-within{border-color:rgba(44,201,23,.8);background:rgba(255,255,255,.12)}
+.app-input-icon{font-size:1rem;flex-shrink:0}
+.app-field-input{flex:1;background:transparent;border:none;outline:none;color:white;font-size:.95rem;font-family:inherit}
+.app-field-input::placeholder{color:rgba(255,255,255,.35)}
+/* Einwilligung */
+.app-consent-label{display:flex;align-items:flex-start;gap:12px;max-width:500px;cursor:pointer;margin:18px 0 20px;padding:14px 16px;background:rgba(255,255,255,.05);border:1.5px solid rgba(44,201,23,.25);border-radius:14px;transition:border-color .2s}
+.app-consent-label:hover{border-color:rgba(44,201,23,.5)}
+.app-consent-cb{position:absolute;opacity:0;width:0;height:0}
+.app-consent-box{width:20px;height:20px;min-width:20px;border-radius:6px;border:2px solid rgba(44,201,23,.5);background:rgba(255,255,255,.05);display:flex;align-items:center;justify-content:center;transition:all .2s;margin-top:1px}
+.app-consent-cb:checked + .app-consent-box{background:var(--green);border-color:var(--green)}
+.app-consent-cb:checked + .app-consent-box::after{content:'\2713';color:white;font-size:.85rem;font-weight:900;line-height:1}
+.app-consent-text{font-size:.78rem;color:rgba(255,255,255,.6);line-height:1.5}
+.app-consent-link{color:var(--green);text-decoration:underline}
+/* Submit Button full-width */
+.app-submit-btn-full{width:100%;max-width:500px;justify-content:center;border-radius:14px;padding:14px 24px;font-size:1rem;display:flex;align-items:center;gap:10px}
+.app-success-msg{display:flex;align-items:center;gap:16px;background:rgba(44,201,23,.15);border:1.5px solid rgba(44,201,23,.4);border-radius:16px;padding:16px 20px;max-width:500px}
+.app-success-icon{font-size:2rem}
+.app-success-msg strong{color:var(--green);display:block;margin-bottom:4px}
+.app-success-msg span{color:rgba(255,255,255,.7);font-size:.85rem}
+.app-store-badges{display:flex;gap:16px;margin-top:24px;flex-wrap:wrap;align-items:center}
+.store-badge-official{position:relative;opacity:.85;transition:opacity .2s,transform .2s;cursor:default}
+.store-badge-official:hover{opacity:1;transform:translateY(-2px)}
+.store-badge-soon-label{position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:rgba(44,201,23,.85);color:white;font-size:.62rem;font-weight:700;padding:2px 10px;border-radius:100px;white-space:nowrap;letter-spacing:.04em}
+.store-badge-img{display:block}
+.appstore-badge{height:44px;width:auto}
+/* Google Play hat ca. 17% Whitespace oben/unten → mit negativem Margin und clip ausgleichen */
+.googleplay-badge{height:66px;width:auto;margin-top:-11px;margin-bottom:-11px;}
+/* App Phone Preview */
+.app-banner-right{display:flex;justify-content:center}
+.app-phone-preview{width:220px;height:400px;background:linear-gradient(160deg,#1e1e2e,#0d2b0a);border-radius:36px;border:3px solid rgba(44,201,23,.4);box-shadow:0 0 60px rgba(44,201,23,.25),0 20px 60px rgba(0,0,0,.4);padding:20px 16px;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.app-phone-preview::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:80px;height:5px;background:rgba(255,255,255,.15);border-radius:0 0 6px 6px}
+.app-screen-status{color:rgba(255,255,255,.5);font-size:.7rem;text-align:right;margin-bottom:16px}
+.app-screen-logo{font-size:1.5rem;font-weight:900;color:var(--green);margin-bottom:4px}
+.app-screen-tagline{color:rgba(255,255,255,.6);font-size:.75rem;margin-bottom:24px}
+.app-screen-btn{background:var(--green);color:white;font-weight:800;font-size:.85rem;text-align:center;padding:10px;border-radius:12px;margin-bottom:16px;animation:btnGlow 2s ease-in-out infinite}
+@keyframes btnGlow{0%,100%{box-shadow:0 0 10px rgba(44,201,23,.4)}50%{box-shadow:0 0 20px rgba(44,201,23,.8)}}
+.app-screen-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px}
+.app-screen-chips span{background:rgba(255,255,255,.08);color:rgba(255,255,255,.7);font-size:.65rem;padding:4px 8px;border-radius:100px;border:1px solid rgba(255,255,255,.1)}
+.app-screen-countdown{margin-top:auto;text-align:center}
+.app-screen-countdown small{color:rgba(255,255,255,.4);font-size:.65rem;display:block;margin-bottom:8px}
+.app-countdown-digits{display:flex;align-items:center;justify-content:center;gap:8px}
+.app-countdown-digits > div{display:flex;flex-direction:column;align-items:center}
+.app-countdown-digits span{font-size:1.4rem;font-weight:900;color:var(--green);line-height:1}
+.app-countdown-digits small{font-size:.55rem;color:rgba(255,255,255,.4);margin-top:2px}
+.cd-sep{font-size:1.2rem;font-weight:900;color:rgba(44,201,23,.5);margin-bottom:8px}
+
+/* ── TEAM PARALLAX BANNER ── */
+.team-parallax-banner{position:relative;height:480px;overflow:hidden}
+.team-parallax-img{
+  position:absolute;inset:-60px 0;
+  background:url('images/team-banner.jpg') center center / cover no-repeat;
+  will-change:transform;
+  transition:transform .1s linear;
+}
+.team-parallax-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(
+    to bottom,
+    rgba(10,40,8,.25) 0%,
+    rgba(10,40,8,.55) 60%,
+    rgba(10,40,8,.85) 100%
+  );
+  display:flex;align-items:flex-end;
+}
+.team-parallax-content{
+  padding:0 0 52px 0;
+  width:100%;
+  text-align:center;
+}
+.team-parallax-title{
+  font-size:3rem;font-weight:900;color:white;
+  line-height:1.15;margin:14px 0 12px;
+  text-shadow:0 2px 20px rgba(0,0,0,.4);
+}
+.team-parallax-title span{color:var(--green)}
+.team-parallax-sub{
+  color:rgba(255,255,255,.8);
+  font-size:1.05rem;max-width:560px;
+  margin:0 auto;line-height:1.6;
+  text-shadow:0 1px 8px rgba(0,0,0,.3);
+}
+@media(max-width:720px){
+  .team-parallax-banner{height:320px}
+  .team-parallax-title{font-size:2rem}
+  .team-parallax-sub{font-size:.9rem;padding:0 20px}
+  .team-parallax-content{padding-bottom:36px}
+}
+
+/* ── DATENSCHUTZ MODAL ── */
+.dsgvo-modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px);animation:fadeInBackdrop .25s ease}
+@keyframes fadeInBackdrop{from{opacity:0}to{opacity:1}}
+.dsgvo-modal-box{background:white;border-radius:24px;max-width:720px;width:100%;max-height:88vh;display:flex;flex-direction:column;box-shadow:0 24px 80px rgba(0,0,0,.35);animation:slideUpModal .3s cubic-bezier(.22,1,.36,1)}
+@keyframes slideUpModal{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+.dsgvo-modal-header{display:flex;justify-content:space-between;align-items:flex-start;padding:28px 32px 20px;border-bottom:1.5px solid #e8f5e9;gap:16px;flex-shrink:0}
+.dsgvo-modal-badge{display:inline-block;background:var(--green-light);color:var(--green-dark);font-size:.75rem;font-weight:700;padding:4px 12px;border-radius:100px;margin-bottom:8px}
+.dsgvo-modal-title{font-size:1.6rem;font-weight:900;color:var(--text);margin:0 0 4px}
+.dsgvo-modal-meta{font-size:.78rem;color:var(--text-muted);margin:0}
+.dsgvo-close-btn{background:none;border:none;font-size:1.2rem;cursor:pointer;color:var(--text-muted);padding:8px;border-radius:8px;line-height:1;flex-shrink:0;transition:background .2s,color .2s}
+.dsgvo-close-btn:hover{background:#f0fff0;color:var(--green-dark)}
+.dsgvo-modal-body{overflow-y:auto;padding:24px 32px;flex:1;scroll-behavior:smooth}
+.dsgvo-modal-body::-webkit-scrollbar{width:6px}
+.dsgvo-modal-body::-webkit-scrollbar-track{background:#f0fff0;border-radius:3px}
+.dsgvo-modal-body::-webkit-scrollbar-thumb{background:var(--green-mid);border-radius:3px}
+.dsgvo-section{margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid #f0f0f0}
+.dsgvo-section:last-child{border-bottom:none;margin-bottom:0}
+.dsgvo-section h3{font-size:1rem;font-weight:800;color:var(--green-dark);margin:0 0 10px;padding-left:10px;border-left:3px solid var(--green)}
+.dsgvo-section p{font-size:.875rem;color:#444;line-height:1.65;margin:0 0 8px}
+.dsgvo-section p:last-child{margin-bottom:0}
+.dsgvo-section a{color:var(--green);text-decoration:underline}
+.dsgvo-list{margin:8px 0 8px 20px;padding:0}
+.dsgvo-list li{font-size:.875rem;color:#444;line-height:1.6;margin-bottom:4px}
+.dsgvo-list li strong{color:var(--text)}
+.dsgvo-address-box{background:#f6fef5;border:1.5px solid var(--green-mid);border-radius:12px;padding:16px 20px;font-size:.875rem;color:#444;line-height:1.7;margin-top:10px}
+.dsgvo-address-box strong{color:var(--text)}
+.dsgvo-address-box a{color:var(--green)}
+.dsgvo-rights-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.dsgvo-right-item{display:flex;gap:12px;align-items:flex-start;background:#f6fef5;border-radius:12px;padding:12px 14px;border:1px solid var(--green-mid)}
+.dsgvo-right-icon{font-size:1.3rem;flex-shrink:0;margin-top:1px}
+.dsgvo-right-item strong{font-size:.85rem;font-weight:700;color:var(--text);display:block;margin-bottom:2px}
+.dsgvo-right-item p{font-size:.75rem;color:var(--text-muted);margin:0;line-height:1.4}
+.dsgvo-modal-footer{padding:20px 32px 24px;border-top:1.5px solid #e8f5e9;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-shrink:0;flex-wrap:wrap}
+.dsgvo-modal-footer p{font-size:.82rem;color:var(--text-muted);margin:0}
+.dsgvo-modal-footer a{color:var(--green)}
+@media(max-width:600px){.dsgvo-modal-header{padding:20px 20px 16px}.dsgvo-modal-body{padding:16px 20px}.dsgvo-modal-footer{padding:16px 20px 20px;flex-direction:column;align-items:stretch}.dsgvo-rights-grid{grid-template-columns:1fr}.dsgvo-modal-title{font-size:1.3rem}}
+
+/* RESPONSIVE */
+@media(max-width:1100px){.team-grid{grid-template-columns:repeat(3,1fr)}.co2-pillars{grid-template-columns:repeat(2,1fr)}.why-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:900px){.hero-grid,.driver-hero{grid-template-columns:1fr;gap:40px}.tech-timeline-section{grid-template-columns:1fr;gap:40px}.hero-visual{order:-1}.timeline-phone{order:-1}.team-grid{grid-template-columns:repeat(2,1fr)}.footer-grid{grid-template-columns:1fr 1fr}.tech-grid{grid-template-columns:repeat(2,1fr)}.investor-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:720px){.nav-links,.nav-actions{display:none}.hamburger{display:flex}.section{padding:60px 0}.why-grid{grid-template-columns:1fr}.driver-grid{grid-template-columns:1fr}.team-grid{grid-template-columns:repeat(2,1fr)}.co2-pillars{grid-template-columns:1fr}.co2-principles{grid-template-columns:1fr}.tech-grid{grid-template-columns:1fr}.investor-grid{grid-template-columns:1fr}.co2-2027-banner{flex-direction:column;text-align:center}.investor-hero{padding:48px 28px}.tech-timeline-section{padding:36px 28px}.footer-grid{grid-template-columns:1fr}.phone-float-card.left,.phone-float-card.right{display:none}.hero-stats{gap:20px}.app-banner-inner{grid-template-columns:1fr}.app-banner-right{display:none}.app-banner-title{font-size:1.8rem}.app-form-group{flex-direction:column;border-radius:16px;padding:12px}.app-submit-btn{border-radius:12px;width:100%;justify-content:center}.swiss-map-legend{gap:14px}.swiss-map-outer{grid-template-columns:1fr}.map-info-panel{display:none}.map-driver-stats{grid-template-columns:1fr;gap:12px}}
+@media(max-width:480px){.team-grid{grid-template-columns:1fr 1fr}.btn-group{flex-direction:column;align-items:flex-start}h1{font-size:2rem}}
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════
+     NAVIGATION
+═══════════════════════════════════════ -->
+<nav id="navbar">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#home" class="nav-logo">
+        <div class="nav-logo-mark">T</div>
+        <div class="nav-logo-text">TUK <span>SWISS</span></div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#try-tuk">App Demo</a></li>
+        <li><a href="#fahrer">Fahrer</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="#technologie">Technologie</a></li>
+        <li><a href="#co2">CO₂</a></li>
+        <li><a href="#investoren">Investoren</a></li>
+
+      </ul>
+      <div class="nav-actions">
+        <a href="#app-banner" class="btn btn-outline nav-app-btn" style="font-size:0.82rem;padding:8px 16px;">TUK App</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Menü öffnen">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Navigation -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="#home">Home</a>
+  <a href="#try-tuk">📱 App Demo</a>
+  <a href="#fahrer">Fahrer</a>
+  <a href="#team">Team</a>
+  <a href="#technologie">Technologie</a>
+  <a href="#co2">CO₂ Reduktion</a>
+  <a href="#investoren">Investoren</a>
+  <a href="#app-banner" style="color:var(--green);font-weight:800;">📱 TUK App – Jetzt vormerken</a>
+  <a href="https://tukswiss.com" target="_blank" rel="noopener">🌐 tukswiss.com</a>
+  <a href="https://tukswiss.com/tuk-services.html" target="_blank" rel="noopener">⚙️ TUK Services</a>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     HOME / HERO
+═══════════════════════════════════════ -->
+<section id="home">
+  <!-- Animierte Hintergrund-Blobs -->
+  <div class="hero-blob blob1"></div>
+  <div class="hero-blob blob2"></div>
+  <div class="hero-blob blob3"></div>
+
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="hero-grid">
+
+      <!-- ── CONTENT ── -->
+      <div class="hero-content">
+
+        <!-- Badge mit Live-Indikator -->
+        <div class="hero-badge-row">
+          <span class="badge">🇨🇭 Schweizer Mobilitätsplattform</span>
+          <span class="hero-live-pill">
+            <span class="hero-live-dot"></span> Live in der Schweiz
+          </span>
+        </div>
+
+        <!-- Headline mit Typed-Effekt -->
+        <h1 class="hero-title">
+          Die Zukunft der<br/>
+          Mobilität beginnt<br/>
+          heute <span class="highlight typed-wrap"><span id="typedWord">in der Schweiz.</span><span class="typed-cursor-hero">|</span></span>
+        </h1>
+
+        <p class="hero-lead">
+          Die TUK App ist dein persönlicher Mobilitätsassistent. Buche in Sekunden eine Fahrt, plane medizinische Transporte, bestelle Kurierdienste oder lass Einkäufe liefern – alles in einer einzigen App. Verfügbar rund um die Uhr, überall in der Schweiz.
+        </p>
+
+        <!-- CTAs -->
+        <div class="btn-group">
+          <a href="https://tukswiss.com/tuk-services.html" target="_blank" rel="noopener" class="btn btn-primary btn-pulse">
+            Als Fahrer anmelden →
+          </a>
+        </div>
+
+        <!-- Statistiken -->
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-number">9+</div>
+            <div class="hero-stat-label">Services</div>
+          </div>
+          <div class="hero-stat-divider"></div>
+          <div class="hero-stat">
+            <div class="hero-stat-number">24/7</div>
+            <div class="hero-stat-label">Verfügbar</div>
+          </div>
+          <div class="hero-stat-divider"></div>
+          <div class="hero-stat">
+            <div class="hero-stat-number">2027</div>
+            <div class="hero-stat-label">Elektroflotte</div>
+          </div>
+          <div class="hero-stat-divider"></div>
+          <div class="hero-stat">
+            <div class="hero-stat-number">85%</div>
+            <div class="hero-stat-label">Fahrpreis</div>
+          </div>
+        </div>
+
+        <!-- Services-Karussell -->
+        <div class="hero-services-label">Alle Services in einer App:</div>
+        <div class="hero-services-track-wrap">
+          <div class="hero-services-track" id="servicesTrack">
+            <div class="hero-service-chip">🚗 Fahrt buchen</div>
+            <div class="hero-service-chip">🏥 Medizinisch</div>
+            <div class="hero-service-chip">📦 Kurier</div>
+            <div class="hero-service-chip">💊 Apotheke</div>
+            <div class="hero-service-chip">🛒 Einkauf</div>
+            <div class="hero-service-chip">♿ Barrierefrei</div>
+            <div class="hero-service-chip">🚚 LKW</div>
+            <div class="hero-service-chip">🛴 E-Scooter</div>
+            <div class="hero-service-chip">🐾 Tierbetreuung</div>
+            <!-- Duplicate für nahtloses Loop -->
+            <div class="hero-service-chip">🚗 Fahrt buchen</div>
+            <div class="hero-service-chip">🏥 Medizinisch</div>
+            <div class="hero-service-chip">📦 Kurier</div>
+            <div class="hero-service-chip">💊 Apotheke</div>
+            <div class="hero-service-chip">🛒 Einkauf</div>
+            <div class="hero-service-chip">♿ Barrierefrei</div>
+            <div class="hero-service-chip">🚚 LKW</div>
+            <div class="hero-service-chip">🛴 E-Scooter</div>
+            <div class="hero-service-chip">🐾 Tierbetreuung</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ── VISUAL ── -->
+      <div class="hero-visual">
+        <div class="phone-mockup-wrapper">
+          <!-- Mehrschichtiger Glow-Ring -->
+          <div class="phone-glow-ring"></div>
+          <!-- Orbit-Punkt -->
+          <div class="phone-orbit"></div>
+          <!-- Floor Glow -->
+          <div class="phone-floor-glow"></div>
+          <img src="images/phone-ride.png" alt="TUK App – Fahrt buchen in Zürich" />
+          <div class="phone-float-card left">
+            <span class="float-icon">⚡</span> Sofort verfügbar
+            <span class="float-label">Fahrer in 3 Min · CHF 12.50</span>
+          </div>
+          <div class="phone-float-card right">
+            <span class="float-icon">🌿</span> CO₂ gespart
+            <span class="float-label">−0.8 kg heute</span>
+          </div>
+          <!-- Extra Float-Card -->
+          <div class="phone-float-card bottom-card">
+            <span style="font-size:.75rem;font-weight:800;color:var(--green);">⭐ 4.9</span>
+            <span style="font-size:.72rem;font-weight:600;color:var(--text-muted);margin-left:4px;">Fahrerbewertung</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── TRUST-BAR ── -->
+  <div class="hero-trust-bar">
+    <div class="container">
+      <div class="hero-trust-inner">
+        <span class="hero-trust-label">Vertraut von:</span>
+        <div class="hero-trust-items">
+          <div class="hero-trust-item">🇨🇭 Schweizer Qualität</div>
+          <div class="hero-trust-sep">·</div>
+          <div class="hero-trust-item">♻️ ESG-konform</div>
+          <div class="hero-trust-sep">·</div>
+          <div class="hero-trust-item">🤝 SBB-Partner</div>
+          <div class="hero-trust-sep">·</div>
+          <div class="hero-trust-item">🛡️ Verifizierte Fahrer</div>
+          <div class="hero-trust-sep">·</div>
+          <div class="hero-trust-item">⚡ 100% Elektro bis 2027</div>
+          <div class="hero-trust-sep">·</div>
+          <div class="hero-trust-item">🌱 Baum pro Fahrt</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     TRY TUK – INTERAKTIVE APP DEMO
+═══════════════════════════════════════ -->
+<section id="try-tuk" class="section" style="background:linear-gradient(160deg,#f4fff2 0%,#ffffff 60%,#eaf9e7 100%);overflow:hidden;">
+  <div class="container">
+
+    <div class="text-center fade-up" style="margin-bottom:56px;">
+      <span class="badge">Live Demo</span>
+      <h2>Erlebe die TUK App –<br/><span class="text-green">direkt hier ausprobieren</span></h2>
+      <p style="max-width:560px;margin:0 auto;color:var(--text-muted);">Klicke dich durch die TUK App und erlebe, wie einfach Mobilität in der Schweiz sein kann. Von der Buchung bis zum Fahrer – in Sekunden.</p>
+    </div>
+
+    <div class="demo-wrapper fade-up">
+
+      <!-- Step Indicator (links/oben) -->
+      <div class="demo-steps-panel">
+        <div class="demo-step-item active" data-step="0">
+          <div class="demo-step-num">1</div>
+          <div class="demo-step-info">
+            <div class="demo-step-title">Startbildschirm</div>
+            <div class="demo-step-desc">App öffnen & loslegen</div>
+          </div>
+        </div>
+        <div class="demo-step-connector"></div>
+        <div class="demo-step-item" data-step="1">
+          <div class="demo-step-num">2</div>
+          <div class="demo-step-info">
+            <div class="demo-step-title">Ziel eingeben</div>
+            <div class="demo-step-desc">Zürich HB → Flughafen</div>
+          </div>
+        </div>
+        <div class="demo-step-connector"></div>
+        <div class="demo-step-item" data-step="2">
+          <div class="demo-step-num">3</div>
+          <div class="demo-step-info">
+            <div class="demo-step-title">Fahrer wird gesucht</div>
+            <div class="demo-step-desc">KI findet besten Fahrer</div>
+          </div>
+        </div>
+        <div class="demo-step-connector"></div>
+        <div class="demo-step-item" data-step="3">
+          <div class="demo-step-num">4</div>
+          <div class="demo-step-info">
+            <div class="demo-step-title">Bestätigt!</div>
+            <div class="demo-step-desc">ETA 3 Min · CHF 12.50</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Handy-Frame (Mitte) -->
+      <div class="demo-phone-area">
+        <div class="demo-phone-frame" id="demoPhone">
+
+          <!-- Statusbar -->
+          <div class="demo-statusbar">
+            <span class="demo-time" id="demoTime">09:41</span>
+            <div class="demo-statusbar-icons">
+              <span>●●●</span>
+              <span>WiFi</span>
+              <span>🔋</span>
+            </div>
+          </div>
+
+          <!-- ── SCREEN 0: Startbildschirm ── -->
+          <div class="demo-screen active" id="screen-0">
+            <div class="ds-header">
+              <div class="ds-logo-bar">
+                <div class="ds-logo-mark">T</div>
+                <span class="ds-logo-text">TUK <strong>SWISS</strong></span>
+              </div>
+              <div class="ds-greeting">Guten Morgen, Marco 👋</div>
+              <div class="ds-subtitle">Wohin heute?</div>
+            </div>
+            <div class="ds-search-bar" id="searchBar0">
+              <span class="ds-search-icon">🔍</span>
+              <span class="ds-search-placeholder">Ziel eingeben…</span>
+            </div>
+            <div class="ds-quick-grid">
+              <div class="ds-quick-card">🏠<span>Heim</span></div>
+              <div class="ds-quick-card">💼<span>Büro</span></div>
+              <div class="ds-quick-card">✈️<span>Flughafen</span></div>
+              <div class="ds-quick-card">🏥<span>Arzt</span></div>
+            </div>
+            <div class="ds-services-row">
+              <div class="ds-service-chip active-service">🚗 Fahrt</div>
+              <div class="ds-service-chip">📦 Kurier</div>
+              <div class="ds-service-chip">💊 Apotheke</div>
+              <div class="ds-service-chip">🛒 Einkauf</div>
+            </div>
+            <button class="ds-main-btn" onclick="demoGoTo(1)">
+              🚀 Fahrt buchen
+            </button>
+          </div>
+
+          <!-- ── SCREEN 1: Ziel eingeben ── -->
+          <div class="demo-screen" id="screen-1">
+            <div class="ds-header-sm">
+              <button class="ds-back-btn" onclick="demoGoTo(0)">← Zurück</button>
+              <span class="ds-header-title">Fahrt planen</span>
+            </div>
+            <div class="ds-route-box">
+              <div class="ds-route-row">
+                <div class="ds-route-dot green"></div>
+                <div class="ds-route-field filled">
+                  <div class="ds-field-label">Abfahrt</div>
+                  <div class="ds-field-value">📍 Zürich Hauptbahnhof</div>
+                </div>
+              </div>
+              <div class="ds-route-line"></div>
+              <div class="ds-route-row">
+                <div class="ds-route-dot blue"></div>
+                <div class="ds-route-field typing" id="destField">
+                  <div class="ds-field-label">Ziel</div>
+                  <div class="ds-field-value" id="destTyping">Zürich Flughafen<span class="ds-cursor">|</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="ds-suggestions">
+              <div class="ds-suggest-item" onclick="demoGoTo(2)">
+                <span class="ds-suggest-icon">✈️</span>
+                <div>
+                  <div class="ds-suggest-name">Zürich Flughafen (ZRH)</div>
+                  <div class="ds-suggest-dist">18.4 km · ~22 Min</div>
+                </div>
+                <span class="ds-suggest-arrow">→</span>
+              </div>
+              <div class="ds-suggest-item muted">
+                <span class="ds-suggest-icon">🏨</span>
+                <div>
+                  <div class="ds-suggest-name">Flughafen Hotel Zürich</div>
+                  <div class="ds-suggest-dist">18.9 km · ~24 Min</div>
+                </div>
+                <span class="ds-suggest-arrow">→</span>
+              </div>
+            </div>
+            <div class="ds-route-info-bar">
+              <div class="ds-route-info-item">⏱ ~22 Min</div>
+              <div class="ds-route-info-item">📏 18.4 km</div>
+              <div class="ds-route-info-item">🌿 −0.8 kg CO₂</div>
+            </div>
+            <button class="ds-main-btn" onclick="demoGoTo(2)">
+              Fahrer suchen →
+            </button>
+          </div>
+
+          <!-- ── SCREEN 2: Fahrer wird gesucht ── -->
+          <div class="demo-screen" id="screen-2">
+            <div class="ds-header-sm">
+              <span class="ds-header-title">Fahrer wird gesucht…</span>
+            </div>
+            <div class="ds-map-area" id="demoMap">
+              <div class="ds-map-bg">
+                <!-- Simulierte Strassenkarte -->
+                <svg width="100%" height="100%" viewBox="0 0 260 180" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="260" height="180" fill="#e8f5e9"/>
+                  <rect x="0" y="80" width="260" height="8" fill="#c8e6c9" rx="2"/>
+                  <rect x="0" y="110" width="260" height="5" fill="#dcedc8" rx="2"/>
+                  <rect x="120" y="0" width="8" height="180" fill="#c8e6c9" rx="2"/>
+                  <rect x="80" y="0" width="4" height="180" fill="#dcedc8" rx="2"/>
+                  <rect x="170" y="0" width="4" height="180" fill="#dcedc8" rx="2"/>
+                  <rect x="0" y="50" width="260" height="3" fill="#dcedc8" rx="2"/>
+                  <rect x="0" y="140" width="260" height="3" fill="#dcedc8" rx="2"/>
+                  <!-- Route Linie -->
+                  <path d="M 40 84 Q 90 60 124 84 Q 150 100 200 84" stroke="#2cc917" stroke-width="3" fill="none" stroke-dasharray="6,3" stroke-linecap="round"/>
+                  <!-- Start Punkt -->
+                  <circle cx="40" cy="84" r="7" fill="#2cc917"/>
+                  <circle cx="40" cy="84" r="4" fill="white"/>
+                  <!-- Ziel Punkt -->
+                  <circle cx="200" cy="84" r="7" fill="#1565C0"/>
+                  <circle cx="200" cy="84" r="4" fill="white"/>
+                </svg>
+                <!-- Pulsierende Suchkreise -->
+                <div class="ds-search-pulse" id="searchPulse">
+                  <div class="ds-pulse-ring ring1"></div>
+                  <div class="ds-pulse-ring ring2"></div>
+                  <div class="ds-pulse-ring ring3"></div>
+                  <div class="ds-pulse-center">🚗</div>
+                </div>
+                <!-- Fahrende Auto-Icons -->
+                <div class="ds-car-dot" id="car1" style="left:60px;top:55px;">🚗</div>
+                <div class="ds-car-dot" id="car2" style="left:140px;top:105px;">🚗</div>
+                <div class="ds-car-dot" id="car3" style="left:180px;top:60px;">🚗</div>
+              </div>
+            </div>
+            <div class="ds-searching-label">
+              <div class="ds-spinner" id="demoSpinner"></div>
+              <span id="searchLabel">KI sucht den besten Fahrer in deiner Nähe…</span>
+            </div>
+            <div class="ds-progress-bar-outer">
+              <div class="ds-progress-bar-inner" id="searchProgress"></div>
+            </div>
+            <div class="ds-route-info-bar" style="margin-top:12px;">
+              <div class="ds-route-info-item">📍 Zürich HB</div>
+              <div class="ds-route-info-item">→</div>
+              <div class="ds-route-info-item">✈️ Flughafen</div>
+            </div>
+            <!-- Wird nach Suche gezeigt -->
+            <button class="ds-main-btn ds-btn-hidden" id="foundBtn" onclick="demoGoTo(3)">
+              ✅ Fahrer gefunden!
+            </button>
+          </div>
+
+          <!-- ── SCREEN 3: Fahrer bestätigt ── -->
+          <div class="demo-screen" id="screen-3">
+            <div class="ds-confirm-header">
+              <div class="ds-confirm-check">✓</div>
+              <div class="ds-confirm-title">Fahrt bestätigt!</div>
+              <div class="ds-confirm-sub">Dein Fahrer ist unterwegs</div>
+            </div>
+            <div class="ds-driver-card">
+              <div class="ds-driver-avatar">
+                <img src="images/avatar-ilia.png" alt="Fahrer" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"/>
+              </div>
+              <div class="ds-driver-info">
+                <div class="ds-driver-name">Marco R.</div>
+                <div class="ds-driver-rating">⭐ 4.9 <span style="color:var(--text-muted);font-weight:400;">(312 Fahrten)</span></div>
+                <div class="ds-driver-car">🚗 Tesla Model 3 · ZH 451 TUK</div>
+              </div>
+            </div>
+            <div class="ds-eta-row">
+              <div class="ds-eta-block green">
+                <div class="ds-eta-num">3</div>
+                <div class="ds-eta-label">Min · ETA</div>
+              </div>
+              <div class="ds-eta-block">
+                <div class="ds-eta-num">CHF</div>
+                <div class="ds-eta-label" style="font-size:.95rem;font-weight:900;color:var(--text-dark);">12.50</div>
+              </div>
+              <div class="ds-eta-block">
+                <div class="ds-eta-num">🌿</div>
+                <div class="ds-eta-label">−0.8 kg CO₂</div>
+              </div>
+            </div>
+            <div class="ds-live-bar">
+              <div class="ds-live-dot"></div>
+              <span>Fahrer bewegt sich auf dich zu</span>
+            </div>
+            <div class="ds-action-row">
+              <button class="ds-action-btn">💬 Chat</button>
+              <button class="ds-action-btn">📞 Anrufen</button>
+              <button class="ds-action-btn danger">✕ Stornieren</button>
+            </div>
+            <button class="ds-main-btn" style="background:var(--green-light);color:var(--green-dark);box-shadow:none;margin-top:8px;" onclick="demoGoTo(0)">
+              🔄 Nochmal ausprobieren
+            </button>
+          </div>
+
+        </div><!-- /demo-phone-frame -->
+
+        <!-- Step Dots unterm Handy -->
+        <div class="demo-dot-row">
+          <div class="demo-dot active" onclick="demoGoTo(0)"></div>
+          <div class="demo-dot" onclick="demoGoTo(1)"></div>
+          <div class="demo-dot" onclick="demoGoTo(2)"></div>
+          <div class="demo-dot" onclick="demoGoTo(3)"></div>
+        </div>
+      </div>
+
+      <!-- Info-Panel (rechts) -->
+      <div class="demo-info-panel" id="demoInfoPanel">
+        <!-- Wird per JS befüllt -->
+        <div class="demo-info-content active" data-for="0">
+          <h3>Willkommen bei TUK</h3>
+          <p>Die TUK App öffnet sich mit einer klaren, freundlichen Übersicht. Deine Lieblingsrouten, alle Services im Blick – und in einer Sekunde buchungsbereit.</p>
+          <ul class="demo-info-list">
+            <li>✓ Persönliche Begrüssung</li>
+            <li>✓ Schnellzugriff auf Favoriten</li>
+            <li>✓ Alle 9+ Services auf einen Blick</li>
+            <li>✓ Echtzeit-Verfügbarkeit</li>
+          </ul>
+        </div>
+        <div class="demo-info-content" data-for="1">
+          <div class="demo-info-icon">📍</div>
+          <h3>Ziel in Sekunden</h3>
+          <p>Tippe einfach dein Ziel ein – TUK schlägt dir sofort passende Orte vor. Intelligente Auto-Vervollständigung kennt Zürich wie kein anderer.</p>
+          <ul class="demo-info-list">
+            <li>✓ Smarte Zielvorschläge</li>
+            <li>✓ Routenvorschau & Dauer</li>
+            <li>✓ CO₂-Einsparung sichtbar</li>
+            <li>✓ Preis vor der Buchung</li>
+          </ul>
+        </div>
+        <div class="demo-info-content" data-for="2">
+          <div class="demo-info-icon">🤖</div>
+          <h3>KI findet den besten Fahrer</h3>
+          <p>Unsere KI-Algorithmen analysieren in Millisekunden alle verfügbaren Fahrer in deiner Nähe – und wählt den mit der besten Route, Bewertung und ETA.</p>
+          <ul class="demo-info-list">
+            <li>✓ KI-gestützte Vermittlung</li>
+            <li>✓ Echtzeitdaten aller Fahrer</li>
+            <li>✓ Minimalste Wartezeit</li>
+            <li>✓ Optimale Routenberechnung</li>
+          </ul>
+        </div>
+        <div class="demo-info-content" data-for="3">
+          <div class="demo-info-icon">🎉</div>
+          <h3>Dein Fahrer ist da!</h3>
+          <p>In durchschnittlich 3 Minuten ist dein verifizierter TUK-Fahrer bei dir. Bewertung, Fahrzeug und ETA – alles transparent auf einen Blick.</p>
+          <ul class="demo-info-list">
+            <li>✓ Verifizierter Fahrer</li>
+            <li>✓ Echtzeitposition auf der Karte</li>
+            <li>✓ Direkter Chat & Anruf</li>
+            <li>✓ Transparenter Festpreis</li>
+          </ul>
+        </div>
+      </div>
+
+    </div><!-- /demo-wrapper -->
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     WARUM TUK
+═══════════════════════════════════════ -->
+<section class="section section-light">
+  <div class="container">
+    <div class="text-center fade-up">
+      <span class="badge">Warum TUK</span>
+      <h2>Weil Mobilität in der Schweiz<br/>endlich einfacher werden muss.</h2>
+      <p style="max-width:640px;margin:0 auto;color:var(--text-muted);">TUK bündelt Fahrdienste, ÖV-Verbindungen und Kurierdienste in einer einzigen App – in Partnerschaft mit der SBB und weiteren Schweizer Mobilitätspartnern. Alles, was du brauchst, um dich zu bewegen. Jederzeit. Überall.</p>
+    </div>
+
+    <div class="why-grid">
+      <div class="why-card fade-up">
+        <div class="why-icon">🚗</div>
+        <div class="why-title">Die Schweizer Alternative</div>
+        <p class="why-text">TUK ist dein Schweizer Fahrdienst: transparent, sicher und nachhaltig. Keine versteckten Kosten, keine Überraschungen – nur zuverlässige Fahrten, wann und wo du sie brauchst.</p>
+      </div>
+      <div class="why-card fade-up">
+        <div class="why-icon">♿</div>
+        <div class="why-title">Mobilität für alle Lebenslagen</div>
+        <p class="why-text">TUK begleitet dich in jeder Lebenslage: von barrierefreien Fahrten über medizinische Transporte bis hin zu Arzt- und Therapieterminen. Wir sind da, wenn es darauf ankommt.</p>
+      </div>
+      <div class="why-card fade-up">
+        <div class="why-icon">📦</div>
+        <div class="why-title">Liefern & Erledigen</div>
+        <p class="why-text">Auch deine Besorgungen übernehmen wir für dich – von der Apotheke bis vor die Haustür. TUK liefert Medikamente, transportiert Einkäufe oder Möbel und ist zuverlässig auch kurzfristig verfügbar.</p>
+      </div>
+      <div class="why-card fade-up">
+        <div class="why-icon">🏥</div>
+        <div class="why-title">Medizinische Transporte</div>
+        <p class="why-text">Verifizierte Fahrerinnen und Fahrer, sofort buchbar und maximal komfortabel – ob im Alltag, zum Arzttermin oder für geplante Fahrten. TUK bringt dich zuverlässig ans Ziel.</p>
+      </div>
+      <div class="why-card fade-up">
+        <div class="why-icon">🤝</div>
+        <div class="why-title">SBB-Partnerschaft</div>
+        <p class="why-text">Als offizieller Mobilitätspartner integrieren wir die Schweizer ÖV-Verbindungen nahtlos in die TUK App. Vom Bahnhof bis zur Haustür – lückenlos und komfortabel.</p>
+      </div>
+      <div class="why-card fade-up">
+        <div class="why-icon">⏱️</div>
+        <div class="why-title">Sekunden-Buchung</div>
+        <p class="why-text">Mit der TUK App bist du in wenigen Sekunden unterwegs. Kein Warten, keine Unsicherheit – nur zuverlässige Fahrten auf Knopfdruck. <strong>TUK – bewegt mehr als nur Menschen.</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     FAHRER
+═══════════════════════════════════════ -->
+<section id="fahrer" class="section">
+  <div class="container">
+
+    <div class="driver-hero">
+      <div class="fade-up">
+        <span class="badge">Für Fahrerinnen & Fahrer</span>
+        <h2>Mehr verdienen.<br/>Besser fahren.<br/><span class="text-green">…mit TUK.</span></h2>
+        <p>Bei TUK steht der Fahrer im Mittelpunkt. Du verdienst attraktive Boni für jede Fahrt und erhältst jede Woche bis zu 85 % des Fahrpreises – transparent, pünktlich und ohne Überraschungen.</p>
+        <p>Kein Büro, kein Chef – du entscheidest selbst, wie viel du arbeitest und was du erreichst. TUK gibt dir die Werkzeuge, du bestimmst den Weg.</p>
+        <div class="driver-badge-bar">
+          <span class="driver-chip">✓ 85% des Fahrpreises</span>
+          <span class="driver-chip">✓ Wöchentliche Auszahlung</span>
+          <span class="driver-chip">✓ Keine Vorabkosten</span>
+          <span class="driver-chip">✓ Women+ Connect</span>
+        </div>
+        <div class="btn-group" style="margin-top:8px;">
+          <a href="https://tukswiss.com/tuk-services.html#anmelden" target="_blank" rel="noopener" class="btn btn-primary">
+            Als Fahrer anmelden →
+          </a>
+          <a href="https://tukswiss.com/tuk-services.html" target="_blank" rel="noopener" class="btn btn-outline">
+            Mehr erfahren
+          </a>
+        </div>
+      </div>
+      <div class="driver-grid fade-up">
+        <div class="driver-card">
+          <span class="driver-card-icon">💰</span>
+          <h3>Mehr verdienen mit Boni</h3>
+          <p>Erhalte attraktive Bonuszahlungen für jede Fahrt und erreiche deine Ziele schneller.</p>
+        </div>
+        <div class="driver-card">
+          <span class="driver-card-icon">📊</span>
+          <h3>Transparente Bezahlung</h3>
+          <p>Mit unserer Verdienstgarantie erhältst du jede Woche bis zu 85 % des Fahrpreises – pünktlich und zuverlässig.</p>
+        </div>
+        <div class="driver-card">
+          <span class="driver-card-icon">👩‍💼</span>
+          <h3>Female Driver Option</h3>
+          <p>Die Women+ Connect-Funktion gibt Fahrerinnen mehr Kontrolle und Sicherheitsgefühl bei jeder Fahrt.</p>
+        </div>
+        <div class="driver-card">
+          <span class="driver-card-icon">🎯</span>
+          <h3>Support rund um die Uhr</h3>
+          <p>Unser Team ist 24/7 für dich da – bei technischen Fragen, Fahrproblemen oder allem, was du brauchst.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Perks -->
+    <div class="fade-up" style="background:var(--green-tint);border-radius:var(--radius-xl);padding:40px 36px;margin-bottom:32px;">
+      <h3 style="text-align:center;margin-bottom:6px;">Exklusive Vorteile &amp; Unabhängigkeit</h3>
+      <p style="text-align:center;color:var(--text-muted);font-size:0.9rem;margin-bottom:28px;">Als TUK-Fahrer gehörst du zu einem exklusiven Netzwerk mit echten Vorteilen.</p>
+      <div class="perks-bar">
+        <div class="perk-chip"><span class="perk-icon">🚙</span> Sonderkonditionen bei Fahrzeughändlern</div>
+        <div class="perk-chip"><span class="perk-icon">✨</span> Professionelle Fahrzeugreinigung</div>
+        <div class="perk-chip"><span class="perk-icon">📱</span> Exklusive App-Features</div>
+        <div class="perk-chip"><span class="perk-icon">🤝</span> Starkes Fahrernetzwerk</div>
+        <div class="perk-chip"><span class="perk-icon">🕐</span> Freie Zeiteinteilung</div>
+        <div class="perk-chip"><span class="perk-icon">💳</span> Schnelle Auszahlung</div>
+      </div>
+    </div>
+
+    <div style="text-align:center;" class="fade-up">
+      <p style="font-size:1.1rem;font-weight:700;color:var(--text-dark);margin-bottom:18px;">Bereit, mit TUK durchzustarten?</p>
+      <a href="https://tukswiss.com/tuk-services.html#anmelden" target="_blank" rel="noopener" class="btn btn-primary">
+        Jetzt kostenlos als Fahrer anmelden
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     TEAM BANNER (Parallax)
+═══════════════════════════════════════ -->
+<div class="team-parallax-banner">
+  <div class="team-parallax-img" id="teamParallaxImg"></div>
+  <div class="team-parallax-overlay">
+  <div class="team-parallax-content fade-up">
+    <h2 class="team-parallax-title">Gemeinsam bewegen wir<br/><span>die Schweiz.</span></h2>
+    <p class="team-parallax-sub">TUK vereint Menschen mit einer gemeinsamen Mission – saubere, smarte und zugängliche Mobilität für alle.</p>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     TEAM
+═══════════════════════════════════════ -->
+<section id="team" class="section section-light">
+  <div class="container">
+    <div class="team-intro fade-up">
+      <span class="badge">Unser Team</span>
+      <h2>Menschen, die an eine bessere Mobilität glauben</h2>
+      <p style="color:var(--text-muted);">Hinter TUK stehen erfahrene Unternehmer, leidenschaftliche Fahrer und ein Team, das täglich daran arbeitet, den Standard in der Schweizer Mobilitätsbranche neu zu setzen. Unsere stärkste Ressource? Das Vertrauen unserer Partner, Fahrer und Kunden.</p>
+    </div>
+
+    <div class="team-grid">
+
+      <!-- Ilia C. – CEO -->
+      <div class="team-card fade-up">
+        <div class="team-avatar-ring">
+          <img src="images/avatar-ilia.png" alt="Ilia C. – CEO & Gründer" loading="lazy" />
+        </div>
+        <div class="team-name">Ilia C.</div>
+        <div class="team-role">Geschäftsführung / Software ERP</div>
+        <span class="team-role-badge">CEO &amp; Gründer</span>
+      </div>
+
+      <!-- Ralf F. -->
+      <div class="team-card fade-up">
+        <div class="team-avatar-ring">
+          <img src="images/avatar-ralf.png" alt="Ralf F. – Marketing & IT" loading="lazy" />
+        </div>
+        <div class="team-name">Ralf F.</div>
+        <div class="team-role">Marketing &amp; IT</div>
+        <span class="team-role-badge">Marketing</span>
+      </div>
+
+      <!-- Daniel S. -->
+      <div class="team-card fade-up">
+        <div class="team-avatar-ring">
+          <img src="images/avatar-daniel.png" alt="Daniel S. – Social Media" loading="lazy" />
+        </div>
+        <div class="team-name">Daniel S.</div>
+        <div class="team-role">Soziale Medien</div>
+        <span class="team-role-badge">Social Media</span>
+      </div>
+
+      <!-- Gilbert W. -->
+      <div class="team-card fade-up">
+        <div class="team-avatar-ring">
+          <img src="images/avatar-gilbert.png" alt="Gilbert W. – Sales" loading="lazy" />
+        </div>
+        <div class="team-name">Gilbert W.</div>
+        <div class="team-role">Sales</div>
+        <span class="team-role-badge">Vertrieb</span>
+      </div>
+
+      <!-- Oliver S. -->
+      <div class="team-card fade-up">
+        <div class="team-avatar-ring">
+          <img src="images/avatar-oliver.png" alt="Oliver S. – Marketing" loading="lazy" />
+        </div>
+        <div class="team-name">Oliver S.</div>
+        <div class="team-role">Marketing</div>
+        <span class="team-role-badge">Marketing</span>
+      </div>
+
+      <!-- Roman T. -->
+      <div class="team-card fade-up">
+        <div class="team-avatar-ring">
+          <img src="images/avatar-roman.png" alt="Roman T. – Social Media" loading="lazy" />
+        </div>
+        <div class="team-name">Roman T.</div>
+        <div class="team-role">Soziale Medien</div>
+        <span class="team-role-badge">Social Media</span>
+      </div>
+
+      <!-- Thoma K. -->
+      <div class="team-card fade-up">
+        <div class="team-avatar-ring">
+          <img src="images/avatar-thoma.png" alt="Thoma K. – Sales" loading="lazy" />
+        </div>
+        <div class="team-name">Thoma K.</div>
+        <div class="team-role">Sales</div>
+        <span class="team-role-badge">Vertrieb</span>
+      </div>
+
+      <!-- Ramon S. -->
+      <div class="team-card fade-up">
+        <div class="team-avatar-ring">
+          <img src="images/avatar-ramon.png" alt="Ramon S. – Marketing & IT" loading="lazy" />
+        </div>
+        <div class="team-name">Ramon S.</div>
+        <div class="team-role">Marketing &amp; IT</div>
+        <span class="team-role-badge">Marketing &amp; IT</span>
+      </div>
+
+      <!-- Jasmin F. -->
+      <div class="team-card fade-up">
+        <div class="team-avatar-ring">
+          <img src="images/avatar-jasmin.png" alt="Jasmin F. – Social Media" loading="lazy" />
+        </div>
+        <div class="team-name">Jasmin F.</div>
+        <div class="team-role">Soziale Medien</div>
+        <span class="team-role-badge">Social Media</span>
+      </div>
+
+      <!-- Thomas D. -->
+      <div class="team-card fade-up">
+        <div class="team-avatar-ring">
+          <img src="images/avatar-thomasd.png" alt="Thomas D. – Sales" loading="lazy" />
+        </div>
+        <div class="team-name">Thomas D.</div>
+        <div class="team-role">Sales</div>
+        <span class="team-role-badge">Vertrieb</span>
+      </div>
+
+      <!-- Samdro D. -->
+      <div class="team-card fade-up">
+        <div class="team-avatar-ring">
+          <img src="images/avatar-samdro.png" alt="Samdro D. – Marketing" loading="lazy" />
+        </div>
+        <div class="team-name">Samdro D.</div>
+        <div class="team-role">Marketing</div>
+        <span class="team-role-badge">Marketing</span>
+      </div>
+
+      <!-- Janosh B. -->
+      <div class="team-card fade-up">
+        <div class="team-avatar-ring">
+          <img src="images/avatar-janosh.png" alt="Janosh B. – Sales" loading="lazy" />
+        </div>
+        <div class="team-name">Janosh B.</div>
+        <div class="team-role">Sales</div>
+        <span class="team-role-badge">Vertrieb</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     TECHNOLOGIE
+═══════════════════════════════════════ -->
+<section id="technologie" class="section">
+  <div class="container">
+
+    <div class="tech-intro fade-up">
+      <span class="badge">Technologie</span>
+      <h2>TUK ist nicht nur eine App –<br/>es ist eine Infrastruktur für die Zukunft.</h2>
+      <p style="color:var(--text-muted);">Von der KI-gesteuerten Fahrtenvermittlung bis zur vollständig elektrischen Flotte 2027: Jede Entscheidung, die wir treffen, macht die Schweiz ein Stück lebenswerter, leiser und sauberer.</p>
+    </div>
+
+    <div class="tech-grid">
+      <div class="tech-card fade-up">
+        <div class="tech-card-icon">☁️</div>
+        <h3>Cloud-Technologie</h3>
+        <p>Unsere skalierbare Cloud-Infrastruktur sorgt dafür, dass du in Sekunden mit einem Fahrer verbunden bist – zuverlässig, sicher und rund um die Uhr verfügbar. Egal ob Stosszeit oder ruhige Nacht: TUK ist immer da.</p>
+      </div>
+      <div class="tech-card fade-up">
+        <div class="tech-card-icon">🤖</div>
+        <h3>KI-gestützte Algorithmen</h3>
+        <p>Intelligente Fahrtenvermittlung in Echtzeit. Jede Route wird in Millisekunden optimiert, jede Situation blitzschnell analysiert – damit du dich jederzeit auf TUK verlassen kannst.</p>
+      </div>
+      <div class="tech-card fade-up">
+        <div class="tech-card-icon">⚡</div>
+        <h3>Effizient &amp; Umweltfreundlich</h3>
+        <p>Weniger Leerfahrten, weniger CO₂, mehr Lebensqualität. TUK optimiert jede Route intelligent und trägt aktiv zur Reduktion von Emissionen in Schweizer Städten bei. Unser Ziel: eine vollständig elektrische Flotte bis 2027.</p>
+      </div>
+      <div class="tech-card fade-up">
+        <div class="tech-card-icon">🛡️</div>
+        <h3>Fortschrittliche Sicherheit</h3>
+        <p>Modernste KI-gestützte Systeme, präzise Sensorik und Echtzeit-Datenverarbeitung sorgen dafür, dass du immer sicher ankommst. Unsere Systeme reagieren schneller als jeder Mensch.</p>
+      </div>
+      <div class="tech-card fade-up">
+        <div class="tech-card-icon">📡</div>
+        <h3>Information in Echtzeit</h3>
+        <p>Von der genauen Ankunftszeit über den optimalen Routenverlauf bis zum aktuellen CO₂-Einsparungswert jeder Fahrt – du hast immer alle Informationen im Blick.</p>
+      </div>
+      <div class="tech-card fade-up">
+        <div class="tech-card-icon">🔗</div>
+        <h3>ÖV-Integration</h3>
+        <p>Nahtlose Verbindung mit SBB und Schweizer Mobilitätspartnern. TUK schliesst die Lücken im öffentlichen Verkehr – vom Bahnhof bis zur Haustür in einer einzigen App.</p>
+      </div>
+    </div>
+
+    <!-- Dark Timeline + Phone -->
+    <div class="tech-timeline-section fade-up">
+      <div class="timeline-list">
+        <div class="timeline-item">
+          <div class="timeline-dot">🚀</div>
+          <div class="timeline-content">
+            <span class="timeline-year">Jetzt</span>
+            <h4>KI-gestützte Fahrtenvermittlung</h4>
+            <p>Cloud-Infrastruktur, Echtzeit-Tracking und smarte Routenoptimierung – TUK fährt heute schon die Züge von morgen.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot">⚡</div>
+          <div class="timeline-content">
+            <span class="timeline-year">2027 – 100% Elektroflotte</span>
+            <h4>Vollständig elektrisch</h4>
+            <p>Vollständige Umstellung auf Elektro- und Hybridfahrzeuge in der ganzen Schweiz. Mobilität neu denken. Für eine grünere Schweiz.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot">🤖</div>
+          <div class="timeline-content">
+            <span class="timeline-year">2030 – Autonome Piloten</span>
+            <h4>Selbstfahrende Fahrzeuge</h4>
+            <p>Selbstfahrende Fahrzeuge, sicher, effizient und rund um die Uhr – ohne Pause, ohne Umweg, ohne Kompromisse. Autonomes Fahren ist für TUK kein Experiment – es ist der nächste konsequente Schritt.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot">🇨🇭</div>
+          <div class="timeline-content">
+            <span class="timeline-year">Zukunft – Swiss Standard</span>
+            <h4>Europäische Marktpräsenz</h4>
+            <p>TUK setzt den Standard für nachhaltige, smarte Mobilität in der Schweiz und Europa. Was heute als Vision beginnt, wird morgen Schweizer Realität.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-phone">
+        <img src="images/phone-ride.png" alt="TUK App Smartphone Mockup – Fahrt buchen" loading="lazy" />
+      </div>
+    </div>
+
+    <p class="tech-tagline fade-up">TUK wird nicht nur mithalten – <span>TUK wird voranfahren.</span></p>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     CO2 REDUKTION
+═══════════════════════════════════════ -->
+<section id="co2" class="section section-light">
+  <div class="container">
+
+    <div class="co2-hero fade-up">
+      <span class="badge">Nachhaltigkeit &amp; CO₂</span>
+      <h2>Wir machen Mobilität grün.</h2>
+      <p>Mit einer 100% elektrischen Flotte bis 2027 und echter Transparenz für jeden gefahrenen Kilometer. Nachhaltigkeit ist bei TUK kein Marketingversprechen – es ist der Kern unseres Handelns.</p>
+    </div>
+
+    <!-- ══════════════════════════════════
+         CO₂-RECHNER
+    ══════════════════════════════════ -->
+    <div class="co2calc-wrap fade-up">
+
+      <div class="co2calc-header">
+        <div class="co2calc-header-left">
+          <span class="badge" style="margin-bottom:8px;">Dein persönlicher CO₂-Rechner</span>
+          <h3>Wie viel CO₂ sparst du<br/>mit TUK pro Jahr?</h3>
+          <p style="color:var(--text-muted);font-size:.9rem;margin:0;">Stelle deine Fahrgewohnheiten ein und sieh sofort, wie gross dein Beitrag zum Klimaschutz ist.</p>
+        </div>
+        <div class="co2calc-header-right">
+          <div class="co2calc-saving-badge" id="co2SavingBadge">
+            <div class="co2calc-saving-num" id="co2SavingNum">0</div>
+            <div class="co2calc-saving-unit">kg CO₂</div>
+            <div class="co2calc-saving-label">gespart pro Jahr</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="co2calc-body">
+
+        <!-- Linke Spalte: Eingaben -->
+        <div class="co2calc-inputs">
+
+          <!-- Verkehrsmittel -->
+          <div class="co2calc-field">
+            <label class="co2calc-label">🚗 Dein bisheriges Verkehrsmittel</label>
+            <div class="co2calc-vehicle-grid" id="vehicleGrid">
+              <button class="co2calc-vehicle-btn active" data-co2="0.21" onclick="selectVehicle(this)">
+                <span class="co2calc-v-icon">⛽</span>
+                <span class="co2calc-v-name">Benziner</span>
+                <span class="co2calc-v-co2">210g/km</span>
+              </button>
+              <button class="co2calc-vehicle-btn" data-co2="0.17" onclick="selectVehicle(this)">
+                <span class="co2calc-v-icon">🛢️</span>
+                <span class="co2calc-v-name">Diesel</span>
+                <span class="co2calc-v-co2">170g/km</span>
+              </button>
+              <button class="co2calc-vehicle-btn" data-co2="0.14" onclick="selectVehicle(this)">
+                <span class="co2calc-v-icon">🚕</span>
+                <span class="co2calc-v-name">Taxi/Uber</span>
+                <span class="co2calc-v-co2">140g/km</span>
+              </button>
+              <button class="co2calc-vehicle-btn" data-co2="0.06" onclick="selectVehicle(this)">
+                <span class="co2calc-v-icon">🚌</span>
+                <span class="co2calc-v-name">Bus/Tram</span>
+                <span class="co2calc-v-co2">60g/km</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Fahrten pro Woche -->
+          <div class="co2calc-field">
+            <label class="co2calc-label">
+              📅 Fahrten pro Woche
+              <span class="co2calc-val-display" id="tripsVal">5 Fahrten</span>
+            </label>
+            <input type="range" class="co2calc-slider" id="tripsSlider"
+              min="1" max="30" value="5" step="1"
+              oninput="updateCalc()">
+            <div class="co2calc-slider-labels">
+              <span>1×</span><span>10×</span><span>20×</span><span>30×</span>
+            </div>
+          </div>
+
+          <!-- Distanz pro Fahrt -->
+          <div class="co2calc-field">
+            <label class="co2calc-label">
+              📏 Distanz pro Fahrt
+              <span class="co2calc-val-display" id="distVal">12 km</span>
+            </label>
+            <input type="range" class="co2calc-slider" id="distSlider"
+              min="1" max="80" value="12" step="1"
+              oninput="updateCalc()">
+            <div class="co2calc-slider-labels">
+              <span>1 km</span><span>20 km</span><span>50 km</span><span>80 km</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Rechte Spalte: Ergebnis -->
+        <div class="co2calc-results">
+
+          <!-- Vergleichs-Balken -->
+          <div class="co2calc-bars">
+            <div class="co2calc-bar-row">
+              <div class="co2calc-bar-label">
+                <span class="co2calc-bar-dot red"></span>
+                <span>Bisher</span>
+              </div>
+              <div class="co2calc-bar-outer">
+                <div class="co2calc-bar-fill red-fill" id="barBefore" style="width:100%"></div>
+              </div>
+              <div class="co2calc-bar-num" id="numBefore">– kg</div>
+            </div>
+            <div class="co2calc-bar-row">
+              <div class="co2calc-bar-label">
+                <span class="co2calc-bar-dot green"></span>
+                <span>Mit TUK</span>
+              </div>
+              <div class="co2calc-bar-outer">
+                <div class="co2calc-bar-fill green-fill" id="barAfter" style="width:20%"></div>
+              </div>
+              <div class="co2calc-bar-num" id="numAfter">– kg</div>
+            </div>
+          </div>
+
+          <!-- Äquivalente -->
+          <div class="co2calc-equivalents">
+            <div class="co2calc-equiv-card" id="equivTrees">
+              <div class="co2calc-equiv-icon">🌳</div>
+              <div class="co2calc-equiv-num" id="treesNum">0</div>
+              <div class="co2calc-equiv-label">Bäume<br/>gepflanzt</div>
+            </div>
+            <div class="co2calc-equiv-card" id="equivKm">
+              <div class="co2calc-equiv-icon">🚗</div>
+              <div class="co2calc-equiv-num" id="kmNum">0</div>
+              <div class="co2calc-equiv-label">km weniger<br/>Verbrenner</div>
+            </div>
+            <div class="co2calc-equiv-card" id="equivFlights">
+              <div class="co2calc-equiv-icon">✈️</div>
+              <div class="co2calc-equiv-num" id="flightsNum">0</div>
+              <div class="co2calc-equiv-label">Kurzflüge<br/>eingespart</div>
+            </div>
+          </div>
+
+          <!-- Persönlicher Badge -->
+          <div class="co2calc-personal-badge" id="co2PersonalBadge">
+            <div class="co2calc-badge-icon">🏆</div>
+            <div class="co2calc-badge-text">
+              <div class="co2calc-badge-title" id="co2BadgeTitle">TUK Klimaschützer</div>
+              <div class="co2calc-badge-sub" id="co2BadgeSub">Berechne deine Einsparung</div>
+            </div>
+          </div>
+
+          <!-- CTA -->
+          <a href="https://tukswiss.com/tuk-services.html#anmelden" target="_blank" rel="noopener"
+             class="btn btn-primary" style="width:100%;justify-content:center;margin-top:4px;">
+            🚀 Jetzt mit TUK CO₂ sparen
+          </a>
+
+        </div>
+      </div>
+
+    </div>
+    <!-- /CO₂-Rechner -->
+
+    <div class="co2-pillars">
+      <div class="co2-pillar fade-up">
+        <span class="co2-pillar-icon">🌱</span>
+        <h3>Baum pro Fahrt</h3>
+        <p>Für jede gebuchte Fahrt pflanzen wir einen Baum – in Zusammenarbeit mit Schweizer Umweltorganisationen. Jede Fahrt ist eine Entscheidung für die Natur.</p>
+      </div>
+      <div class="co2-pillar fade-up">
+        <span class="co2-pillar-icon">📊</span>
+        <h3>CO₂-Tracking in der App</h3>
+        <p>Individuelle Einsparungen in Echtzeit. Sieh für jede Fahrt deinen persönlichen CO₂-Fussabdruck direkt in der App – transparent und nachvollziehbar.</p>
+      </div>
+      <div class="co2-pillar fade-up">
+        <span class="co2-pillar-icon">⚡</span>
+        <h3>Elektroflotte 2027</h3>
+        <p>Emissionsarme Elektro- und Hybridfahrzeuge reduzieren den CO₂-Ausstoss erheblich. Bis 2027 fahren wir vollständig elektrisch in der ganzen Schweiz.</p>
+      </div>
+      <div class="co2-pillar fade-up">
+        <span class="co2-pillar-icon">🤝</span>
+        <h3>Ride-Sharing &amp; Pooling</h3>
+        <p>Innovative Ride-Sharing- und Pooling-Konzepte optimieren die Ressourcennutzung und minimieren unseren ökologischen Fussabdruck erheblich.</p>
+      </div>
+    </div>
+
+    <div class="co2-principles fade-up">
+      <div class="principle-card">
+        <h4>🌍 Umweltbewusste Zukunft</h4>
+        <ul class="principle-list">
+          <li>CO₂-Reduktion durch Elektro- und Hybridfahrzeuge</li>
+          <li>Förderung erneuerbarer Energien</li>
+          <li>Unterstützung von Umweltprojekten</li>
+          <li>Ökologische Zertifizierungen (myclimate / EU-Ecolabel)</li>
+        </ul>
+      </div>
+      <div class="principle-card">
+        <h4>🚌 Nachhaltige Mobilitätskonzepte</h4>
+        <ul class="principle-list">
+          <li>Ride-Sharing &amp; Pooling spart Kosten und CO₂</li>
+          <li>Intelligente Routenplanung, minimale Leerfahrten</li>
+          <li>Kooperation mit Städten für grüne Infrastruktur</li>
+          <li>Förderung nachhaltiger Ladeinfrastruktur</li>
+        </ul>
+      </div>
+      <div class="principle-card">
+        <h4>🌳 Naturschutz &amp; soziale Verantwortung</h4>
+        <ul class="principle-list">
+          <li>Baumpflanzprogramme für jede Fahrt</li>
+          <li>Faire Bezahlung &amp; transparente Arbeitsbedingungen</li>
+          <li>Teil der Einnahmen fliesst in Umweltinitiativen</li>
+          <li>Engagement für lokale Umweltprojekte</li>
+        </ul>
+      </div>
+      <div class="principle-card">
+        <h4>📋 Transparenz &amp; Umweltziele</h4>
+        <ul class="principle-list">
+          <li>Jährlicher Nachhaltigkeitsbericht</li>
+          <li>Unabhängige CO₂-Zertifizierungen</li>
+          <li>Echtzeit-Einsparungsanzeige in der App</li>
+          <li>Messbare Fortschritte für jede Fahrt</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Gamification -->
+    <div class="co2-gamification fade-up">
+      <h3>Mobilität mit Belohnung</h3>
+      <p>Nutzer:innen sammeln Punkte für nachhaltige Fahrten und können diese gegen Rabatte oder Gutscheine eintauschen. Denn klimafreundliches Verhalten soll sich lohnen.</p>
+      <div class="gamification-chips">
+        <span class="game-chip">🏆 Punkte sammeln</span>
+        <span class="game-chip">🌍 Nachhaltigkeits-Challenges</span>
+        <span class="game-chip">💚 Community Features</span>
+        <span class="game-chip">🎁 Rabatte &amp; Gutscheine</span>
+        <span class="game-chip">📈 CO₂-Rangliste</span>
+        <span class="game-chip">🌱 Baum-pro-Fahrt</span>
+      </div>
+    </div>
+
+    <!-- 2027 Banner -->
+    <div class="co2-2027-banner fade-up">
+      <div class="co2-2027-text">
+        <h3>Mobilität neu denken. Für eine grünere Schweiz.</h3>
+        <p>Jede Fahrt mit TUK ist eine Entscheidung für eine bessere Zukunft. TUK steht für eine Mobilität, die nicht auf Kosten der Natur geht – sondern Teil der Lösung ist. Für uns. Für Zürich. Für die Welt, in der unsere Kinder morgen leben werden. Ab 2030 integrieren wir autonome Fahrdienste – für eine vollständig emissionsfreie und selbstfahrende Mobilitätszukunft.</p>
+      </div>
+      <div style="display:flex;gap:16px;flex-shrink:0;flex-wrap:wrap;justify-content:center;">
+        <div class="co2-2027-badge">
+          <div class="year">2027</div>
+          <div class="label">100% Elektroflotte</div>
+        </div>
+        <div class="co2-2027-badge" style="background:linear-gradient(135deg,#0a2a4a,#1a5276);">
+          <div class="year" style="font-size:2rem;">2030</div>
+          <div class="label">Autonome Services</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════
+         INTERAKTIVE SCHWEIZER KARTE
+    ══════════════════════════════════ -->
+    <!-- ══ FAHRER-STATS vor der Karte ══ -->
+    <div class="map-driver-stats fade-up">
+      <div class="map-stat-card">
+        <div class="map-stat-icon">🧑‍✈️</div>
+        <div class="map-stat-num" id="driverCounter">300</div>
+        <div class="map-stat-label">registrierte Fahrerinnen &amp; Fahrer</div>
+        <div class="map-stat-sub">bereits heute – vor dem Launch</div>
+      </div>
+      <div class="map-stat-card highlight">
+        <div class="map-stat-icon">🚀</div>
+        <div class="map-stat-num">600+</div>
+        <div class="map-stat-label">erwartete Driver zum App-Launch</div>
+        <div class="map-stat-sub">+300 weitere bis Anfang 2026</div>
+      </div>
+      <div class="map-stat-card">
+        <div class="map-stat-icon">📅</div>
+        <div class="map-stat-num">2026</div>
+        <div class="map-stat-label">offizieller App-Launch</div>
+        <div class="map-stat-sub">Start in der Deutschschweiz</div>
+      </div>
+    </div>
+
+    <div class="swiss-map-section fade-up">
+      <div class="text-center" style="margin-bottom:40px;">
+        <span class="badge">TUK Expansionsplan 2026–2028</span>
+        <h3 style="font-size:1.9rem;margin:12px 0 8px;">Unsere Route in die Zukunft</h3>
+        <p style="color:var(--text-muted);max-width:560px;margin:0 auto;">TUK startet 2026 in der Deutschschweiz – und expandiert von dort aus systematisch in die ganze Schweiz. Klicke auf eine Stadt für Details.</p>
+      </div>
+
+      <div class="swiss-map-outer">
+        <!-- Linke Info-Spalte -->
+        <div class="map-info-panel">
+          <div class="map-phase-block">
+            <div class="map-phase-dot launch"></div>
+            <div>
+              <strong>Phase 1 – Launch 2026</strong>
+              <p>Zürich, Winterthur, St. Gallen, Luzern</p>
+              <span class="map-phase-tag">Deutschschweiz</span>
+            </div>
+          </div>
+          <div class="map-phase-block">
+            <div class="map-phase-dot expand"></div>
+            <div>
+              <strong>Phase 2 – Gesamte Schweiz 2027</strong>
+              <p>Basel, Bern, Genf, Lausanne + alle Kantone</p>
+              <span class="map-phase-tag">Ganze Schweiz</span>
+            </div>
+          </div>
+          <div class="map-phase-block">
+            <div class="map-phase-dot germany"></div>
+            <div>
+              <strong>Phase 3 – Deutschland 2027/28</strong>
+              <p>München, Freiburg i. Br., Konstanz, Stuttgart</p>
+              <span class="map-phase-tag phase-tag-de">🇩🇪 Deutschland</span>
+            </div>
+          </div>
+          <div class="map-phase-block">
+            <div class="map-phase-dot austria"></div>
+            <div>
+              <strong>Phase 4 – Österreich 2029</strong>
+              <p>Wien, Salzburg, Innsbruck, Graz</p>
+              <span class="map-phase-tag phase-tag-at">🇦🇹 Österreich</span>
+            </div>
+          </div>
+          <!-- Aktive Stadt Info Box -->
+          <div id="cityInfoBox" class="city-info-box" style="display:none;">
+            <div class="city-info-name" id="cityInfoName"></div>
+            <div class="city-info-phase" id="cityInfoPhase"></div>
+            <div class="city-info-detail" id="cityInfoDetail"></div>
+          </div>
+        </div>
+
+        <!-- Karte -->
+        <div class="swiss-map-container">
+          <svg id="swissMapSVG" viewBox="0 0 760 460" xmlns="http://www.w3.org/2000/svg" class="swiss-map-svg">
+            <!-- Hintergrund-Gitter -->
+            <defs>
+              <pattern id="mapGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(44,201,23,0.06)" stroke-width="1"/>
+              </pattern>
+              <radialGradient id="glowGrad" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="rgba(44,201,23,0.3)"/>
+                <stop offset="100%" stop-color="rgba(44,201,23,0)"/>
+              </radialGradient>
+              <filter id="cityGlow">
+                <feGaussianBlur stdDeviation="3" result="blur"/>
+                <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+            </defs>
+            <rect width="760" height="460" fill="url(#mapGrid)" rx="16"/>
+
+            <!-- Schweizer Karte – realistischerer Umriss -->
+            <path id="swiss-outline"
+              d="M 155,148 L 168,138 L 182,132 L 198,128 L 215,124 L 232,120 L 248,117
+                 L 265,115 L 282,113 L 300,112 L 318,111 L 336,111 L 354,112 L 372,113
+                 L 390,114 L 408,116 L 425,119 L 442,122 L 458,126 L 474,130 L 489,135
+                 L 503,140 L 516,146 L 528,153 L 539,161 L 549,169 L 558,178 L 566,188
+                 L 572,199 L 576,210 L 578,221 L 578,233 L 575,244 L 570,255 L 562,264
+                 L 553,272 L 542,279 L 530,285 L 517,290 L 503,294 L 488,297 L 472,299
+                 L 456,300 L 440,300 L 424,299 L 408,297 L 392,295 L 376,292 L 360,288
+                 L 344,283 L 328,278 L 313,272 L 298,265 L 284,258 L 270,250 L 257,242
+                 L 245,233 L 234,224 L 224,215 L 215,206 L 207,197 L 200,188 L 193,179
+                 L 187,170 L 180,161 L 172,154 L 163,149 L 155,148 Z"
+              fill="url(#mapFill)" stroke="#2cc917" stroke-width="2.5" opacity="0.95"/>
+            <defs>
+              <linearGradient id="mapFill" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#d4f5d0"/>
+                <stop offset="100%" stop-color="#eafbe7"/>
+              </linearGradient>
+            </defs>
+
+            <!-- Bergregionen andeuten -->
+            <path d="M 380,200 L 395,185 L 410,200 L 425,188 L 445,205 L 460,192 L 480,210 L 500,198 L 520,215"
+              fill="none" stroke="rgba(44,201,23,0.2)" stroke-width="2" stroke-linecap="round"/>
+            <path d="M 300,230 L 315,215 L 330,228 L 345,210 L 365,225 L 375,205 L 390,218"
+              fill="none" stroke="rgba(44,201,23,0.2)" stroke-width="2" stroke-linecap="round"/>
+
+            <!-- Seen mit Beschriftung -->
+            <!-- Zürichsee -->
+            <ellipse cx="412" cy="248" rx="22" ry="9" fill="#90caf9" opacity="0.7" transform="rotate(-15,412,248)"/>
+            <!-- Bodensee (Rand) -->
+            <ellipse cx="510" cy="148" rx="18" ry="8" fill="#90caf9" opacity="0.6"/>
+            <!-- Vierwaldstättersee -->
+            <ellipse cx="348" cy="245" rx="16" ry="7" fill="#90caf9" opacity="0.65" transform="rotate(10,348,245)"/>
+            <!-- Genfersee -->
+            <ellipse cx="210" cy="290" rx="35" ry="11" fill="#90caf9" opacity="0.65" transform="rotate(-20,210,290)"/>
+            <!-- Neuenburgersee -->
+            <ellipse cx="248" cy="270" rx="14" ry="6" fill="#90caf9" opacity="0.55" transform="rotate(-10,248,270)"/>
+
+            <!-- See-Labels -->
+            <text x="210" y="298" text-anchor="middle" font-size="8" fill="#5b8fc9" opacity="0.8" font-style="italic">Genfersee</text>
+            <text x="412" y="256" text-anchor="middle" font-size="7.5" fill="#5b8fc9" opacity="0.8" font-style="italic">Zürichsee</text>
+
+            <!-- PHASE 1 – Launch 2026 – Deutschschweiz (grün, hell) -->
+            <!-- Zürich -->
+            <g class="city-node phase1" data-city="Zürich" data-phase="🟢 Phase 1 – Launch 2026" data-detail="Startstadt von TUK. Bereits 300 registrierte Fahrerinnen &amp; Fahrer bereit. App-Launch Anfang 2026.">
+              <circle cx="405" cy="195" r="22" fill="url(#glowGrad)" class="city-pulse-bg" opacity="0.8"/>
+              <circle cx="405" cy="195" r="13" fill="#2cc917" stroke="white" stroke-width="3" filter="url(#cityGlow)"/>
+              <text x="405" y="177" text-anchor="middle" font-size="12.5" font-weight="800" fill="#0d4a08">Zürich</text>
+              <text x="405" y="166" text-anchor="middle" font-size="9" fill="#2cc917" font-weight="700">★ Launch 2026</text>
+            </g>
+            <!-- Winterthur -->
+            <g class="city-node phase1" data-city="Winterthur" data-phase="🟢 Phase 1 – Launch 2026" data-detail="Launch-Region Deutschschweiz. Nahe Zürich, ideale Erweiterung zum Start.">
+              <circle cx="448" cy="175" r="18" fill="url(#glowGrad)" class="city-pulse-bg" opacity="0.6"/>
+              <circle cx="448" cy="175" r="10" fill="#2cc917" stroke="white" stroke-width="2.5" filter="url(#cityGlow)"/>
+              <text x="448" y="159" text-anchor="middle" font-size="11" font-weight="700" fill="#0d4a08">Winterthur</text>
+            </g>
+            <!-- St. Gallen -->
+            <g class="city-node phase1" data-city="St. Gallen" data-phase="🟢 Phase 1 – Launch 2026" data-detail="Ostschweizer Wirtschaftszentrum. Launch-Region 2026.">
+              <circle cx="520" cy="162" r="18" fill="url(#glowGrad)" class="city-pulse-bg" opacity="0.55"/>
+              <circle cx="520" cy="162" r="10" fill="#2cc917" stroke="white" stroke-width="2.5" filter="url(#cityGlow)"/>
+              <text x="520" y="146" text-anchor="middle" font-size="11" font-weight="700" fill="#0d4a08">St. Gallen</text>
+            </g>
+            <!-- Luzern -->
+            <g class="city-node phase1" data-city="Luzern" data-phase="🟢 Phase 1 – Launch 2026" data-detail="Zentralschweizer Knotenpunkt. Teil des Launch-Gebiets 2026.">
+              <circle cx="352" cy="228" r="18" fill="url(#glowGrad)" class="city-pulse-bg" opacity="0.55"/>
+              <circle cx="352" cy="228" r="10" fill="#2cc917" stroke="white" stroke-width="2.5" filter="url(#cityGlow)"/>
+              <text x="352" y="212" text-anchor="middle" font-size="11" font-weight="700" fill="#0d4a08">Luzern</text>
+            </g>
+
+            <!-- PHASE 2 – Gesamte Schweiz 2027 -->
+            <!-- Basel -->
+            <g class="city-node phase2" data-city="Basel" data-phase="🟡 Phase 2 – Gesamte Schweiz 2027" data-detail="Wirtschaftsregion Nordwestschweiz. Expansion 2027 zur Komplettierung der Schweiz-Abdeckung.">
+              <circle cx="213" cy="148" r="16" fill="rgba(44,201,23,0.15)" class="city-pulse-bg"/>
+              <circle cx="213" cy="148" r="9" fill="#7ed957" stroke="white" stroke-width="2.5"/>
+              <text x="213" y="133" text-anchor="middle" font-size="11" font-weight="700" fill="#1a5c0f">Basel</text>
+            </g>
+            <!-- Bern -->
+            <g class="city-node phase2" data-city="Bern" data-phase="🟡 Phase 2 – Gesamte Schweiz 2027" data-detail="Bundeshauptstadt der Schweiz. TUK kommt 2027 in die Hauptstadt.">
+              <circle cx="270" cy="238" r="16" fill="rgba(44,201,23,0.15)" class="city-pulse-bg"/>
+              <circle cx="270" cy="238" r="9" fill="#7ed957" stroke="white" stroke-width="2.5"/>
+              <text x="270" y="222" text-anchor="middle" font-size="11" font-weight="700" fill="#1a5c0f">Bern</text>
+            </g>
+            <!-- Genf -->
+            <g class="city-node phase2" data-city="Genf" data-phase="🟡 Phase 2 – Gesamte Schweiz 2027" data-detail="Internationale Metropole am Genfersee. Expansion 2027 in die Romandie.">
+              <circle cx="168" cy="292" r="15" fill="rgba(44,201,23,0.13)" class="city-pulse-bg"/>
+              <circle cx="168" cy="292" r="9" fill="#7ed957" stroke="white" stroke-width="2.5"/>
+              <text x="168" y="277" text-anchor="middle" font-size="11" font-weight="700" fill="#1a5c0f">Genf</text>
+            </g>
+            <!-- Lausanne -->
+            <g class="city-node phase2" data-city="Lausanne" data-phase="🟡 Phase 2 – Gesamte Schweiz 2027" data-detail="Olympia-Stadt am Genfersee. Teil der Schweiz-Komplettierung 2027.">
+              <circle cx="212" cy="278" r="14" fill="rgba(44,201,23,0.12)" class="city-pulse-bg"/>
+              <circle cx="212" cy="278" r="8" fill="#7ed957" stroke="white" stroke-width="2"/>
+              <text x="212" y="263" text-anchor="middle" font-size="10.5" font-weight="600" fill="#1a5c0f">Lausanne</text>
+            </g>
+            <!-- Aarau -->
+            <g class="city-node phase2" data-city="Aarau" data-phase="🟡 Phase 2 – Gesamte Schweiz 2027" data-detail="Aargauer Kantonshauptstadt – Verbindungsachse Zürich–Basel.">
+              <circle cx="318" cy="190" r="13" fill="rgba(44,201,23,0.11)" class="city-pulse-bg"/>
+              <circle cx="318" cy="190" r="7" fill="#7ed957" stroke="white" stroke-width="2"/>
+              <text x="318" y="176" text-anchor="middle" font-size="10" font-weight="600" fill="#1a5c0f">Aarau</text>
+            </g>
+
+            <!-- PHASE 3 – Deutschland 2027/2028 -->
+            <!-- Trennlinie Grenze DE andeuten -->
+            <text x="405" y="98" text-anchor="middle" font-size="9" fill="rgba(44,120,20,0.4)" font-style="italic">── 🇩🇪 Deutschland ──</text>
+            <!-- München -->
+            <g class="city-node phase3" data-city="München" data-phase="🔵 Phase 3 – Deutschland 2027/28" data-detail="Bayerische Metropole. Erster Schritt in den deutschen Markt – direkter Bezug zur Schweizer Grenzregion.">
+              <circle cx="540" cy="88" r="14" fill="rgba(30,100,200,0.1)" class="city-pulse-bg"/>
+              <circle cx="540" cy="88" r="8" fill="none" stroke="#3b82f6" stroke-width="2.5" stroke-dasharray="4,2"/>
+              <text x="540" y="73" text-anchor="middle" font-size="10.5" font-weight="600" fill="#1e40af">München</text>
+            </g>
+            <!-- Konstanz -->
+            <g class="city-node phase3" data-city="Konstanz" data-phase="🔵 Phase 3 – Deutschland 2027/28" data-detail="Direkt an der Schweizer Grenze am Bodensee. Idealer Einstieg in den deutschen Markt.">
+              <circle cx="470" cy="102" r="13" fill="rgba(30,100,200,0.1)" class="city-pulse-bg"/>
+              <circle cx="470" cy="102" r="7" fill="none" stroke="#3b82f6" stroke-width="2.5" stroke-dasharray="4,2"/>
+              <text x="470" y="89" text-anchor="middle" font-size="10" font-weight="600" fill="#1e40af">Konstanz</text>
+            </g>
+            <!-- Freiburg i.Br. -->
+            <g class="city-node phase3" data-city="Freiburg i.Br." data-phase="🔵 Phase 3 – Deutschland 2027/28" data-detail="Grenznahe Universitätsstadt. Starke Verbindung zur Schweiz und Frankreich.">
+              <circle cx="175" cy="95" r="13" fill="rgba(30,100,200,0.1)" class="city-pulse-bg"/>
+              <circle cx="175" cy="95" r="7" fill="none" stroke="#3b82f6" stroke-width="2.5" stroke-dasharray="4,2"/>
+              <text x="175" y="81" text-anchor="middle" font-size="10" font-weight="600" fill="#1e40af">Freiburg i.Br.</text>
+            </g>
+            <!-- Stuttgart -->
+            <g class="city-node phase3" data-city="Stuttgart" data-phase="🔵 Phase 3 – Deutschland 2027/28" data-detail="Wirtschaftszentrum Baden-Württemberg. Expansion 2028 im deutschen Markt.">
+              <circle cx="310" cy="78" r="13" fill="rgba(30,100,200,0.1)" class="city-pulse-bg"/>
+              <circle cx="310" cy="78" r="7" fill="none" stroke="#3b82f6" stroke-width="2.5" stroke-dasharray="4,2"/>
+              <text x="310" y="64" text-anchor="middle" font-size="10" font-weight="600" fill="#1e40af">Stuttgart</text>
+            </g>
+
+            <!-- PHASE 4 – Österreich 2029 -->
+            <text x="620" y="98" text-anchor="middle" font-size="9" fill="rgba(150,30,30,0.35)" font-style="italic">🇦🇹 Österreich</text>
+            <!-- Wien -->
+            <g class="city-node phase4" data-city="Wien" data-phase="🔴 Phase 4 – Österreich 2029" data-detail="Österreichische Bundeshauptstadt. Grosses Marktpotenzial für TUK ab 2029.">
+              <circle cx="690" cy="118" r="14" fill="rgba(200,30,30,0.08)" class="city-pulse-bg"/>
+              <circle cx="690" cy="118" r="8" fill="none" stroke="#dc2626" stroke-width="2" stroke-dasharray="3,3"/>
+              <text x="690" y="105" text-anchor="middle" font-size="10.5" font-weight="600" fill="#991b1b">Wien</text>
+            </g>
+            <!-- Salzburg -->
+            <g class="city-node phase4" data-city="Salzburg" data-phase="🔴 Phase 4 – Österreich 2029" data-detail="Mozart-Stadt – Grenzregion zu Bayern. Verbindung zwischen Deutschland und Österreich-Rollout.">
+              <circle cx="608" cy="118" r="13" fill="rgba(200,30,30,0.07)" class="city-pulse-bg"/>
+              <circle cx="608" cy="118" r="7" fill="none" stroke="#dc2626" stroke-width="2" stroke-dasharray="3,3"/>
+              <text x="608" y="105" text-anchor="middle" font-size="10" font-weight="600" fill="#991b1b">Salzburg</text>
+            </g>
+            <!-- Innsbruck -->
+            <g class="city-node phase4" data-city="Innsbruck" data-phase="🔴 Phase 4 – Österreich 2029" data-detail="Tiroler Hauptstadt direkt an der Schweizer Grenze. Natürlicher Anschluss an die CH-Expansion.">
+              <circle cx="530" cy="118" r="13" fill="rgba(200,30,30,0.07)" class="city-pulse-bg"/>
+              <circle cx="530" cy="118" r="7" fill="none" stroke="#dc2626" stroke-width="2" stroke-dasharray="3,3"/>
+              <text x="530" y="105" text-anchor="middle" font-size="10" font-weight="600" fill="#991b1b">Innsbruck</text>
+            </g>
+
+            <!-- Verbindungslinien Phase 1 (solide, grün) -->
+            <line x1="405" y1="195" x2="448" y2="175" stroke="#2cc917" stroke-width="2" opacity="0.6"/>
+            <line x1="448" y1="175" x2="520" y2="162" stroke="#2cc917" stroke-width="2" opacity="0.55"/>
+            <line x1="405" y1="195" x2="352" y2="228" stroke="#2cc917" stroke-width="2" opacity="0.55"/>
+
+            <!-- Verbindungslinien Phase 2 (gestrichelt, hellgrün) -->
+            <line x1="405" y1="195" x2="318" y2="190" stroke="#7ed957" stroke-width="1.8" stroke-dasharray="7,4" opacity="0.6" class="map-line"/>
+            <line x1="318" y1="190" x2="213" y2="148" stroke="#7ed957" stroke-width="1.8" stroke-dasharray="7,4" opacity="0.5" class="map-line"/>
+            <line x1="352" y1="228" x2="270" y2="238" stroke="#7ed957" stroke-width="1.8" stroke-dasharray="7,4" opacity="0.5" class="map-line"/>
+            <line x1="270" y1="238" x2="212" y2="278" stroke="#7ed957" stroke-width="1.8" stroke-dasharray="7,4" opacity="0.45" class="map-line"/>
+            <line x1="212" y1="278" x2="168" y2="292" stroke="#7ed957" stroke-width="1.8" stroke-dasharray="7,4" opacity="0.4" class="map-line"/>
+
+            <!-- Verbindungslinien Phase 3 DE (gepunktet, blau) -->
+            <line x1="213" y1="148" x2="175" y2="95" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="4,5" opacity="0.45" class="map-line"/>
+            <line x1="406" y1="133" x2="310" y2="78" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="4,5" opacity="0.4" class="map-line"/>
+            <line x1="448" y1="175" x2="470" y2="102" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="4,5" opacity="0.4" class="map-line"/>
+            <line x1="520" y1="162" x2="540" y2="88" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="4,5" opacity="0.4" class="map-line"/>
+
+            <!-- Verbindungslinien Phase 4 AT (gepunktet, rot) -->
+            <line x1="540" y1="88" x2="530" y2="118" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="3,5" opacity="0.35" class="map-line"/>
+            <line x1="530" y1="118" x2="608" y2="118" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="3,5" opacity="0.3" class="map-line"/>
+            <line x1="608" y1="118" x2="690" y2="118" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="3,5" opacity="0.3" class="map-line"/>
+
+            <!-- Kompass -->
+            <g transform="translate(700,60)">
+              <circle r="20" fill="white" opacity="0.7" stroke="rgba(44,201,23,0.3)" stroke-width="1.5"/>
+              <text text-anchor="middle" y="-6" font-size="9" fill="#1a5c0f" font-weight="700">N</text>
+              <text text-anchor="middle" y="13" font-size="8" fill="#888">S</text>
+              <text x="-12" y="4" font-size="8" fill="#888">W</text>
+              <text x="9" y="4" font-size="8" fill="#888">O</text>
+              <line y1="-2" y2="-14" stroke="#2cc917" stroke-width="2.5" stroke-linecap="round"/>
+              <line y1="2" y2="10" stroke="#aaa" stroke-width="1.5" stroke-linecap="round"/>
+            </g>
+
+            <!-- CH Label -->
+            <text x="480" y="260" font-size="48" font-weight="900" fill="rgba(44,201,23,0.06)" text-anchor="middle" font-family="sans-serif">CH</text>
+          </svg>
+
+          <!-- Info-Tooltip -->
+          <div id="mapTooltip" class="map-tooltip" style="display:none;">
+            <div class="map-tooltip-city"></div>
+            <div class="map-tooltip-status"></div>
+            <div class="map-tooltip-rides"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Legende -->
+      <div class="swiss-map-legend fade-up delay-2">
+        <div class="legend-item">
+          <div class="legend-dot launch-dot"></div>
+          <span><strong>Phase 1</strong> – Launch 2026 · Deutschschweiz</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot expand-dot"></div>
+          <span><strong>Phase 2</strong> – Gesamte Schweiz 2027</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot germany-dot"></div>
+          <span><strong>Phase 3</strong> – 🇩🇪 Deutschland 2027/28</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot austria-dot"></div>
+          <span><strong>Phase 4</strong> – 🇦🇹 Österreich 2029</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     APP COMING SOON BANNER
+═══════════════════════════════════════ -->
+<section id="app-banner" class="app-banner-section">
+  <div class="app-banner-bg">
+    <div class="app-banner-blob b1"></div>
+    <div class="app-banner-blob b2"></div>
+  </div>
+  <div class="container">
+    <div class="app-banner-inner fade-up">
+      <div class="app-banner-left">
+        <span class="app-banner-tag">Coming 2026</span>
+        <h2 class="app-banner-title">Die TUK App kommt.<br/><span>Sei der Erste dabei.</span></h2>
+        <p class="app-banner-sub">Jetzt vormerken lassen – und als Erster von exklusiven Launch-Angeboten, Freifahrten und Beta-Zugang profitieren.</p>
+        <form class="app-banner-form" id="appBannerForm" onsubmit="handleAppSignup(event)">
+
+          <!-- E-Mail -->
+          <div class="app-input-row">
+            <label class="app-input-label">📧 E-Mail-Adresse</label>
+            <div class="app-input-wrap">
+              <span class="app-input-icon">✉️</span>
+              <input type="email" id="appEmail" placeholder="deine@email.ch" required class="app-field-input" />
+            </div>
+          </div>
+
+          <!-- Handynummer -->
+          <div class="app-input-row">
+            <label class="app-input-label">📱 Handynummer</label>
+            <div class="app-input-wrap">
+              <span class="app-input-icon">🇨🇭</span>
+              <input type="tel" id="appPhone" placeholder="+41 79 000 00 00" required class="app-field-input"
+                pattern="[+][0-9\s\-]{7,20}" title="Bitte eine gültige Nummer mit Ländervorwahl eingeben (z.B. +41 79 …)"/>
+            </div>
+          </div>
+
+          <!-- Einwilligung -->
+          <label class="app-consent-label">
+            <input type="checkbox" id="appConsent" required class="app-consent-cb" />
+            <span class="app-consent-box"></span>
+            <span class="app-consent-text">
+              Ich bin damit einverstanden, dass mich TUK SWISS per E-Mail und/oder Telefon über den App-Launch, exklusive Angebote und Neuigkeiten kontaktiert.
+              <a href="#" class="app-consent-link" onclick="openDsgvoModal(event)">Datenschutzerklärung</a>
+            </span>
+          </label>
+
+          <button type="submit" class="btn btn-primary app-submit-btn-full">
+            <span id="appBtnText">Jetzt vormerken &amp; dabei sein</span>
+            <span id="appBtnIcon">→</span>
+          </button>
+
+          <p class="app-form-note">🔒 Kein Spam. Jederzeit widerrufbar. 100% kostenlos.</p>
+        </form>
+
+        <div id="appSuccessMsg" class="app-success-msg" style="display:none;">
+          <span class="app-success-icon">🎉</span>
+          <div>
+            <strong>Perfekt! Du bist dabei.</strong><br/>
+            <span>Wir melden uns per E-Mail &amp; Telefon, sobald die TUK App startet.</span>
+          </div>
+        </div>
+        <!-- Store Badges (Coming Soon) -->
+        <div class="app-store-badges">
+          <div class="store-badge-official" title="Bald verfügbar im App Store">
+            <div class="store-badge-soon-label">Bald verfügbar</div>
+            <img src="images/badge-appstore.svg" alt="Download on the App Store" class="store-badge-img appstore-badge" />
+          </div>
+          <div class="store-badge-official" title="Bald verfügbar bei Google Play">
+            <div class="store-badge-soon-label">Bald verfügbar</div>
+            <img src="images/badge-googleplay.png" alt="Get it on Google Play" class="store-badge-img googleplay-badge" />
+          </div>
+        </div>
+      </div>
+      <div class="app-banner-right">
+        <div class="app-phone-preview">
+          <div class="app-phone-screen">
+            <div class="app-screen-status">09:41</div>
+            <div class="app-screen-logo">🚗 TUK</div>
+            <div class="app-screen-tagline">Deine Fahrt in Sekunden</div>
+            <div class="app-screen-btn">Fahrt buchen</div>
+            <div class="app-screen-chips">
+              <span>🏥 Medizin</span><span>📦 Kurier</span><span>💊 Apotheke</span>
+            </div>
+            <div class="app-screen-countdown">
+              <small>Countdown bis Launch</small>
+              <div id="appCountdown" class="app-countdown-digits">
+                <div><span id="cdDays">--</span><small>Tage</small></div>
+                <div class="cd-sep">:</div>
+                <div><span id="cdHours">--</span><small>Std</small></div>
+                <div class="cd-sep">:</div>
+                <div><span id="cdMins">--</span><small>Min</small></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     INVESTOREN
+═══════════════════════════════════════ -->
+<section id="investoren" class="section" style="background:linear-gradient(180deg,#fff 0%,#f4fff2 100%);overflow:hidden;">
+  <div class="container">
+
+    <!-- ── HERO ── -->
+    <div class="inv-hero fade-up">
+      <div class="inv-hero-content">
+        <span class="badge">Investor Relations</span>
+        <h2>TUK – mehr als Mobilität.<br/><span class="text-green">Eine Bewegung.</span></h2>
+        <p>TUK SWISS baut die nächste Generation urbaner Mobilität für die DACH-Region. Als erste ESG-konforme Plattform schliessen wir die Lücke zwischen Sicherheit, Nachhaltigkeit und Inklusion.</p>
+        <div class="btn-group" style="margin-top:24px;">
+          <a href="https://tukswiss.com/#formular" target="_blank" rel="noopener" class="btn btn-primary">📋 Investorengespräch anfragen</a>
+          <a href="https://tukswiss.com" target="_blank" rel="noopener" class="btn btn-outline">🏦 Zur Investoren-Plattform</a>
+        </div>
+      </div>
+      <div class="inv-hero-badge-stack">
+        <div class="inv-badge-big">
+          <div class="inv-badge-icon">🇨🇭</div>
+          <div class="inv-badge-label">DACH-Region</div>
+          <div class="inv-badge-sub">Fokusmarkt</div>
+        </div>
+        <div class="inv-badge-big green">
+          <div class="inv-badge-icon">♻️</div>
+          <div class="inv-badge-label">ESG-konform</div>
+          <div class="inv-badge-sub">Erste Plattform</div>
+        </div>
+        <div class="inv-badge-big">
+          <div class="inv-badge-icon">🚀</div>
+          <div class="inv-badge-label">Seed-Runde</div>
+          <div class="inv-badge-sub">Offen</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── ANIMIERTE MARKT-ZAHLEN ── -->
+    <div class="inv-counters-wrap fade-up">
+      <div class="inv-counters-label">Market Opportunity – DACH</div>
+      <div class="inv-counters-grid">
+        <div class="inv-counter-card" data-target="13.8" data-prefix="CHF " data-suffix=" Mrd." data-decimals="1">
+          <div class="inv-counter-num" id="cnt-tam26">CHF 0 Mrd.</div>
+          <div class="inv-counter-title">TAM 2026</div>
+          <div class="inv-counter-sub">Total Addressable Market</div>
+        </div>
+        <div class="inv-counter-card highlight" data-target="9.5" data-prefix="+" data-suffix="% CAGR" data-decimals="1">
+          <div class="inv-counter-num" id="cnt-cagr">+0% CAGR</div>
+          <div class="inv-counter-title">Jährliches Wachstum</div>
+          <div class="inv-counter-sub">Compound Annual Growth Rate</div>
+        </div>
+        <div class="inv-counter-card" data-target="19.8" data-prefix="CHF " data-suffix=" Mrd." data-decimals="1">
+          <div class="inv-counter-num" id="cnt-tam30">CHF 0 Mrd.</div>
+          <div class="inv-counter-title">TAM 2030</div>
+          <div class="inv-counter-sub">Prognostizierter Markt</div>
+        </div>
+        <div class="inv-counter-card" data-target="4" data-prefix="" data-suffix=" Module" data-decimals="0">
+          <div class="inv-counter-num" id="cnt-modules">0 Module</div>
+          <div class="inv-counter-title">Plattform-Module</div>
+          <div class="inv-counter-sub">Rides · Logistik · Female · Inklusion</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── WACHSTUMS-CHART ── -->
+    <div class="inv-chart-section fade-up">
+      <div class="inv-chart-header">
+        <div>
+          <h3>Marktentwicklung DACH <span class="text-green">2026 → 2032</span></h3>
+          <p style="color:var(--text-muted);font-size:.9rem;margin:0;">TAM-Wachstum des urbanen Mobilitätsmarkts in der DACH-Region (CHF Mrd.)</p>
+        </div>
+        <div class="inv-chart-legend">
+          <span class="inv-legend-dot green"></span><span>Marktvolumen</span>
+          <span class="inv-legend-dot teal" style="margin-left:16px;"></span><span>TUK Zielmarkt</span>
+        </div>
+      </div>
+      <div style="position:relative;height:280px;">
+        <canvas id="marketChart"></canvas>
+      </div>
+    </div>
+
+    <!-- ── PROBLEM / LÖSUNG ── -->
+    <div class="inv-problem-solution fade-up">
+      <div class="inv-problem-col">
+        <div class="inv-ps-label problem">⚠️ Das Problem</div>
+        <div class="inv-ps-list">
+          <div class="inv-ps-item">
+            <div class="inv-ps-icon">🔒</div>
+            <div><strong>Sicherheit</strong><br/><span>Mangelndes Vertrauen, insbesondere bei Frauen</span></div>
+          </div>
+          <div class="inv-ps-item">
+            <div class="inv-ps-icon">💨</div>
+            <div><strong>Emissionen</strong><br/><span>Hoher CO₂-Ausstoss &amp; Greenwashing</span></div>
+          </div>
+          <div class="inv-ps-item">
+            <div class="inv-ps-icon">🚧</div>
+            <div><strong>Exklusion</strong><br/><span>Fehlende Barrierefreiheit im Mobilitätsmarkt</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="inv-ps-arrow">→</div>
+      <div class="inv-solution-col">
+        <div class="inv-ps-label solution">✅ Die Lösung</div>
+        <div class="inv-ps-list">
+          <div class="inv-ps-item">
+            <div class="inv-ps-icon green">🛡️</div>
+            <div><strong>Female Driver</strong><br/><span>Verifizierte Fahrerinnen, Women+ Connect</span></div>
+          </div>
+          <div class="inv-ps-item">
+            <div class="inv-ps-icon green">🌿</div>
+            <div><strong>ESG-Plattform</strong><br/><span>100% Elektroflotte 2027, CO₂-Tracking</span></div>
+          </div>
+          <div class="inv-ps-item">
+            <div class="inv-ps-icon green">♿</div>
+            <div><strong>Inklusion</strong><br/><span>Barrierefreie Fahrten, medizinische Transporte</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── BUSINESS MODEL FLIP-KARTEN ── -->
+    <div class="inv-bm-section fade-up">
+      <div class="text-center" style="margin-bottom:36px;">
+        <span class="badge">Business Model</span>
+        <h3 style="font-size:1.6rem;">3 skalierbare Revenue Streams</h3>
+        <p style="color:var(--text-muted);font-size:.9rem;">Hover über die Karten für Details</p>
+      </div>
+      <div class="inv-flip-grid">
+
+        <div class="inv-flip-card">
+          <div class="inv-flip-inner">
+            <div class="inv-flip-front">
+              <div class="inv-flip-icon">💳</div>
+              <h3>Commission Fee</h3>
+              <p>Core Revenue</p>
+              <div class="inv-flip-hint">Hover für Details →</div>
+            </div>
+            <div class="inv-flip-back" style="background:#1a3a1a;">
+              <h3>Commission Fee</h3>
+              <ul>
+                <li>✓ Provision pro vermittelter Fahrt</li>
+                <li>✓ Gestaffelte Sätze je Service-Typ</li>
+                <li>✓ Transparentes Preismodell</li>
+                <li>✓ Sofortiger Cashflow ab Tag 1</li>
+              </ul>
+              <div class="inv-flip-tag">📊 Core Revenue Stream</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="inv-flip-card">
+          <div class="inv-flip-inner">
+            <div class="inv-flip-front" style="background:linear-gradient(135deg,var(--green),var(--green-dark));">
+              <div class="inv-flip-icon" style="background:rgba(255,255,255,.2);color:white;">📦</div>
+              <h3 style="color:white;">Logistik &amp; B2B</h3>
+              <p style="color:rgba(255,255,255,.8);">Growth Revenue</p>
+              <div class="inv-flip-hint" style="color:rgba(255,255,255,.6);">Hover für Details →</div>
+            </div>
+            <div class="inv-flip-back" style="background:#1a3a1a;">
+              <h3 style="color:#ffffff;">Logistik &amp; B2B</h3>
+              <ul style="color:#ffffff;">
+                <li>✓ B2B-Verträge mit Unternehmen</li>
+                <li>✓ Medikamenten- &amp; Güterlieferung</li>
+                <li>✓ SLA-basierte Paketlösungen</li>
+                <li>✓ Recurring Revenue durch Langzeitverträge</li>
+              </ul>
+              <div class="inv-flip-tag" style="background:rgba(44,201,23,.3);color:#7dff5a;">📦 Growth Revenue Stream</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="inv-flip-card">
+          <div class="inv-flip-inner">
+            <div class="inv-flip-front">
+              <div class="inv-flip-icon">⭐</div>
+              <h3>Premium Services</h3>
+              <p>Margin Revenue</p>
+              <div class="inv-flip-hint">Hover für Details →</div>
+            </div>
+            <div class="inv-flip-back" style="background:#1a3a1a;">
+              <h3>Premium Services</h3>
+              <ul>
+                <li>✓ TUK Premium Abo-Modell</li>
+                <li>✓ Priorisierte Vermittlung</li>
+                <li>✓ Exklusive Fahrzeugklassen</li>
+                <li>✓ Hohe Margen durch Direktkunden</li>
+              </ul>
+              <div class="inv-flip-tag">⭐ High Margin Revenue</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── ESG / USP TIMELINE ── -->
+    <div class="inv-esg-section fade-up">
+      <div class="inv-esg-header">
+        <span class="badge">ESG &amp; Strategie</span>
+        <h3 style="font-size:1.5rem;">Erste ESG-konforme<br/>Mobilitätsplattform DACH</h3>
+      </div>
+      <div class="inv-esg-timeline">
+        <div class="inv-esg-item">
+          <div class="inv-esg-dot">🛡️</div>
+          <div class="inv-esg-line"></div>
+          <div class="inv-esg-content">
+            <div class="inv-esg-tag">Sicherheit</div>
+            <h4>Female Driver &amp; Vertrauen</h4>
+            <p>Women+ Connect, verifizierte Fahrer:innen, 24/7 Support. Sicherheit als Wettbewerbsvorteil.</p>
+          </div>
+        </div>
+        <div class="inv-esg-item">
+          <div class="inv-esg-dot">🌿</div>
+          <div class="inv-esg-line"></div>
+          <div class="inv-esg-content">
+            <div class="inv-esg-tag">Nachhaltigkeit</div>
+            <h4>100% Elektrisch bis 2027</h4>
+            <p>CO₂-Tracking, Baum-pro-Fahrt, erneuerbare Energien. ESG-Konformität als strategischer Kern.</p>
+          </div>
+        </div>
+        <div class="inv-esg-item">
+          <div class="inv-esg-dot">♿</div>
+          <div class="inv-esg-line"></div>
+          <div class="inv-esg-content">
+            <div class="inv-esg-tag">Inklusion</div>
+            <h4>Mobilität für alle</h4>
+            <p>Barrierefreie Fahrten, medizinische Transporte, Senior Care. Kein Mensch wird zurückgelassen.</p>
+          </div>
+        </div>
+        <div class="inv-esg-item">
+          <div class="inv-esg-dot">🚀</div>
+          <div class="inv-esg-line last"></div>
+          <div class="inv-esg-content">
+            <div class="inv-esg-tag">Wachstum</div>
+            <h4>DACH → Europa</h4>
+            <p>Schweiz → DACH-Region → Europa. Skalierung mit klarem Playbook und starker ESG-Positionierung.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── CTAs ── -->
+    <div class="inv-deck-section fade-up">
+
+      <div class="inv-cta-grid">
+        <div class="inv-cta-card">
+          <div class="inv-cta-icon">📈</div>
+          <h4>Seed-Runde</h4>
+          <p>Bis zu CHF 2 Mio. · Limitierte Plätze verfügbar</p>
+          <a href="https://tukswiss.com/#formular" target="_blank" rel="noopener" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:12px;">Jetzt anfragen</a>
+        </div>
+        <div class="inv-cta-card">
+          <div class="inv-cta-icon">🤝</div>
+          <h4>Persönliches Gespräch</h4>
+          <p>Direkter Zugang zum Gründerteam. Unverbindlich &amp; vertraulich.</p>
+          <a href="https://tukswiss.com/#formular" target="_blank" rel="noopener" class="btn btn-outline" style="width:100%;justify-content:center;margin-top:12px;">Termin vereinbaren</a>
+        </div>
+        <div class="inv-cta-card">
+          <div class="inv-cta-icon">🌐</div>
+          <h4>Investor-Plattform</h4>
+          <p>Alle Informationen, Rundenstatus &amp; exklusive Updates.</p>
+          <a href="https://tukswiss.com" target="_blank" rel="noopener" class="btn btn-outline" style="width:100%;justify-content:center;margin-top:12px;">Plattform besuchen</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="investor-quote fade-up">
+      „TUK steht für Vertrauen, Partnerschaft und nachhaltiges Wachstum. Gemeinsam gestalten wir die Zukunft der Schweizer Mobilität. Als Investor werden Sie Teil einer Bewegung, die Städte smarter, sauberer und lebenswerter macht – mit klarer Vision, starkem Team und messbaren Ergebnissen."
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+
+      <!-- Branding + Kontakt -->
+      <div>
+        <a href="#home" class="footer-logo">
+          <div class="footer-logo-mark">T</div>
+          <div class="footer-logo-text">TUK <span>SWISS</span></div>
+        </a>
+        <p class="footer-tagline">Die Schweizer Mobilitätsplattform für Ride, Care &amp; Delivery. Sauber. Smart. Swiss Qualität.</p>
+        <p style="font-size:.78rem;color:rgba(255,255,255,.4);margin-top:8px;font-style:italic;">powered by owly AG</p>
+
+        <!-- Kontaktdaten -->
+        <div style="margin-top:22px;display:flex;flex-direction:column;gap:12px;">
+          <div style="display:flex;align-items:flex-start;gap:14px;">
+            <span style="color:var(--green);font-size:1rem;flex-shrink:0;margin-top:2px;">📞</span>
+            <div>
+              <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.4);margin-bottom:2px;">Telefon</div>
+              <a href="tel:+41442439934" style="font-size:.88rem;color:rgba(255,255,255,.8);text-decoration:none;font-weight:600;transition:color .18s;" onmouseover="this.style.color='#2cc917'" onmouseout="this.style.color='rgba(255,255,255,.8)'">+41 44 243 99 34</a>
+            </div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:14px;">
+            <span style="color:var(--green);font-size:1rem;flex-shrink:0;margin-top:2px;">✉️</span>
+            <div>
+              <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.4);margin-bottom:2px;">E-Mail</div>
+              <a href="mailto:info@owlyag.ch" style="font-size:.88rem;color:rgba(255,255,255,.8);text-decoration:none;font-weight:600;transition:color .18s;" onmouseover="this.style.color='#2cc917'" onmouseout="this.style.color='rgba(255,255,255,.8)'">info@owlyag.ch</a>
+            </div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:14px;">
+            <span style="color:var(--green);font-size:1rem;flex-shrink:0;margin-top:2px;">📍</span>
+            <div>
+              <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:rgba(255,255,255,.4);margin-bottom:2px;">Adresse</div>
+              <div style="font-size:.88rem;color:rgba(255,255,255,.8);font-weight:600;line-height:1.55;">Im Kengart 4<br/>8512 Lustdorf</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#try-tuk">App Demo</a></li>
+          <li><a href="#fahrer">Fahrer</a></li>
+          <li><a href="#team">Team</a></li>
+          <li><a href="#technologie">Technologie</a></li>
+          <li><a href="#co2">CO₂ Reduktion</a></li>
+          <li><a href="#investoren">Investoren</a></li>
+        </ul>
+      </div>
+
+      <!-- Plattformen -->
+      <div class="footer-col">
+        <h4>Plattformen</h4>
+        <ul>
+          <li><a href="https://tukswiss.com" target="_blank" rel="noopener">TUK Swiss Hauptseite</a></li>
+          <li><a href="https://tukswiss.com/tuk-services.html" target="_blank" rel="noopener">TUK Services</a></li>
+          <li><a href="https://tukswiss.com/#formular" target="_blank" rel="noopener">Investorenformular</a></li>
+          <li><a href="https://tukswiss.com/tuk-services.html#anmelden" target="_blank" rel="noopener">Fahrer anmelden</a></li>
+        </ul>
+      </div>
+
+      <!-- Anmelden -->
+      <div class="footer-col">
+        <h4>Anmelden</h4>
+        <ul>
+          <li><a href="https://tukswiss.com/tuk-services.html#anmelden" target="_blank" rel="noopener">Als Fahrer anmelden</a></li>
+          <li><a href="https://tukswiss.com/tuk-services.html#anmelden" target="_blank" rel="noopener">Als Partner anmelden</a></li>
+          <li><a href="https://tukswiss.com/#formular" target="_blank" rel="noopener">Investorenzugang</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Trennlinie -->
+    <div style="border-top:1px solid rgba(255,255,255,.08);margin:40px 0 28px;"></div>
+
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+      <div>
+        <p style="font-size:.82rem;margin:0 0 4px;">© 2023 TUK powered by owly AG</p>
+        <p style="font-size:.78rem;margin:0;color:rgba(255,255,255,.4);">owly AG &nbsp;|&nbsp; Im Kengart 4 &nbsp;|&nbsp; 8512 Lustdorf &nbsp;|&nbsp; CHE298.348.143</p>
+      </div>
+      <div class="footer-bottom-links">
+        <a href="https://tukswiss.com" target="_blank" rel="noopener">tukswiss.com</a>
+        <a href="https://tukswiss.com/tuk-services.html" target="_blank" rel="noopener">TUK Services</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<script>
+// ── CO₂ RECHNER LOGIK ──
+let co2PerKm = 0.21; // Benziner default (kg CO₂/km)
+const TUK_CO2 = 0.02; // TUK Elektrofahrzeug (kg CO₂/km inkl. Strommix CH)
+
+function selectVehicle(btn) {
+  document.querySelectorAll('.co2calc-vehicle-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  co2PerKm = parseFloat(btn.dataset.co2);
+  updateCalc();
+}
+
+function animateNum(el, from, to, duration, decimals) {
+  const start = performance.now();
+  function step(now) {
+    const progress = Math.min((now - start) / duration, 1);
+    const ease = 1 - Math.pow(1 - progress, 3);
+    const val = from + (to - from) * ease;
+    el.textContent = decimals > 0 ? val.toFixed(decimals) : Math.round(val).toLocaleString('de-CH');
+    if (progress < 1) requestAnimationFrame(step);
+    else el.textContent = decimals > 0 ? to.toFixed(decimals) : Math.round(to).toLocaleString('de-CH');
+  }
+  requestAnimationFrame(step);
+}
+
+function updateCalc() {
+  const trips = parseInt(document.getElementById('tripsSlider').value);
+  const dist  = parseInt(document.getElementById('distSlider').value);
+
+  // Labels
+  document.getElementById('tripsVal').textContent = trips + (trips === 1 ? ' Fahrt' : ' Fahrten');
+  document.getElementById('distVal').textContent = dist + ' km';
+
+  // Berechnungen
+  const kmPerYear   = trips * 52 * dist;
+  const co2Before   = kmPerYear * co2PerKm;          // kg/Jahr bisher
+  const co2After    = kmPerYear * TUK_CO2;           // kg/Jahr mit TUK
+  const co2Saved    = Math.max(0, co2Before - co2After);
+  const trees       = Math.round(co2Saved / 21);     // 1 Baum = ~21 kg CO₂/Jahr
+  const kmEquiv     = Math.round(co2Saved / 0.21);   // km Benziner
+  const flights     = Math.round(co2Saved / 95);     // Kurzflug ~95 kg CO₂
+
+  // Balken
+  const maxVal = Math.max(co2Before, 1);
+  document.getElementById('barBefore').style.width = '100%';
+  document.getElementById('barAfter').style.width  = Math.max(5, (co2After / maxVal) * 100) + '%';
+
+  // Zahlen animieren
+  const numBefore = document.getElementById('numBefore');
+  const numAfter  = document.getElementById('numAfter');
+  const savingNum = document.getElementById('co2SavingNum');
+  const treesNum  = document.getElementById('treesNum');
+  const kmNumEl   = document.getElementById('kmNum');
+  const flightsEl = document.getElementById('flightsNum');
+
+  const prevSaving = parseFloat(savingNum.textContent.replace(/[^0-9.]/g,'')) || 0;
+
+  numBefore.textContent = Math.round(co2Before).toLocaleString('de-CH') + ' kg';
+  numAfter.textContent  = Math.round(co2After).toLocaleString('de-CH')  + ' kg';
+
+  animateNum(savingNum, prevSaving, Math.round(co2Saved), 600, 0);
+  animateNum(treesNum,  parseInt(treesNum.textContent)  || 0, trees,   500, 0);
+  animateNum(kmNumEl,   parseInt(kmNumEl.textContent.replace(/[^0-9]/g,''))  || 0, kmEquiv, 500, 0);
+  animateNum(flightsEl, parseInt(flightsEl.textContent) || 0, flights, 500, 0);
+
+  // Badge bump
+  const badge = document.getElementById('co2SavingBadge');
+  badge.classList.remove('bump');
+  void badge.offsetWidth;
+  badge.classList.add('bump');
+
+  // Persönlicher Badge Text
+  const title = document.getElementById('co2BadgeTitle');
+  const sub   = document.getElementById('co2BadgeSub');
+  if (co2Saved < 100) {
+    title.textContent = '🌱 TUK Starter';
+    sub.textContent   = 'Jede Fahrt zählt – fang heute an!';
+  } else if (co2Saved < 500) {
+    title.textContent = '🌿 TUK Klimafreund';
+    sub.textContent   = Math.round(co2Saved) + ' kg CO₂ weniger – du machst den Unterschied!';
+  } else if (co2Saved < 1500) {
+    title.textContent = '🌳 TUK Klimaschützer';
+    sub.textContent   = Math.round(co2Saved) + ' kg CO₂ gespart – beeindruckend!';
+  } else {
+    title.textContent = '🏆 TUK Klimaheld';
+    sub.textContent   = Math.round(co2Saved) + ' kg CO₂ – du bist ein echter Held für die Umwelt!';
+  }
+}
+
+// Initial berechnen
+updateCalc();
+
+// ── TYPED HERO TEXT ──
+const typedWords = ['in der Schweiz.', 'für uns alle.', 'mit TUK SWISS.', 'jetzt und hier.'];
+let typedIdx = 0, typedCharIdx = 0, typedDeleting = false;
+const typedEl = document.getElementById('typedWord');
+function typeLoop() {
+  if (!typedEl) return;
+  const word = typedWords[typedIdx];
+  if (!typedDeleting) {
+    typedEl.textContent = word.substring(0, typedCharIdx + 1);
+    typedCharIdx++;
+    if (typedCharIdx === word.length) {
+      typedDeleting = true;
+      setTimeout(typeLoop, 1800);
+      return;
+    }
+    setTimeout(typeLoop, 80);
+  } else {
+    typedEl.textContent = word.substring(0, typedCharIdx - 1);
+    typedCharIdx--;
+    if (typedCharIdx === 0) {
+      typedDeleting = false;
+      typedIdx = (typedIdx + 1) % typedWords.length;
+      setTimeout(typeLoop, 350);
+      return;
+    }
+    setTimeout(typeLoop, 45);
+  }
+}
+setTimeout(typeLoop, 1200);
+
+// NAV SCROLL
+const navbar=document.getElementById('navbar');
+window.addEventListener('scroll',()=>{
+  navbar.classList.toggle('scrolled',window.scrollY>40);
+  updateActiveNav();
+});
+// HAMBURGER
+const hamburger=document.getElementById('hamburger');
+const mobileNav=document.getElementById('mobileNav');
+hamburger.addEventListener('click',()=>mobileNav.classList.toggle('open'));
+document.querySelectorAll('#mobileNav a').forEach(a=>a.addEventListener('click',()=>mobileNav.classList.remove('open')));
+// ACTIVE NAV
+const sections=document.querySelectorAll('section[id]');
+const navLinks=document.querySelectorAll('.nav-links a[href^="#"]');
+function updateActiveNav(){
+  let current='';
+  sections.forEach(s=>{if(window.scrollY>=s.offsetTop-120)current=s.id;});
+  navLinks.forEach(a=>{a.classList.remove('active');if(a.getAttribute('href')==='#'+current)a.classList.add('active');});
+}
+// ── SCROLL STORYTELLING ──
+const scrollObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      scrollObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.10, rootMargin: '0px 0px -40px 0px' });
+
+// Alle Scroll-Animations-Klassen beobachten
+document.querySelectorAll('.fade-up, .fade-left, .fade-right, .fade-zoom, .section-enter').forEach(el => scrollObserver.observe(el));
+
+// Karten innerhalb von Sektionen gestaffelt einblenden
+document.querySelectorAll('.team-card, .tech-card, .inv-card, .why-card, .co2-pillar').forEach((card, i) => {
+  card.classList.add('fade-up');
+  card.style.transitionDelay = (i % 6 * 0.08) + 's';
+  scrollObserver.observe(card);
+});
+// ── TEAM PARALLAX SCROLL ──
+(function(){
+  const img = document.getElementById('teamParallaxImg');
+  if(!img) return;
+  function updateParallax() {
+    const banner = img.parentElement;
+    const rect   = banner.getBoundingClientRect();
+    const winH   = window.innerHeight;
+    // Nur berechnen wenn sichtbar
+    if(rect.bottom < 0 || rect.top > winH) return;
+    // Wie weit ist die Mitte des Banners vom Viewport-Zentrum entfernt?
+    const progress = (rect.top + rect.height / 2 - winH / 2) / winH;
+    // Verschiebung: max ±40px
+    const offset = progress * 80;
+    img.style.transform = `translateY(${offset}px)`;
+  }
+  window.addEventListener('scroll', updateParallax, { passive: true });
+  updateParallax();
+})();
+
+// SMOOTH SCROLL
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const target=document.querySelector(a.getAttribute('href'));
+    if(target){e.preventDefault();target.scrollIntoView({behavior:'smooth',block:'start'});}
+  });
+});
+
+// ── SWISS MAP TOOLTIP ──
+(function(){
+  const tooltip = document.getElementById('mapTooltip');
+  const cityBox = document.getElementById('cityInfoBox');
+  const cityName = document.getElementById('cityInfoName');
+  const cityPhase = document.getElementById('cityInfoPhase');
+  const cityDetail = document.getElementById('cityInfoDetail');
+  if(!tooltip) return;
+  const container = document.querySelector('.swiss-map-container');
+
+  document.querySelectorAll('.city-node').forEach(node => {
+    node.addEventListener('mouseenter', function(e) {
+      tooltip.querySelector('.map-tooltip-city').textContent = '📍 ' + this.dataset.city;
+      tooltip.querySelector('.map-tooltip-status').textContent = this.dataset.phase;
+      tooltip.querySelector('.map-tooltip-rides').textContent = this.dataset.detail.substring(0,60) + '…';
+      tooltip.style.display = 'block';
+      tooltip.style.transform = '';
+    });
+    node.addEventListener('mousemove', function(e) {
+      const rect = container.getBoundingClientRect();
+      let x = e.clientX - rect.left + 14;
+      let y = e.clientY - rect.top - 70;
+      if(x + 185 > rect.width) x = e.clientX - rect.left - 195;
+      if(y < 0) y = 8;
+      tooltip.style.left = x + 'px';
+      tooltip.style.top = y + 'px';
+    });
+    node.addEventListener('mouseleave', function() {
+      tooltip.style.display = 'none';
+    });
+    // Klick → Info Panel links befüllen
+    node.addEventListener('click', function() {
+      if(cityBox && cityName && cityPhase && cityDetail) {
+        cityName.textContent = '📍 ' + this.dataset.city;
+        cityPhase.textContent = this.dataset.phase;
+        cityDetail.textContent = this.dataset.detail;
+        cityBox.style.display = 'block';
+      }
+    });
+  });
+
+  // Städte nacheinander einblenden beim Scrollen
+  const cityObserver = new IntersectionObserver(entries => {
+    if(entries[0].isIntersecting) {
+      const nodes = document.querySelectorAll('.city-node');
+      nodes.forEach((node, i) => {
+        node.style.opacity = '0';
+        node.style.transform = 'scale(0.5)';
+        setTimeout(() => {
+          node.style.transition = 'opacity .5s ease, transform .5s cubic-bezier(.34,1.56,.64,1)';
+          node.style.opacity = '1';
+          node.style.transform = 'scale(1)';
+        }, i * 180 + 200);
+      });
+      cityObserver.disconnect();
+    }
+  }, { threshold: 0.25 });
+  const mapEl = document.querySelector('.swiss-map-section');
+  if(mapEl) cityObserver.observe(mapEl);
+
+  // Driver Counter Animation
+  const counterEl = document.getElementById('driverCounter');
+  if(counterEl) {
+    const counterObs = new IntersectionObserver(entries => {
+      if(entries[0].isIntersecting) {
+        let val = 0;
+        const target = 300;
+        const step = Math.ceil(target / 60);
+        const timer = setInterval(() => {
+          val = Math.min(val + step, target);
+          counterEl.textContent = val;
+          if(val >= target) clearInterval(timer);
+        }, 25);
+        counterObs.disconnect();
+      }
+    }, { threshold: 0.5 });
+    counterObs.observe(counterEl);
+  }
+})();
+
+// ── APP SIGNUP FORM ──
+async function handleAppSignup(e) {
+  e.preventDefault();
+  const email   = document.getElementById('appEmail').value.trim();
+  const phone   = document.getElementById('appPhone').value.trim();
+  const consent = document.getElementById('appConsent').checked;
+  const form    = document.getElementById('appBannerForm');
+  const success = document.getElementById('appSuccessMsg');
+  if (!email || !phone || !consent) return;
+
+  // Telefon-Validierung
+  if (!phone.startsWith('+')) {
+    document.getElementById('appPhone').setCustomValidity('Bitte mit Ländervorwahl eingeben, z.B. +41 79 …');
+    document.getElementById('appPhone').reportValidity();
+    return;
+  }
+  document.getElementById('appPhone').setCustomValidity('');
+
+  // Animierter Button
+  const btn  = document.getElementById('appBtnText');
+  const icon = document.getElementById('appBtnIcon');
+  btn.textContent  = 'Wird gespeichert…';
+  icon.textContent = '⟳';
+
+  try {
+    // In Datenbank speichern
+    await fetch('tables/waitlist', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify({ email, phone, consent: true, registered_at: new Date().toISOString() })
+    });
+  } catch(err) {
+    // localStorage als Backup
+    const list = JSON.parse(localStorage.getItem('tuk_waitlist') || '[]');
+    list.push({ email, phone, consent: true, date: new Date().toISOString() });
+    localStorage.setItem('tuk_waitlist', JSON.stringify(list));
+  }
+
+  setTimeout(() => {
+    form.style.display    = 'none';
+    success.style.display = 'flex';
+  }, 700);
+}
+
+// ── DATENSCHUTZ MODAL ──
+function openDsgvoModal(e) {
+  if(e) e.preventDefault();
+  const modal = document.getElementById('dsgvoModal');
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+  modal.querySelector('.dsgvo-modal-body').scrollTop = 0;
+}
+function closeDsgvoModal() {
+  const modal = document.getElementById('dsgvoModal');
+  modal.style.opacity = '0';
+  modal.style.transition = 'opacity .2s ease';
+  setTimeout(() => {
+    modal.style.display = 'none';
+    modal.style.opacity = '';
+    modal.style.transition = '';
+    document.body.style.overflow = '';
+  }, 200);
+}
+function closeDsgvo(e) {
+  if(e.target === document.getElementById('dsgvoModal')) closeDsgvoModal();
+}
+document.addEventListener('keydown', e => {
+  if(e.key === 'Escape' && document.getElementById('dsgvoModal').style.display === 'flex') {
+    closeDsgvoModal();
+  }
+});
+
+// ── APP COUNTDOWN ──
+(function() {
+  function updateCountdown() {
+    const launch = new Date('2026-01-01T00:00:00');
+    const now = new Date();
+    const diff = launch - now;
+    if(diff <= 0) {
+      document.getElementById('cdDays').textContent = '0';
+      document.getElementById('cdHours').textContent = '0';
+      document.getElementById('cdMins').textContent = '0';
+      return;
+    }
+    const days = Math.floor(diff / (1000*60*60*24));
+    const hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+    const mins = Math.floor((diff % (1000*60*60)) / (1000*60));
+    document.getElementById('cdDays').textContent = String(days).padStart(2,'0');
+    document.getElementById('cdHours').textContent = String(hours).padStart(2,'0');
+    document.getElementById('cdMins').textContent = String(mins).padStart(2,'0');
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 30000);
+})();
+
+// ── APP DEMO LOGIC ──
+let demoCurrentStep = 0;
+let searchTimer = null;
+
+function demoGoTo(step) {
+  // Screens umschalten
+  document.querySelectorAll('.demo-screen').forEach(s => s.classList.remove('active'));
+  const nextScreen = document.getElementById('screen-' + step);
+  if (nextScreen) nextScreen.classList.add('active');
+
+  // Step-Items updaten
+  document.querySelectorAll('.demo-step-item').forEach((item, i) => {
+    item.classList.remove('active', 'done');
+    if (i < step) item.classList.add('done');
+    if (i === step) item.classList.add('active');
+    // Done-Nummer als Häkchen
+    const numEl = item.querySelector('.demo-step-num');
+    if (i < step) numEl.textContent = '✓';
+    else numEl.textContent = i + 1;
+  });
+
+  // Dots updaten
+  document.querySelectorAll('.demo-dot').forEach((dot, i) => {
+    dot.classList.toggle('active', i === step);
+  });
+
+  // Info-Panel updaten
+  document.querySelectorAll('.demo-info-content').forEach(c => {
+    c.classList.remove('active');
+    if (parseInt(c.dataset.for) === step) c.classList.add('active');
+  });
+
+  demoCurrentStep = step;
+
+  // Screen 2: Suchanimation starten
+  if (step === 2) {
+    startSearchAnimation();
+  } else {
+    if (searchTimer) { clearInterval(searchTimer); searchTimer = null; }
+    const prog = document.getElementById('searchProgress');
+    if (prog) prog.style.width = '0%';
+    const btn = document.getElementById('foundBtn');
+    if (btn) { btn.classList.remove('visible'); btn.classList.add('ds-btn-hidden'); }
+    const lbl = document.getElementById('searchLabel');
+    if (lbl) lbl.textContent = 'KI sucht den besten Fahrer in deiner Nähe…';
+    const spinner = document.getElementById('demoSpinner');
+    if (spinner) spinner.style.display = '';
+  }
+}
+
+function startSearchAnimation() {
+  const prog = document.getElementById('searchProgress');
+  const btn = document.getElementById('foundBtn');
+  const lbl = document.getElementById('searchLabel');
+  const spinner = document.getElementById('demoSpinner');
+
+  if (!prog) return;
+  prog.style.width = '0%';
+  btn.classList.add('ds-btn-hidden');
+  btn.classList.remove('visible');
+  lbl.textContent = 'KI sucht den besten Fahrer in deiner Nähe…';
+
+  const messages = [
+    'KI sucht den besten Fahrer in deiner Nähe…',
+    '3 Fahrer in 500m Umkreis gefunden…',
+    'Route optimiert – beste Option wird ausgewählt…',
+    '✅ Perfekter Fahrer gefunden!'
+  ];
+  let progress = 0;
+  let msgIdx = 0;
+
+  searchTimer = setInterval(() => {
+    progress += 1.4;
+    prog.style.width = Math.min(progress, 100) + '%';
+
+    // Nachricht wechseln
+    const newIdx = Math.floor((progress / 100) * messages.length);
+    if (newIdx !== msgIdx && newIdx < messages.length) {
+      msgIdx = newIdx;
+      lbl.textContent = messages[msgIdx];
+    }
+
+    if (progress >= 100) {
+      clearInterval(searchTimer);
+      searchTimer = null;
+      spinner.style.display = 'none';
+      lbl.textContent = '✅ Fahrer gefunden – bestätige jetzt!';
+      btn.classList.remove('ds-btn-hidden');
+      btn.style.display = 'block';
+      btn.style.animation = 'screenIn .4s ease';
+    }
+  }, 40);
+}
+
+// Uhrzeit live anzeigen
+function updateDemoTime() {
+  const el = document.getElementById('demoTime');
+  if (!el) return;
+  const now = new Date();
+  el.textContent = now.getHours().toString().padStart(2,'0') + ':' + now.getMinutes().toString().padStart(2,'0');
+}
+updateDemoTime();
+setInterval(updateDemoTime, 30000);
+
+// Demo initialisieren
+demoGoTo(0);
+
+// ── INVESTOR: COUNTER ANIMATION ──
+function animateCounter(el, target, prefix, suffix, decimals, duration) {
+  let start = 0;
+  const step = target / (duration / 16);
+  const timer = setInterval(() => {
+    start += step;
+    if (start >= target) { start = target; clearInterval(timer); }
+    el.textContent = prefix + start.toFixed(decimals) + suffix;
+  }, 16);
+}
+
+let countersStarted = false;
+function startCounters() {
+  if (countersStarted) return;
+  countersStarted = true;
+  document.querySelectorAll('.inv-counter-card').forEach(card => {
+    const target = parseFloat(card.dataset.target);
+    const prefix = card.dataset.prefix || '';
+    const suffix = card.dataset.suffix || '';
+    const decimals = parseInt(card.dataset.decimals) || 0;
+    const numEl = card.querySelector('.inv-counter-num');
+    if (numEl) animateCounter(numEl, target, prefix, suffix, decimals, 1800);
+  });
+}
+
+// ── INVESTOR: CHART.JS MARKET CHART ──
+let chartCreated = false;
+function createMarketChart() {
+  if (chartCreated) return;
+  const canvas = document.getElementById('marketChart');
+  if (!canvas) return;
+  chartCreated = true;
+
+  const labels = ['2026', '2027', '2028', '2029', '2030', '2031', '2032'];
+  const tam    = [13.8, 15.1, 16.5, 18.1, 19.8, 21.7, 23.8];
+  const tuk    = [0.08, 0.22, 0.52, 1.1, 2.1, 3.4, 5.0];
+
+  new Chart(canvas, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [
+        {
+          label: 'DACH TAM (CHF Mrd.)',
+          data: tam,
+          borderColor: '#2cc917',
+          backgroundColor: 'rgba(44,201,23,0.08)',
+          fill: true,
+          tension: 0.42,
+          borderWidth: 3,
+          pointBackgroundColor: '#2cc917',
+          pointRadius: 5,
+          pointHoverRadius: 8
+        },
+        {
+          label: 'TUK Zielmarkt (CHF Mrd.)',
+          data: tuk,
+          borderColor: '#0097a7',
+          backgroundColor: 'rgba(0,151,167,0.07)',
+          fill: true,
+          tension: 0.42,
+          borderWidth: 2.5,
+          borderDash: [6,3],
+          pointBackgroundColor: '#0097a7',
+          pointRadius: 4,
+          pointHoverRadius: 7
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#1a2e1a',
+          titleColor: '#2cc917',
+          bodyColor: 'rgba(255,255,255,0.85)',
+          padding: 12,
+          cornerRadius: 10,
+          callbacks: {
+            label: ctx => ' CHF ' + ctx.parsed.y.toFixed(1) + ' Mrd.'
+          }
+        }
+      },
+      scales: {
+        x: {
+          grid: { color: 'rgba(44,201,23,0.08)' },
+          ticks: { color: '#6a8a6a', font: { weight: '700', size: 12 } }
+        },
+        y: {
+          grid: { color: 'rgba(44,201,23,0.08)' },
+          ticks: {
+            color: '#6a8a6a',
+            font: { weight: '600', size: 11 },
+            callback: v => 'CHF ' + v + ' Mrd.'
+          }
+        }
+      },
+      animation: {
+        duration: 1600,
+        easing: 'easeInOutQuart'
+      }
+    }
+  });
+}
+
+// Trigger Counter + Chart wenn Investor-Sektion sichtbar
+const investorSection = document.getElementById('investoren');
+if (investorSection) {
+  const invObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        startCounters();
+        createMarketChart();
+        invObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  invObserver.observe(investorSection);
+}
+</script>
+<!-- ═══════════════════════════════════════
+     DATENSCHUTZ MODAL
+═══════════════════════════════════════ -->
+<div id="dsgvoModal" class="dsgvo-modal-backdrop" onclick="closeDsgvo(event)" role="dialog" aria-modal="true" aria-labelledby="dsgvoTitle" style="display:none;">
+  <div class="dsgvo-modal-box">
+    <!-- Header -->
+    <div class="dsgvo-modal-header">
+      <div>
+        <span class="dsgvo-modal-badge">🔒 TUK SWISS AG</span>
+        <h2 id="dsgvoTitle" class="dsgvo-modal-title">Datenschutzerklärung</h2>
+        <p class="dsgvo-modal-meta">Stand: März 2026 · gemäss Schweizer Datenschutzgesetz (nDSG) & DSGVO</p>
+      </div>
+      <button class="dsgvo-close-btn" onclick="closeDsgvoModal()" aria-label="Schliessen">✕</button>
+    </div>
+
+    <!-- Inhalt scrollbar -->
+    <div class="dsgvo-modal-body">
+
+      <div class="dsgvo-section">
+        <h3>1. Verantwortliche Stelle</h3>
+        <p>Verantwortlich für die Erhebung, Verarbeitung und Nutzung Ihrer personenbezogenen Daten im Sinne des Schweizer Datenschutzgesetzes (nDSG) sowie der EU-Datenschutz-Grundverordnung (DSGVO) ist:</p>
+        <div class="dsgvo-address-box">
+          <strong>TUK SWISS AG</strong><br/>
+          powered by owly AG<br/>
+          Im Kengart 4<br/>
+          8512 Lustdorf, Schweiz<br/>
+          <a href="tel:+41442439934">+41 44 243 99 34</a><br/>
+          <a href="mailto:info@owlyag.ch">info@owlyag.ch</a><br/>
+          CHE-298.348.143
+        </div>
+      </div>
+
+      <div class="dsgvo-section">
+        <h3>2. Erhobene Daten & Zweck</h3>
+        <p>Wenn Sie sich über unser Wartelisten-Formular («Jetzt vormerken») anmelden, erheben wir folgende personenbezogene Daten:</p>
+        <ul class="dsgvo-list">
+          <li><strong>E-Mail-Adresse</strong> – zur Benachrichtigung über den App-Launch und exklusive Angebote</li>
+          <li><strong>Telefonnummer (Mobil)</strong> – zur direkten Kontaktaufnahme per SMS oder Anruf bezüglich des TUK App-Launches</li>
+          <li><strong>Einwilligungsnachweis</strong> – Datum und Zeitstempel der erteilten Einwilligung</li>
+        </ul>
+        <p>Die Daten werden ausschliesslich für folgende Zwecke verwendet:</p>
+        <ul class="dsgvo-list">
+          <li>Benachrichtigung über den Start der TUK App (2026)</li>
+          <li>Zusendung von exklusiven Launch-Angeboten und Beta-Zugängen</li>
+          <li>Gelegentliche Informationen zu TUK SWISS (max. 1× pro Monat)</li>
+        </ul>
+      </div>
+
+      <div class="dsgvo-section">
+        <h3>3. Rechtsgrundlage</h3>
+        <p>Die Verarbeitung Ihrer Daten erfolgt auf Basis Ihrer ausdrücklichen Einwilligung gemäss:</p>
+        <ul class="dsgvo-list">
+          <li>Art. 6 Abs. 1 lit. a DSGVO (Einwilligung)</li>
+          <li>Art. 31 Abs. 1 nDSG (Schweizer Datenschutzgesetz)</li>
+        </ul>
+        <p>Sie können Ihre Einwilligung jederzeit ohne Angabe von Gründen widerrufen. Der Widerruf berührt nicht die Rechtmässigkeit der bis dahin erfolgten Verarbeitung.</p>
+      </div>
+
+      <div class="dsgvo-section">
+        <h3>4. Datenweitergabe an Dritte</h3>
+        <p>Ihre personenbezogenen Daten werden <strong>nicht</strong> an Dritte verkauft oder zu Werbezwecken weitergegeben. Eine Weitergabe erfolgt ausschliesslich:</p>
+        <ul class="dsgvo-list">
+          <li>An technische Dienstleister (z.B. E-Mail-Versand), die vertraglich zur Vertraulichkeit verpflichtet sind</li>
+          <li>Wenn gesetzlich vorgeschrieben (z.B. auf Behördenanfrage)</li>
+        </ul>
+      </div>
+
+      <div class="dsgvo-section">
+        <h3>5. Speicherdauer</h3>
+        <p>Ihre Daten werden gespeichert, bis:</p>
+        <ul class="dsgvo-list">
+          <li>Sie Ihre Einwilligung widerrufen (Löschung innerhalb von 30 Tagen), oder</li>
+          <li>Der Zweck der Speicherung entfällt (nach erfolgtem App-Launch und abgeschlossener Kommunikation)</li>
+        </ul>
+        <p>Spätestens <strong>3 Jahre</strong> nach Erteilung der Einwilligung werden die Daten gelöscht, sofern keine anderweitige gesetzliche Aufbewahrungspflicht besteht.</p>
+      </div>
+
+      <div class="dsgvo-section">
+        <h3>6. Ihre Rechte</h3>
+        <p>Sie haben jederzeit folgende Rechte:</p>
+        <div class="dsgvo-rights-grid">
+          <div class="dsgvo-right-item">
+            <span class="dsgvo-right-icon">👁️</span>
+            <div><strong>Auskunft</strong><p>Recht auf Auskunft über Ihre gespeicherten Daten</p></div>
+          </div>
+          <div class="dsgvo-right-item">
+            <span class="dsgvo-right-icon">✏️</span>
+            <div><strong>Berichtigung</strong><p>Recht auf Korrektur unrichtiger Daten</p></div>
+          </div>
+          <div class="dsgvo-right-item">
+            <span class="dsgvo-right-icon">🗑️</span>
+            <div><strong>Löschung</strong><p>Recht auf Löschung Ihrer personenbezogenen Daten</p></div>
+          </div>
+          <div class="dsgvo-right-item">
+            <span class="dsgvo-right-icon">🚫</span>
+            <div><strong>Widerspruch</strong><p>Recht auf Widerspruch gegen die Verarbeitung</p></div>
+          </div>
+          <div class="dsgvo-right-item">
+            <span class="dsgvo-right-icon">📦</span>
+            <div><strong>Portabilität</strong><p>Recht auf Datenübertragbarkeit</p></div>
+          </div>
+          <div class="dsgvo-right-item">
+            <span class="dsgvo-right-icon">↩️</span>
+            <div><strong>Widerruf</strong><p>Einwilligung jederzeit widerrufbar</p></div>
+          </div>
+        </div>
+        <p style="margin-top:16px;">Zur Ausübung Ihrer Rechte wenden Sie sich an: <a href="mailto:info@owlyag.ch">info@owlyag.ch</a></p>
+      </div>
+
+      <div class="dsgvo-section">
+        <h3>7. Datensicherheit</h3>
+        <p>Wir setzen technische und organisatorische Sicherheitsmassnahmen ein, um Ihre Daten vor Verlust, Manipulation und unberechtigtem Zugriff zu schützen. Unsere Sicherheitsmassnahmen werden entsprechend dem technologischen Stand fortlaufend verbessert.</p>
+      </div>
+
+      <div class="dsgvo-section">
+        <h3>8. Beschwerderecht</h3>
+        <p>Sie haben das Recht, sich bei der zuständigen Aufsichtsbehörde zu beschweren:</p>
+        <div class="dsgvo-address-box">
+          <strong>Eidgenössischer Datenschutz- und Öffentlichkeitsbeauftragter (EDÖB)</strong><br/>
+          Feldeggweg 1, 3003 Bern<br/>
+          <a href="https://www.edoeb.admin.ch" target="_blank" rel="noopener">www.edoeb.admin.ch</a>
+        </div>
+      </div>
+
+      <div class="dsgvo-section">
+        <h3>9. Cookies & Tracking</h3>
+        <p>Diese Website verwendet <strong>keine</strong> Tracking-Cookies und keine externen Analyse-Tools (wie Google Analytics). Es werden ausschliesslich technisch notwendige Daten verarbeitet, die für den Betrieb der Website erforderlich sind.</p>
+      </div>
+
+      <div class="dsgvo-section">
+        <h3>10. Änderungen dieser Datenschutzerklärung</h3>
+        <p>TUK SWISS AG behält sich vor, diese Datenschutzerklärung bei Bedarf zu aktualisieren. Die jeweils aktuelle Version ist auf dieser Website verfügbar. Bei wesentlichen Änderungen werden registrierte Nutzer per E-Mail informiert.</p>
+      </div>
+
+    </div><!-- /body -->
+
+    <!-- Footer des Modals -->
+    <div class="dsgvo-modal-footer">
+      <p>Bei Fragen: <a href="mailto:info@owlyag.ch">info@owlyag.ch</a> · <a href="tel:+41442439934">+41 44 243 99 34</a></p>
+      <button class="btn btn-primary" onclick="closeDsgvoModal()">Verstanden &amp; Schliessen</button>
+    </div>
+
+  </div><!-- /box -->
+</div><!-- /backdrop -->
+
+</body>
+</html>
