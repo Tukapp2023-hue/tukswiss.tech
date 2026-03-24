@@ -236,7 +236,8 @@
 
 <script>
 // ── KONFIG ──
-const PASSWORD = 'Ochtrup1!?';
+// Passwort als SHA-256 Hash (Ochtrup1!?) – Original nicht im Code
+const PW_HASH  = 'a9814a93883ff7286e836e79a05e81ef68f352dba69677bb9d48bd029ce139a7';
 const TABLE    = 'waitlist';
 const PER_PAGE = 20;
 
@@ -246,9 +247,15 @@ let currentPage = 1;
 let confirmCallback = null;
 
 // ── LOGIN ──
-function doLogin() {
-  const val = document.getElementById('pwInput').value;
-  if (val === PASSWORD) {
+async function hashPassword(str) {
+  const buf  = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+}
+
+async function doLogin() {
+  const val  = document.getElementById('pwInput').value;
+  const hash = await hashPassword(val);
+  if (hash === PW_HASH) {
     document.getElementById('loginScreen').style.display = 'none';
     document.getElementById('dashboard').style.display  = 'block';
     sessionStorage.setItem('tuk_admin', '1');
