@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TUK SWISS – Admin Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --green:#2cc917; --green-dark:#1a5c0f; --green-light:#eaf9e7;
+      --green-mid:#b8f0b0; --text:#1a1a1a; --text-muted:#6b7280;
+      --bg:#f7fdf6; --white:#ffffff;
+      --red:#dc2626; --red-light:#fef2f2;
+      --shadow:0 4px 24px rgba(44,201,23,.1);
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+
+    /* ── LOGIN ── */
+    #loginScreen{
+      position:fixed;inset:0;background:linear-gradient(135deg,#0d2b0a,#1a4f14);
+      display:flex;align-items:center;justify-content:center;z-index:1000;
+    }
+    .login-box{
+      background:white;border-radius:24px;padding:48px 40px;
+      width:100%;max-width:400px;
+      box-shadow:0 32px 80px rgba(0,0,0,.4);
+      animation:slideUp .4s cubic-bezier(.22,1,.36,1);
+    }
+    @keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+    .login-logo{font-size:2.2rem;font-weight:900;color:var(--green-dark);margin-bottom:6px}
+    .login-logo span{color:var(--green)}
+    .login-sub{color:var(--text-muted);font-size:.9rem;margin-bottom:32px}
+    .login-label{display:block;font-size:.8rem;font-weight:700;color:var(--text-muted);margin-bottom:6px;letter-spacing:.04em;text-transform:uppercase}
+    .login-input-wrap{display:flex;align-items:center;border:1.5px solid #e5e7eb;border-radius:12px;padding:12px 16px;gap:10px;margin-bottom:16px;transition:border-color .2s}
+    .login-input-wrap:focus-within{border-color:var(--green)}
+    .login-input-wrap input{flex:1;border:none;outline:none;font-size:.95rem;font-family:inherit;background:transparent}
+    .login-btn{width:100%;background:var(--green);color:white;border:none;border-radius:12px;padding:14px;font-size:1rem;font-weight:700;cursor:pointer;font-family:inherit;transition:background .2s,transform .1s;margin-top:8px}
+    .login-btn:hover{background:var(--green-dark)}
+    .login-btn:active{transform:scale(.98)}
+    .login-error{background:#fef2f2;color:var(--red);border:1px solid #fecaca;border-radius:10px;padding:10px 14px;font-size:.85rem;margin-top:12px;display:none}
+
+    /* ── DASHBOARD ── */
+    #dashboard{display:none}
+    .topbar{
+      background:linear-gradient(135deg,#0d2b0a,#1a4f14);
+      padding:0 32px;height:64px;display:flex;align-items:center;justify-content:space-between;
+      box-shadow:0 2px 20px rgba(0,0,0,.2);position:sticky;top:0;z-index:100;
+    }
+    .topbar-logo{font-size:1.3rem;font-weight:900;color:white}
+    .topbar-logo span{color:var(--green)}
+    .topbar-right{display:flex;align-items:center;gap:16px}
+    .topbar-badge{background:rgba(44,201,23,.2);color:var(--green);border:1px solid rgba(44,201,23,.3);padding:4px 14px;border-radius:100px;font-size:.78rem;font-weight:700}
+    .logout-btn{background:rgba(255,255,255,.1);color:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:6px 14px;font-size:.82rem;cursor:pointer;font-family:inherit;transition:background .2s}
+    .logout-btn:hover{background:rgba(255,255,255,.2)}
+
+    .main{padding:32px;max-width:1200px;margin:0 auto}
+
+    /* Stats */
+    .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:32px}
+    .stat-card{background:white;border-radius:16px;padding:22px 24px;box-shadow:var(--shadow);border:1.5px solid var(--green-mid)}
+    .stat-card.highlight{background:linear-gradient(135deg,var(--green-light),#d4f8ce);border-color:var(--green)}
+    .stat-icon{font-size:1.8rem;margin-bottom:8px}
+    .stat-num{font-size:2rem;font-weight:900;color:var(--green-dark);line-height:1}
+    .stat-label{font-size:.8rem;color:var(--text-muted);margin-top:4px;font-weight:500}
+
+    /* Toolbar */
+    .toolbar{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+    .toolbar-title{font-size:1.2rem;font-weight:800;color:var(--text);flex:1}
+    .search-input{border:1.5px solid #e5e7eb;border-radius:10px;padding:9px 16px;font-size:.88rem;font-family:inherit;outline:none;width:240px;transition:border-color .2s}
+    .search-input:focus{border-color:var(--green)}
+    .toolbar-btn{display:flex;align-items:center;gap:7px;padding:9px 18px;border-radius:10px;font-size:.85rem;font-weight:600;cursor:pointer;font-family:inherit;border:none;transition:all .2s}
+    .btn-export{background:var(--green);color:white}
+    .btn-export:hover{background:var(--green-dark)}
+    .btn-refresh{background:white;color:var(--text);border:1.5px solid #e5e7eb}
+    .btn-refresh:hover{border-color:var(--green);color:var(--green)}
+    .btn-delete-all{background:var(--red-light);color:var(--red);border:1.5px solid #fecaca}
+    .btn-delete-all:hover{background:var(--red);color:white}
+
+    /* Tabelle */
+    .table-wrap{background:white;border-radius:16px;box-shadow:var(--shadow);overflow:hidden;border:1.5px solid var(--green-mid)}
+    table{width:100%;border-collapse:collapse}
+    thead{background:linear-gradient(135deg,var(--green-light),#d4f8ce)}
+    th{padding:14px 18px;text-align:left;font-size:.78rem;font-weight:800;color:var(--green-dark);letter-spacing:.05em;text-transform:uppercase;white-space:nowrap}
+    td{padding:14px 18px;font-size:.875rem;border-top:1px solid #f0f0f0;vertical-align:middle}
+    tr:hover td{background:#fafffe}
+    .td-email{font-weight:600;color:var(--text)}
+    .td-phone{color:var(--text-muted)}
+    .td-date{color:var(--text-muted);font-size:.8rem;white-space:nowrap}
+    .consent-badge{display:inline-flex;align-items:center;gap:4px;background:#d1fae5;color:#065f46;font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:100px}
+    .del-btn{background:none;border:none;cursor:pointer;color:#d1d5db;font-size:1rem;padding:4px 8px;border-radius:6px;transition:all .2s}
+    .del-btn:hover{background:var(--red-light);color:var(--red)}
+    .empty-state{text-align:center;padding:64px 24px;color:var(--text-muted)}
+    .empty-state .empty-icon{font-size:3rem;margin-bottom:12px}
+    .empty-state p{font-size:1rem;font-weight:600;margin-bottom:6px;color:var(--text)}
+    .empty-state small{font-size:.85rem}
+
+    /* Pagination */
+    .pagination{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;border-top:1px solid #f0f0f0;background:white;flex-wrap:wrap;gap:8px}
+    .pagination-info{font-size:.82rem;color:var(--text-muted)}
+    .pagination-btns{display:flex;gap:6px}
+    .pg-btn{background:white;border:1.5px solid #e5e7eb;border-radius:8px;padding:6px 14px;font-size:.82rem;cursor:pointer;font-family:inherit;transition:all .2s}
+    .pg-btn:hover:not(:disabled){border-color:var(--green);color:var(--green)}
+    .pg-btn:disabled{opacity:.4;cursor:default}
+    .pg-btn.active{background:var(--green);color:white;border-color:var(--green)}
+
+    /* Toast */
+    .toast{position:fixed;bottom:24px;right:24px;background:#1a1a1a;color:white;padding:12px 20px;border-radius:12px;font-size:.875rem;font-weight:500;z-index:9999;transform:translateY(80px);opacity:0;transition:all .3s cubic-bezier(.22,1,.36,1)}
+    .toast.show{transform:translateY(0);opacity:1}
+    .toast.success{background:var(--green-dark)}
+    .toast.error{background:var(--red)}
+
+    /* Confirm Dialog */
+    .confirm-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9998;display:none;align-items:center;justify-content:center}
+    .confirm-box{background:white;border-radius:16px;padding:28px 32px;max-width:380px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,.3);animation:slideUp .25s ease}
+    .confirm-box h3{font-size:1.1rem;font-weight:800;margin-bottom:8px}
+    .confirm-box p{font-size:.875rem;color:var(--text-muted);margin-bottom:24px}
+    .confirm-btns{display:flex;gap:10px;justify-content:flex-end}
+    .confirm-cancel{background:white;border:1.5px solid #e5e7eb;border-radius:8px;padding:8px 18px;font-size:.875rem;cursor:pointer;font-family:inherit}
+    .confirm-ok{background:var(--red);color:white;border:none;border-radius:8px;padding:8px 18px;font-size:.875rem;font-weight:700;cursor:pointer;font-family:inherit}
+
+    @media(max-width:768px){
+      .stats-row{grid-template-columns:repeat(2,1fr)}
+      .topbar{padding:0 16px}
+      .main{padding:16px}
+      .search-input{width:100%}
+      .toolbar{flex-direction:column;align-items:stretch}
+      th:nth-child(3),td:nth-child(3){display:none}
+    }
+  </style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="loginScreen">
+  <div class="login-box">
+    <div class="login-logo">TUK <span>SWISS</span></div>
+    <p class="login-sub">Admin Dashboard – Bitte einloggen</p>
+    <form onsubmit="doLogin();return false;">
+    <label class="login-label">Passwort</label>
+    <div class="login-input-wrap">
+      <span>🔑</span>
+      <input type="password" id="pwInput" placeholder="Passwort eingeben"/>
+    </div>
+    <button type="submit" class="login-btn">Einloggen →</button>
+    </form>
+    <div class="login-error" id="loginError">❌ Falsches Passwort. Bitte erneut versuchen.</div>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard">
+  <nav class="topbar">
+    <div class="topbar-logo">TUK <span>SWISS</span> · Admin</div>
+    <div class="topbar-right">
+      <span class="topbar-badge">🔒 Eingeloggt</span>
+      <button class="logout-btn" onclick="doLogout()">Ausloggen</button>
+    </div>
+  </nav>
+
+  <div class="main">
+
+    <!-- Stats -->
+    <div class="stats-row" id="statsRow">
+      <div class="stat-card highlight">
+        <div class="stat-icon">📋</div>
+        <div class="stat-num" id="statTotal">–</div>
+        <div class="stat-label">Anmeldungen total</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">📅</div>
+        <div class="stat-num" id="statToday">–</div>
+        <div class="stat-label">Heute neu</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">✅</div>
+        <div class="stat-num" id="statConsent">–</div>
+        <div class="stat-label">Mit Einwilligung</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">📱</div>
+        <div class="stat-num" id="statPhone">–</div>
+        <div class="stat-label">Mit Telefonnummer</div>
+      </div>
+    </div>
+
+    <!-- Toolbar -->
+    <div class="toolbar">
+      <div class="toolbar-title">📋 Warteliste</div>
+      <input type="text" class="search-input" placeholder="🔍 Suchen…" id="searchInput" oninput="onSearch()"/>
+      <button class="toolbar-btn btn-refresh" onclick="loadData()">🔄 Aktualisieren</button>
+      <button class="toolbar-btn btn-export" onclick="exportCSV()">📥 CSV Export</button>
+      <button class="toolbar-btn btn-delete-all" onclick="confirmDeleteAll()">🗑️ Alle löschen</button>
+    </div>
+
+    <!-- Tabelle -->
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>E-Mail</th>
+            <th>Telefon</th>
+            <th>Einwilligung</th>
+            <th>Datum</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+          <tr><td colspan="6"><div class="empty-state"><div class="empty-icon">⏳</div><p>Wird geladen…</p></div></td></tr>
+        </tbody>
+      </table>
+      <div class="pagination" id="pagination" style="display:none;">
+        <span class="pagination-info" id="pageInfo"></span>
+        <div class="pagination-btns" id="pageBtns"></div>
+      </div>
+    </div>
+
+  </div><!-- /main -->
+</div><!-- /dashboard -->
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<!-- Confirm Dialog -->
+<div class="confirm-backdrop" id="confirmBackdrop" style="display:none;">
+  <div class="confirm-box">
+    <h3 id="confirmTitle">Eintrag löschen?</h3>
+    <p id="confirmMsg">Dieser Eintrag wird unwiderruflich gelöscht.</p>
+    <div class="confirm-btns">
+      <button class="confirm-cancel" onclick="closeConfirm()">Abbrechen</button>
+      <button class="confirm-ok" id="confirmOkBtn">Löschen</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── KONFIG ──
+const PASSWORD = 'Ochtrup1!?';
+const TABLE    = 'waitlist';
+const PER_PAGE = 20;
+
+let allData   = [];
+let filtered  = [];
+let currentPage = 1;
+let confirmCallback = null;
+
+// ── LOGIN ──
+function doLogin() {
+  const val = document.getElementById('pwInput').value;
+  if (val === PASSWORD) {
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('dashboard').style.display  = 'block';
+    sessionStorage.setItem('tuk_admin', '1');
+    loadData();
+  } else {
+    document.getElementById('loginError').style.display = 'block';
+    document.getElementById('pwInput').value = '';
+    document.getElementById('pwInput').focus();
+  }
+}
+function doLogout() {
+  sessionStorage.removeItem('tuk_admin');
+  location.reload();
+}
+// Auto-Login wenn Session noch aktiv
+window.addEventListener('load', () => {
+  if (sessionStorage.getItem('tuk_admin') === '1') {
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('dashboard').style.display  = 'block';
+    loadData();
+  }
+  document.getElementById('pwInput').focus();
+});
+
+// ── DATEN LADEN ──
+async function loadData() {
+  try {
+    const res  = await fetch(`tables/${TABLE}?limit=1000&sort=created_at`);
+    const json = await res.json();
+    allData = json.data || [];
+    onSearch();
+    updateStats();
+  } catch(e) {
+    showToast('Fehler beim Laden der Daten', 'error');
+  }
+}
+
+// ── STATS ──
+function updateStats() {
+  const today = new Date().toISOString().slice(0,10);
+  document.getElementById('statTotal').textContent   = allData.length;
+  document.getElementById('statToday').textContent   = allData.filter(r => (r.created_at||'').slice(0,10) === today).length;
+  document.getElementById('statConsent').textContent = allData.filter(r => r.consent).length;
+  document.getElementById('statPhone').textContent   = allData.filter(r => r.phone).length;
+}
+
+// ── SUCHE ──
+function onSearch() {
+  const q = document.getElementById('searchInput').value.toLowerCase();
+  filtered = q
+    ? allData.filter(r =>
+        (r.email||'').toLowerCase().includes(q) ||
+        (r.phone||'').toLowerCase().includes(q))
+    : [...allData];
+  currentPage = 1;
+  renderTable();
+}
+
+// ── TABELLE RENDERN ──
+function renderTable() {
+  const tbody = document.getElementById('tableBody');
+  const total = filtered.length;
+  const pages = Math.ceil(total / PER_PAGE);
+  const start = (currentPage - 1) * PER_PAGE;
+  const slice = filtered.slice(start, start + PER_PAGE);
+
+  if (total === 0) {
+    tbody.innerHTML = `<tr><td colspan="6">
+      <div class="empty-state">
+        <div class="empty-icon">📭</div>
+        <p>Noch keine Anmeldungen</p>
+        <small>Sobald sich jemand registriert, erscheint er hier.</small>
+      </div></td></tr>`;
+    document.getElementById('pagination').style.display = 'none';
+    return;
+  }
+
+  tbody.innerHTML = slice.map((row, i) => {
+    const num  = start + i + 1;
+    const date = row.created_at
+      ? new Date(row.created_at).toLocaleString('de-CH', {day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'})
+      : '–';
+    return `<tr>
+      <td style="color:var(--text-muted);font-size:.8rem">${num}</td>
+      <td class="td-email">${esc(row.email||'–')}</td>
+      <td class="td-phone">${esc(row.phone||'–')}</td>
+      <td>${row.consent ? '<span class="consent-badge">✓ Ja</span>' : '<span style="color:#d1d5db;font-size:.8rem">–</span>'}</td>
+      <td class="td-date">${date}</td>
+      <td><button class="del-btn" onclick="confirmDelete('${row.id}','${esc(row.email||'')}')">🗑️</button></td>
+    </tr>`;
+  }).join('');
+
+  // Pagination
+  const pgEl = document.getElementById('pagination');
+  const info = document.getElementById('pageInfo');
+  const btns = document.getElementById('pageBtns');
+  pgEl.style.display = 'flex';
+  info.textContent = `${start+1}–${Math.min(start+PER_PAGE,total)} von ${total} Einträgen`;
+
+  let html = `<button class="pg-btn" onclick="goPage(${currentPage-1})" ${currentPage===1?'disabled':''}>‹ Zurück</button>`;
+  for (let p = 1; p <= pages; p++) {
+    if (pages <= 7 || p===1 || p===pages || Math.abs(p-currentPage)<=1) {
+      html += `<button class="pg-btn ${p===currentPage?'active':''}" onclick="goPage(${p})">${p}</button>`;
+    } else if (Math.abs(p-currentPage)===2) {
+      html += `<span style="padding:0 4px;color:var(--text-muted)">…</span>`;
+    }
+  }
+  html += `<button class="pg-btn" onclick="goPage(${currentPage+1})" ${currentPage===pages?'disabled':''}>Weiter ›</button>`;
+  btns.innerHTML = html;
+}
+function goPage(p) {
+  const pages = Math.ceil(filtered.length / PER_PAGE);
+  if (p < 1 || p > pages) return;
+  currentPage = p;
+  renderTable();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ── LÖSCHEN ──
+function confirmDelete(id, email) {
+  showConfirm('Eintrag löschen?', `Möchten Sie „${email}" wirklich löschen?`, async () => {
+    await fetch(`tables/${TABLE}/${id}`, { method:'DELETE' });
+    showToast('Eintrag gelöscht', 'success');
+    loadData();
+  });
+}
+function confirmDeleteAll() {
+  showConfirm('Alle Einträge löschen?', `Wirklich alle ${allData.length} Einträge unwiderruflich löschen?`, async () => {
+    await Promise.all(allData.map(r => fetch(`tables/${TABLE}/${r.id}`, { method:'DELETE' })));
+    showToast('Alle Einträge gelöscht', 'success');
+    loadData();
+  });
+}
+
+// ── CSV EXPORT ──
+function exportCSV() {
+  if (!filtered.length) { showToast('Keine Daten zum Exportieren', 'error'); return; }
+  const header = ['Nr','E-Mail','Telefon','Einwilligung','Datum'];
+  const rows = filtered.map((r,i) => [
+    i+1,
+    r.email||'',
+    r.phone||'',
+    r.consent ? 'Ja' : 'Nein',
+    r.created_at ? new Date(r.created_at).toLocaleString('de-CH') : ''
+  ]);
+  const csv = [header, ...rows].map(r => r.map(c => `"${String(c).replace(/"/g,'""')}"`).join(';')).join('\n');
+  const blob = new Blob(['\uFEFF'+csv], { type:'text/csv;charset=utf-8;' });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href = url; a.download = `tuk-warteliste-${new Date().toISOString().slice(0,10)}.csv`;
+  a.click(); URL.revokeObjectURL(url);
+  showToast(`${filtered.length} Einträge exportiert 📥`, 'success');
+}
+
+// ── CONFIRM DIALOG ──
+function showConfirm(title, msg, cb) {
+  document.getElementById('confirmTitle').textContent = title;
+  document.getElementById('confirmMsg').textContent   = msg;
+  document.getElementById('confirmBackdrop').style.display = 'flex';
+  confirmCallback = cb;
+  document.getElementById('confirmOkBtn').onclick = () => { closeConfirm(); cb(); };
+}
+function closeConfirm() {
+  document.getElementById('confirmBackdrop').style.display = 'none';
+}
+
+// ── TOAST ──
+function showToast(msg, type='success') {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = `toast ${type} show`;
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ── UTILS ──
+function esc(str) {
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+</script>
+</body>
+</html>
