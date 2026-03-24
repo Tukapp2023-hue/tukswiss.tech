@@ -968,8 +968,12 @@ section{--section-progress:0}
 <!-- ═══════════════════════════════════════
      TRY TUK – INTERAKTIVE APP DEMO
 ═══════════════════════════════════════ -->
-<section id="try-tuk" class="section" style="background:linear-gradient(160deg,#f4fff2 0%,#ffffff 60%,#eaf9e7 100%);overflow:hidden;">
-  <div class="container">
+<section id="try-tuk" class="section" style="background:linear-gradient(160deg,#f4fff2 0%,#ffffff 60%,#eaf9e7 100%);overflow:hidden;position:relative;">
+
+  <!-- ── HINTERGRUND: Strassen-Grid + Partikel ── -->
+  <canvas id="demoMapCanvas" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0.55;"></canvas>
+
+  <div class="container" style="position:relative;z-index:1;">
 
     <div class="text-center fade-up" style="margin-bottom:56px;">
       <span class="badge">Live Demo</span>
@@ -3027,6 +3031,245 @@ async function handleAppSignup(e) {
     success.style.display = 'flex';
   }, 700);
 }
+
+// ── DEMO MAP CANVAS: Strassen-Grid + TUK-Logo-Badges ──
+(function() {
+  const canvas = document.getElementById('demoMapCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  function resize() {
+    canvas.width  = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // ── Strassen-Netz generieren ──
+  const roads = [];
+  function generateRoads() {
+    roads.length = 0;
+    const W = canvas.width, H = canvas.height;
+    const hCount = 10;
+    for (let i = 0; i <= hCount; i++) {
+      const y = (H / hCount) * i;
+      const segments = [];
+      let x = 0;
+      while (x < W) {
+        const len = 60 + Math.random() * 140;
+        const gap = Math.random() < 0.15 ? 20 + Math.random() * 40 : 0;
+        segments.push({ x1: x, x2: x + len });
+        x += len + gap;
+      }
+      roads.push({ type: 'h', y, segments, weight: Math.random() < 0.3 ? 1.5 : 0.8 });
+    }
+    const vCount = 14;
+    for (let i = 0; i <= vCount; i++) {
+      const x = (W / vCount) * i;
+      const segments = [];
+      let y = 0;
+      while (y < H) {
+        const len = 50 + Math.random() * 120;
+        const gap = Math.random() < 0.15 ? 15 + Math.random() * 30 : 0;
+        segments.push({ y1: y, y2: y + len });
+        y += len + gap;
+      }
+      roads.push({ type: 'v', x, segments, weight: Math.random() < 0.3 ? 1.5 : 0.8 });
+    }
+    for (let i = 0; i < 4; i++) {
+      roads.push({
+        type: 'd',
+        x1: Math.random() * W * 0.5, y1: Math.random() * H * 0.3,
+        x2: W * 0.4 + Math.random() * W * 0.6, y2: H * 0.5 + Math.random() * H * 0.5,
+        weight: 0.6
+      });
+    }
+  }
+  generateRoads();
+  window.addEventListener('resize', generateRoads);
+
+  // ── TUK-Logo Badge zeichnen ──
+  function drawTukBadge(x, y, size, alpha, pulse) {
+    const s = size * (0.9 + 0.1 * Math.sin(pulse));
+    const r = s * 0.22; // Border-radius
+    const half = s / 2;
+
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    ctx.translate(x, y);
+
+    // Glow-Aura
+    const grd = ctx.createRadialGradient(0, 0, 0, 0, 0, s * 1.4);
+    grd.addColorStop(0, 'rgba(44,201,23,0.22)');
+    grd.addColorStop(1, 'rgba(44,201,23,0)');
+    ctx.beginPath();
+    ctx.arc(0, 0, s * 1.4, 0, Math.PI * 2);
+    ctx.fillStyle = grd;
+    ctx.fill();
+
+    // Grünes Quadrat (abgerundet)
+    ctx.beginPath();
+    ctx.roundRect(-half, -half, s, s, r);
+    ctx.fillStyle = '#2cc917';
+    ctx.shadowColor = 'rgba(44,201,23,0.5)';
+    ctx.shadowBlur = s * 0.6;
+    ctx.fill();
+    ctx.shadowBlur = 0;
+
+    // Weißer Rand (subtle)
+    ctx.beginPath();
+    ctx.roundRect(-half, -half, s, s, r);
+    ctx.strokeStyle = 'rgba(255,255,255,0.4)';
+    ctx.lineWidth = s * 0.06;
+    ctx.stroke();
+
+    // "TUK" Text
+    ctx.fillStyle = '#ffffff';
+    ctx.font = `900 ${s * 0.38}px 'Inter', Arial, sans-serif`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.letterSpacing = '-0.5px';
+    ctx.fillText('TUK', 0, 0);
+
+    ctx.restore();
+  }
+
+  // ── TUK-Badges (Fahrer) ──
+  const badges = [];
+  const BADGE_COUNT = 18;
+
+  function createBadge() {
+    const W = canvas.width, H = canvas.height;
+    const onH = Math.random() < 0.5;
+    let x, y, vx, vy;
+    if (onH) {
+      const hRoads = roads.filter(r => r.type === 'h');
+      const r = hRoads[Math.floor(Math.random() * hRoads.length)];
+      x  = Math.random() * W;
+      y  = r ? r.y : Math.random() * H;
+      vx = (Math.random() < 0.5 ? 1 : -1) * (0.4 + Math.random() * 0.7);
+      vy = 0;
+    } else {
+      const vRoads = roads.filter(r => r.type === 'v');
+      const r = vRoads[Math.floor(Math.random() * vRoads.length)];
+      x  = r ? r.x : Math.random() * W;
+      y  = Math.random() * H;
+      vx = 0;
+      vy = (Math.random() < 0.5 ? 1 : -1) * (0.4 + Math.random() * 0.7);
+    }
+    return {
+      x, y, vx, vy,
+      size: 20 + Math.random() * 10,
+      alpha: 0.35 + Math.random() * 0.4,
+      pulse: Math.random() * Math.PI * 2,
+      pulseSpeed: 0.025 + Math.random() * 0.03,
+      life: 0,
+      maxLife: 300 + Math.random() * 500,
+      turnTimer: 60 + Math.random() * 120
+    };
+  }
+
+  for (let i = 0; i < BADGE_COUNT; i++) {
+    const b = createBadge();
+    b.life = Math.random() * b.maxLife;
+    badges.push(b);
+  }
+
+  // ── Verbindungslinien ──
+  function drawConnections() {
+    const MAX_DIST = 100;
+    for (let i = 0; i < badges.length; i++) {
+      for (let j = i + 1; j < badges.length; j++) {
+        const dx = badges[i].x - badges[j].x;
+        const dy = badges[i].y - badges[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < MAX_DIST) {
+          const alpha = (1 - dist / MAX_DIST) * 0.12;
+          ctx.beginPath();
+          ctx.strokeStyle = `rgba(44,201,23,${alpha})`;
+          ctx.lineWidth = 0.7;
+          ctx.setLineDash([4, 4]);
+          ctx.moveTo(badges[i].x, badges[i].y);
+          ctx.lineTo(badges[j].x, badges[j].y);
+          ctx.stroke();
+          ctx.setLineDash([]);
+        }
+      }
+    }
+  }
+
+  // ── Animation ──
+  function draw() {
+    const W = canvas.width, H = canvas.height;
+    ctx.clearRect(0, 0, W, H);
+
+    // 1) Strassen
+    ctx.save();
+    roads.forEach(road => {
+      ctx.strokeStyle = 'rgba(44,201,23,0.11)';
+      ctx.lineWidth = road.weight || 0.8;
+      ctx.setLineDash([]);
+      if (road.type === 'h') {
+        road.segments.forEach(seg => {
+          ctx.beginPath(); ctx.moveTo(seg.x1, road.y); ctx.lineTo(seg.x2, road.y); ctx.stroke();
+        });
+      } else if (road.type === 'v') {
+        road.segments.forEach(seg => {
+          ctx.beginPath(); ctx.moveTo(road.x, seg.y1); ctx.lineTo(road.x, seg.y2); ctx.stroke();
+        });
+      } else if (road.type === 'd') {
+        ctx.strokeStyle = 'rgba(44,201,23,0.06)';
+        ctx.beginPath(); ctx.moveTo(road.x1, road.y1); ctx.lineTo(road.x2, road.y2); ctx.stroke();
+      }
+    });
+    ctx.restore();
+
+    // 2) Verbindungslinien
+    drawConnections();
+
+    // 3) TUK-Badges
+    badges.forEach((b, idx) => {
+      b.life++;
+      if (b.life > b.maxLife) { badges[idx] = createBadge(); return; }
+
+      // Fade in/out
+      let fa = b.alpha;
+      if (b.life < 40) fa *= b.life / 40;
+      if (b.life > b.maxLife - 40) fa *= (b.maxLife - b.life) / 40;
+
+      b.pulse += b.pulseSpeed;
+
+      // TUK Badge zeichnen
+      drawTukBadge(b.x, b.y, b.size, fa, b.pulse);
+
+      // Bewegung
+      b.x += b.vx;
+      b.y += b.vy;
+
+      // Zufällige Richtungsänderung an "Kreuzungen"
+      b.turnTimer--;
+      if (b.turnTimer <= 0) {
+        b.turnTimer = 60 + Math.random() * 120;
+        if (Math.abs(b.vx) > 0) {
+          const spd = Math.abs(b.vx);
+          b.vx = 0;
+          b.vy = (Math.random() < 0.5 ? 1 : -1) * spd;
+        } else {
+          const spd = Math.abs(b.vy);
+          b.vy = 0;
+          b.vx = (Math.random() < 0.5 ? 1 : -1) * spd;
+        }
+      }
+
+      // Bounce
+      if (b.x < 0 || b.x > W) { b.vx *= -1; b.x = Math.max(0, Math.min(W, b.x)); }
+      if (b.y < 0 || b.y > H) { b.vy *= -1; b.y = Math.max(0, Math.min(H, b.y)); }
+    });
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
 
 // ── DATENSCHUTZ MODAL ──
 function openDsgvoModal(e) {
