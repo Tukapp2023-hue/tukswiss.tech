@@ -3034,15 +3034,17 @@ async function handleAppSignup(e) {
 
 // ── DEMO MAP CANVAS: Strassen-Grid + TUK-Logo-Badges ──
 (function() {
+  function initDemoCanvas() {
   const canvas = document.getElementById('demoMapCanvas');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
 
   function resize() {
-    canvas.width  = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
+    const section = document.getElementById('try-tuk');
+    canvas.width  = section ? section.offsetWidth : window.innerWidth;
+    canvas.height = section ? section.offsetHeight : window.innerHeight;
+    generateRoads();
   }
-  resize();
   window.addEventListener('resize', resize);
 
   // ── Strassen-Netz generieren ──
@@ -3268,7 +3270,23 @@ async function handleAppSignup(e) {
 
     requestAnimationFrame(draw);
   }
-  draw();
+
+  // Warte bis Section-Grösse bekannt ist
+  resize();
+  // Falls Höhe noch 0 → nochmal nach kurzem Delay
+  if (canvas.height === 0) {
+    setTimeout(() => { resize(); draw(); }, 300);
+  } else {
+    draw();
+  }
+
+  } // end initDemoCanvas
+
+  if (document.readyState === 'complete') {
+    setTimeout(initDemoCanvas, 100);
+  } else {
+    window.addEventListener('load', () => setTimeout(initDemoCanvas, 100));
+  }
 })();
 
 // ── DATENSCHUTZ MODAL ──
