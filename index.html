@@ -2976,8 +2976,21 @@ async function handleAppSignup(e) {
   icon.textContent = '⟳';
 
   try {
-    // Formspree: sendet E-Mail an tukswissuser@gmail.com
-    const response = await fetch('https://formspree.io/f/xlgpqala', {
+    // Google Sheets: Daten direkt ins Sheet speichern
+    const googleResponse = await fetch('https://script.google.com/macros/s/AKfycbyDTm-RMVVVARM4mUna4bcSMQoG_hwxxMW4u9ImN7aOZv74uIpcdtr5ORRkdNyeeEnY/exec', {
+      method:  'POST',
+      mode:    'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify({
+        email:    email,
+        phone:    phone,
+        consent:  'Ja – Einwilligung erteilt',
+        datum:    new Date().toLocaleString('de-CH')
+      })
+    });
+
+    // Formspree: zusätzlich E-Mail an tukswissuser@gmail.com
+    await fetch('https://formspree.io/f/xlgpqala', {
       method:  'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body:    JSON.stringify({
@@ -2988,7 +3001,6 @@ async function handleAppSignup(e) {
         _subject:   '🚀 Neue TUK App Anmeldung: ' + email
       })
     });
-    if (!response.ok) throw new Error('Formspree Fehler');
   } catch(err) {
     // localStorage als Backup
     const list = JSON.parse(localStorage.getItem('tuk_waitlist') || '[]');
