@@ -2244,8 +2244,8 @@ section{--section-progress:0}
             <label class="app-input-label">📱 Handynummer</label>
             <div class="app-input-wrap">
               <span class="app-input-icon">🇨🇭</span>
-              <input type="tel" id="appPhone" placeholder="+41 79 000 00 00" required class="app-field-input"
-                pattern="[+][0-9\s\-]{7,20}" title="Bitte eine gültige Nummer mit Ländervorwahl eingeben (z.B. +41 79 …)"/>
+              <input type="tel" id="appPhone" placeholder="+41 79 123 45 67" required class="app-field-input"
+                pattern=".*[0-9]{7,}.*" title="Bitte eine gültige Schweizer Nummer eingeben (z.B. +41 79 123 45 67 oder 079 123 45 67)"/>
             </div>
           </div>
 
@@ -2955,15 +2955,34 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
 async function handleAppSignup(e) {
   e.preventDefault();
   const email   = document.getElementById('appEmail').value.trim();
-  const phone   = document.getElementById('appPhone').value.trim();
+  let   phone   = document.getElementById('appPhone').value.trim();
   const consent = document.getElementById('appConsent').checked;
   const form    = document.getElementById('appBannerForm');
   const success = document.getElementById('appSuccessMsg');
   if (!email || !phone || !consent) return;
 
+  // Telefon-Normalisierung: Nur Ziffern, Leerzeichen, +, - erlaubt
+  // Automatisch + voranstellen wenn nötig (z.B. "0041..." → "+41...")
+  phone = phone.replace(/\s+/g, ' ').trim();
+  if (phone.startsWith('0041')) {
+    phone = '+41' + phone.slice(4);
+  } else if (phone.startsWith('041')) {
+    phone = '+41' + phone.slice(3);
+  } else if (/^[0-9]/.test(phone) && !phone.startsWith('+')) {
+    // Schweizer Mobilnummer ohne Vorwahl (z.B. 079...) → +41 79...
+    if (phone.startsWith('0')) {
+      phone = '+41 ' + phone.slice(1);
+    } else {
+      phone = '+41 ' + phone;
+    }
+  }
+  // Formatierung: +41 79 123 45 67
+  phone = phone.replace(/(\+\d{2})\s?(\d{2})\s?(\d{3})\s?(\d{2})\s?(\d{2})/, '$1 $2 $3 $4 $5');
+  document.getElementById('appPhone').value = phone;
+
   // Telefon-Validierung
   if (!phone.startsWith('+')) {
-    document.getElementById('appPhone').setCustomValidity('Bitte mit Ländervorwahl eingeben, z.B. +41 79 …');
+    document.getElementById('appPhone').setCustomValidity('Bitte mit Ländervorwahl eingeben, z.B. +41 79 123 45 67');
     document.getElementById('appPhone').reportValidity();
     return;
   }
