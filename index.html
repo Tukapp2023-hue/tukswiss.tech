@@ -2450,7 +2450,7 @@ section{--section-progress:0}
               <div class="inv-flip-hint">Hover für Details →</div>
             </div>
             <div class="inv-flip-back" style="background:#1a3a1a;">
-              <h3>Commission Fee</h3>
+              <h3 style="color:#ffffff;">Commission Fee</h3>
               <ul>
                 <li>✓ Provision pro vermittelter Fahrt</li>
                 <li>✓ Gestaffelte Sätze je Service-Typ</li>
@@ -2492,7 +2492,7 @@ section{--section-progress:0}
               <div class="inv-flip-hint">Hover für Details →</div>
             </div>
             <div class="inv-flip-back" style="background:#1a3a1a;">
-              <h3>Premium Services</h3>
+              <h3 style="color:#ffffff;">Premium Services</h3>
               <ul>
                 <li>✓ TUK Premium Abo-Modell</li>
                 <li>✓ Priorisierte Vermittlung</li>
@@ -2976,18 +2976,13 @@ async function handleAppSignup(e) {
   icon.textContent = '⟳';
 
   try {
-    // Google Sheets: Daten direkt ins Sheet speichern
-    const googleResponse = await fetch('https://script.google.com/macros/s/AKfycbyDTm-RMVVVARM4mUna4bcSMQoG_hwxxMW4u9ImN7aOZv74uIpcdtr5ORRkdNyeeEnY/exec', {
-      method:  'POST',
-      mode:    'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body:    JSON.stringify({
-        email:    email,
-        phone:    phone,
-        consent:  'Ja – Einwilligung erteilt',
-        datum:    new Date().toLocaleString('de-CH')
-      })
-    });
+    // Google Sheets: Daten als URL-Parameter senden (CORS-sicher)
+    const googleUrl = 'https://script.google.com/macros/s/AKfycbyDTm-RMVVVARM4mUna4bcSMQoG_hwxxMW4u9ImN7aOZv74uIpcdtr5ORRkdNyeeEnY/exec'
+      + '?email=' + encodeURIComponent(email)
+      + '&phone=' + encodeURIComponent(phone)
+      + '&consent=' + encodeURIComponent('Ja – Einwilligung erteilt')
+      + '&datum=' + encodeURIComponent(new Date().toLocaleString('de-CH'));
+    await fetch(googleUrl, { method: 'GET', mode: 'no-cors' });
 
     // Formspree: zusätzlich E-Mail an tukswissuser@gmail.com
     await fetch('https://formspree.io/f/xlgpqala', {
