@@ -560,7 +560,8 @@ section{--section-progress:0}
 /* ── SWISS MAP ── */
 .swiss-map-section{margin-top:40px;padding:32px 0 16px}
 .swiss-map-outer{display:grid;grid-template-columns:260px 1fr;gap:28px;align-items:start;max-width:960px;margin:0 auto}
-.swiss-map-container{position:relative;background:linear-gradient(145deg,#f0fff0,#e4f9e0);border-radius:20px;padding:20px;box-shadow:0 8px 40px rgba(44,201,23,.13);border:1.5px solid var(--green-mid);overflow:visible}
+.swiss-map-container{position:relative;background:linear-gradient(145deg,#e8fde4,#d4f7ce);border-radius:20px;padding:16px;box-shadow:0 8px 40px rgba(44,201,23,.2);border:2px solid rgba(44,201,23,.35);overflow:hidden}
+/* riverCanvas entfernt – Linien jetzt direkt im SVG als river-layer */
 .swiss-map-svg{width:100%;height:auto;display:block}
 
 /* Fahrer Stats */
@@ -595,18 +596,59 @@ section{--section-progress:0}
 .city-info-detail{font-size:.78rem;color:var(--text-muted);line-height:1.5}
 
 /* Tooltip */
-.city-node{cursor:pointer}
+.city-node{cursor:pointer;transition:filter .2s}
+.city-node:hover{filter:drop-shadow(0 0 8px rgba(44,201,23,.7))}
 .city-node:hover text{font-weight:900}
+.city-node.active-city circle:nth-child(2){stroke:#fff;stroke-width:4}
+/* Phase 1: schnelles Pulsieren */
 .city-pulse-bg{animation:cityPulse 2.8s ease-in-out infinite}
-.city-node.phase1 .city-pulse-bg{animation-duration:2s}
-.city-node.phase2 .city-pulse-bg{animation-duration:3.5s}
-.city-node.phase3 .city-pulse-bg{animation:none}
-@keyframes cityPulse{0%,100%{opacity:.25;r:20}50%{opacity:.7;r:28}}
-.map-tooltip{position:absolute;background:white;border:2px solid var(--green);border-radius:12px;padding:10px 16px;pointer-events:none;z-index:10;box-shadow:0 4px 20px rgba(44,201,23,.2);min-width:170px}
-.map-tooltip-city{font-weight:800;font-size:.95rem;color:var(--green-dark);margin-bottom:4px}
-.map-tooltip-status{font-size:.8rem;color:var(--green);font-weight:600}
-.map-tooltip-rides{font-size:.75rem;color:var(--text-muted);margin-top:2px}
+.city-node.phase1 .city-pulse-bg{animation:cityPulse1 1.8s ease-in-out infinite}
+.city-node.phase2 .city-pulse-bg{animation:cityPulse2 3.2s ease-in-out infinite}
+.city-node.phase3 .city-pulse-bg{animation:cityPulse3 4s ease-in-out infinite}
+.city-node.phase4 .city-pulse-bg{animation:cityPulse4 5s ease-in-out infinite}
+@keyframes cityPulse1{0%,100%{opacity:.2;transform:scale(.8)}50%{opacity:.75;transform:scale(1.25)}}
+@keyframes cityPulse2{0%,100%{opacity:.15;transform:scale(.85)}50%{opacity:.55;transform:scale(1.18)}}
+@keyframes cityPulse3{0%,100%{opacity:.1;transform:scale(.9)}50%{opacity:.3;transform:scale(1.1)}}
+@keyframes cityPulse4{0%,100%{opacity:.08;transform:scale(.92)}50%{opacity:.22;transform:scale(1.06)}}
+/* Verbindungslinien Animation */
+.map-line-anim{stroke-dasharray:12,6;animation:lineFlow 1.8s linear infinite}
+.map-line-anim.phase2{animation-duration:2.4s}
+.map-line-anim.phase3{animation-duration:3s;opacity:.35}
+.map-line-anim.phase4{animation-duration:4s;opacity:.25}
+@keyframes lineFlow{to{stroke-dashoffset:-36}}
+/* Swiss Outline Draw-Animation */
+/* swiss-outline entfernt */
+#kantons-layer{transition:opacity .4s ease}
+.kanton-line{transition:stroke-dashoffset 0.9s cubic-bezier(.4,0,.2,1)}
+/* Glüh-Punkt am Zeichenstift-Ende */
+#draw-glow-point{transition:cx .05s linear,cy .05s linear}
+@keyframes drawGlow{0%,100%{r:5;opacity:.9}50%{r:9;opacity:1}}
+/* City Popup Modal */
+.city-popup{position:absolute;z-index:20;pointer-events:none;opacity:0;transform:translateY(8px) scale(.95);transition:opacity .25s ease,transform .25s cubic-bezier(.34,1.56,.64,1)}
+.city-popup.visible{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
+.city-popup-inner{background:#fff;border:2px solid var(--green);border-radius:16px;padding:16px 18px;box-shadow:0 8px 32px rgba(44,201,23,.22);min-width:210px;max-width:250px}
+.city-popup-header{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.city-popup-dot{width:14px;height:14px;border-radius:50%;flex-shrink:0}
+.city-popup-name{font-size:1rem;font-weight:900;color:var(--text-dark)}
+.city-popup-phase{font-size:.75rem;font-weight:700;padding:3px 10px;border-radius:100px;display:inline-block;margin-bottom:8px}
+.city-popup-phase.p1{background:#e8fde6;color:#1a6b0f}
+.city-popup-phase.p2{background:#f0fbe8;color:#3a7a20}
+.city-popup-phase.p3{background:#e8f0ff;color:#1e3a8a}
+.city-popup-phase.p4{background:#ffe8e8;color:#991b1b}
+.city-popup-detail{font-size:.78rem;color:var(--text-muted);line-height:1.55;margin-bottom:10px}
+.city-popup-stats{display:flex;gap:8px;flex-wrap:wrap}
+.city-popup-stat{background:var(--green-tint);border:1px solid var(--green-mid);border-radius:8px;padding:4px 10px;font-size:.7rem;font-weight:700;color:var(--green-dark)}
+.city-popup-close{position:absolute;top:8px;right:10px;font-size:.85rem;cursor:pointer;color:var(--text-muted);font-weight:700;line-height:1;background:none;border:none;padding:2px 6px;border-radius:6px}
+.city-popup-close:hover{background:var(--green-light);color:var(--green-dark)}
+/* Tooltip (hover) */
+.map-tooltip{position:absolute;background:white;border:1.5px solid var(--green);border-radius:10px;padding:8px 14px;pointer-events:none;z-index:10;box-shadow:0 4px 20px rgba(44,201,23,.18);min-width:160px;transition:opacity .15s}
+.map-tooltip-city{font-weight:800;font-size:.9rem;color:var(--green-dark);margin-bottom:3px}
+.map-tooltip-status{font-size:.75rem;color:var(--green);font-weight:600}
+.map-tooltip-rides{font-size:.72rem;color:var(--text-muted);margin-top:2px}
 
+/* Kantonslinien Animation */
+.kanton-line{stroke-dasharray:1000;stroke-dashoffset:1000;transition:stroke-dashoffset 1.2s cubic-bezier(.4,0,.2,1)}
+.kanton-line.drawn{stroke-dashoffset:0}
 /* Legende */
 .swiss-map-legend{display:flex;gap:28px;justify-content:center;flex-wrap:wrap;margin-top:24px;max-width:960px;margin-left:auto;margin-right:auto}
 .legend-item{display:flex;align-items:center;gap:9px;font-size:.85rem;color:var(--text-muted);font-weight:500}
@@ -863,7 +905,7 @@ section{--section-progress:0}
         <!-- Statistiken -->
         <div class="hero-stats">
           <div class="hero-stat">
-            <div class="hero-stat-number">9+</div>
+            <div class="hero-stat-number">12+</div>
             <div class="hero-stat-label">Services</div>
           </div>
           <div class="hero-stat-divider"></div>
@@ -1236,7 +1278,7 @@ section{--section-progress:0}
           <ul class="demo-info-list">
             <li>✓ Persönliche Begrüssung</li>
             <li>✓ Schnellzugriff auf Favoriten</li>
-            <li>✓ Alle 9+ Services auf einen Blick</li>
+            <li>✓ Alle 12+ Services auf einen Blick</li>
             <li>✓ Echtzeit-Verfügbarkeit</li>
           </ul>
         </div>
@@ -1979,195 +2021,178 @@ section{--section-progress:0}
 
         <!-- Karte -->
         <div class="swiss-map-container">
-          <svg id="swissMapSVG" viewBox="0 0 760 460" xmlns="http://www.w3.org/2000/svg" class="swiss-map-svg">
-            <!-- Hintergrund-Gitter -->
+          <svg id="swissMapSVG" viewBox="0 0 760 460" xmlns="http://www.w3.org/2000/svg" class="swiss-map-svg" style="position:relative;z-index:1;">
+            <!-- Hintergrund-Gitter + Kantonslinien -->
             <defs>
               <pattern id="mapGrid" width="40" height="40" patternUnits="userSpaceOnUse">
-                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(44,201,23,0.06)" stroke-width="1"/>
+                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(44,201,23,0.07)" stroke-width="0.8"/>
               </pattern>
               <radialGradient id="glowGrad" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stop-color="rgba(44,201,23,0.3)"/>
+                <stop offset="0%" stop-color="rgba(44,201,23,0.5)"/>
                 <stop offset="100%" stop-color="rgba(44,201,23,0)"/>
               </radialGradient>
               <filter id="cityGlow">
-                <feGaussianBlur stdDeviation="3" result="blur"/>
+                <feGaussianBlur stdDeviation="4" result="blur"/>
                 <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+              <filter id="strongGlow">
+                <feGaussianBlur stdDeviation="6" result="blur"/>
+                <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+              <filter id="waveGlow" x="-30%" y="-30%" width="160%" height="160%">
+                <!-- Starker Blur für Schatten-Aura -->
+                <feGaussianBlur stdDeviation="6" result="bigBlur"/>
+                <!-- Mittlerer Blur für Glow -->
+                <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="midBlur"/>
+                <!-- Alles zusammenführen: Aura + Glow + Original -->
+                <feMerge>
+                  <feMergeNode in="bigBlur"/>
+                  <feMergeNode in="midBlur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
               </filter>
             </defs>
             <rect width="760" height="460" fill="url(#mapGrid)" rx="16"/>
 
-            <!-- Schweizer Karte – realistischerer Umriss -->
-            <path id="swiss-outline"
-              d="M 155,148 L 168,138 L 182,132 L 198,128 L 215,124 L 232,120 L 248,117
-                 L 265,115 L 282,113 L 300,112 L 318,111 L 336,111 L 354,112 L 372,113
-                 L 390,114 L 408,116 L 425,119 L 442,122 L 458,126 L 474,130 L 489,135
-                 L 503,140 L 516,146 L 528,153 L 539,161 L 549,169 L 558,178 L 566,188
-                 L 572,199 L 576,210 L 578,221 L 578,233 L 575,244 L 570,255 L 562,264
-                 L 553,272 L 542,279 L 530,285 L 517,290 L 503,294 L 488,297 L 472,299
-                 L 456,300 L 440,300 L 424,299 L 408,297 L 392,295 L 376,292 L 360,288
-                 L 344,283 L 328,278 L 313,272 L 298,265 L 284,258 L 270,250 L 257,242
-                 L 245,233 L 234,224 L 224,215 L 215,206 L 207,197 L 200,188 L 193,179
-                 L 187,170 L 180,161 L 172,154 L 163,149 L 155,148 Z"
-              fill="url(#mapFill)" stroke="#2cc917" stroke-width="2.5" opacity="0.95"/>
-            <defs>
-              <linearGradient id="mapFill" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#d4f5d0"/>
-                <stop offset="100%" stop-color="#eafbe7"/>
-              </linearGradient>
-            </defs>
+            <!-- ══ WELLEN von Zürich – hinter allen Städten ══ -->
+            <g id="wave-layer" filter="url(#waveGlow)">
+              <circle cx="419" cy="181" fill="none" stroke="#1aad0f" stroke-width="0">
+                <animate attributeName="r"            from="20" to="540" dur="8s" begin="0s" repeatCount="indefinite" calcMode="spline" keyTimes="0;1" keySplines="0.2 0 0.8 1"/>
+                <animate attributeName="opacity"      values="0.7;0.5;0.2;0"  dur="8s" begin="0s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.3;0.7;1" keySplines="0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1"/>
+                <animate attributeName="stroke-width" values="3;2.5;1.5;0.5" dur="8s" begin="0s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.3;0.7;1" keySplines="0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1"/>
+              </circle>
+              <circle cx="419" cy="181" fill="none" stroke="#1aad0f" stroke-width="0">
+                <animate attributeName="r"            from="20" to="540" dur="8s" begin="2s" repeatCount="indefinite" calcMode="spline" keyTimes="0;1" keySplines="0.2 0 0.8 1"/>
+                <animate attributeName="opacity"      values="0.7;0.5;0.2;0"  dur="8s" begin="2s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.3;0.7;1" keySplines="0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1"/>
+                <animate attributeName="stroke-width" values="3;2.5;1.5;0.5" dur="8s" begin="2s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.3;0.7;1" keySplines="0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1"/>
+              </circle>
+              <circle cx="419" cy="181" fill="none" stroke="#1aad0f" stroke-width="0">
+                <animate attributeName="r"            from="20" to="540" dur="8s" begin="4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;1" keySplines="0.2 0 0.8 1"/>
+                <animate attributeName="opacity"      values="0.7;0.5;0.2;0"  dur="8s" begin="4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.3;0.7;1" keySplines="0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1"/>
+                <animate attributeName="stroke-width" values="3;2.5;1.5;0.5" dur="8s" begin="4s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.3;0.7;1" keySplines="0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1"/>
+              </circle>
+              <circle cx="419" cy="181" fill="none" stroke="#1aad0f" stroke-width="0">
+                <animate attributeName="r"            from="20" to="540" dur="8s" begin="6s" repeatCount="indefinite" calcMode="spline" keyTimes="0;1" keySplines="0.2 0 0.8 1"/>
+                <animate attributeName="opacity"      values="0.7;0.5;0.2;0"  dur="8s" begin="6s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.3;0.7;1" keySplines="0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1"/>
+                <animate attributeName="stroke-width" values="3;2.5;1.5;0.5" dur="8s" begin="6s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.3;0.7;1" keySplines="0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1"/>
+              </circle>
+            </g>
 
-            <!-- Bergregionen andeuten -->
-            <path d="M 380,200 L 395,185 L 410,200 L 425,188 L 445,205 L 460,192 L 480,210 L 500,198 L 520,215"
-              fill="none" stroke="rgba(44,201,23,0.2)" stroke-width="2" stroke-linecap="round"/>
-            <path d="M 300,230 L 315,215 L 330,228 L 345,210 L 365,225 L 375,205 L 390,218"
-              fill="none" stroke="rgba(44,201,23,0.2)" stroke-width="2" stroke-linecap="round"/>
+            <g id="kantons-layer" opacity="0" style="transition:opacity 1.2s ease"></g>
 
-            <!-- Seen mit Beschriftung -->
-            <!-- Zürichsee -->
-            <ellipse cx="412" cy="248" rx="22" ry="9" fill="#90caf9" opacity="0.7" transform="rotate(-15,412,248)"/>
-            <!-- Bodensee (Rand) -->
-            <ellipse cx="510" cy="148" rx="18" ry="8" fill="#90caf9" opacity="0.6"/>
-            <!-- Vierwaldstättersee -->
-            <ellipse cx="348" cy="245" rx="16" ry="7" fill="#90caf9" opacity="0.65" transform="rotate(10,348,245)"/>
-            <!-- Genfersee -->
-            <ellipse cx="210" cy="290" rx="35" ry="11" fill="#90caf9" opacity="0.65" transform="rotate(-20,210,290)"/>
-            <!-- Neuenburgersee -->
-            <ellipse cx="248" cy="270" rx="14" ry="6" fill="#90caf9" opacity="0.55" transform="rotate(-10,248,270)"/>
 
-            <!-- See-Labels -->
-            <text x="210" y="298" text-anchor="middle" font-size="8" fill="#5b8fc9" opacity="0.8" font-style="italic">Genfersee</text>
-            <text x="412" y="256" text-anchor="middle" font-size="7.5" fill="#5b8fc9" opacity="0.8" font-style="italic">Zürichsee</text>
 
-            <!-- PHASE 1 – Launch 2026 – Deutschschweiz (grün, hell) -->
-            <!-- Zürich -->
+
+
+            <!-- PHASE 1 – Launch 2026 – Deutschschweiz -->
+            <!-- Zürich (Hauptstadt, grösser) -->
             <g class="city-node phase1" data-city="Zürich" data-phase="🟢 Phase 1 – Launch 2026" data-detail="Startstadt von TUK. Bereits 300 registrierte Fahrerinnen &amp; Fahrer bereit. App-Launch Anfang 2026.">
-              <circle cx="405" cy="195" r="22" fill="url(#glowGrad)" class="city-pulse-bg" opacity="0.8"/>
-              <circle cx="405" cy="195" r="13" fill="#2cc917" stroke="white" stroke-width="3" filter="url(#cityGlow)"/>
-              <text x="405" y="177" text-anchor="middle" font-size="12.5" font-weight="800" fill="#0d4a08">Zürich</text>
-              <text x="405" y="166" text-anchor="middle" font-size="9" fill="#2cc917" font-weight="700">★ Launch 2026</text>
+              <circle cx="400" cy="181" r="16" fill="#1aad0f" stroke="white" stroke-width="3.5" filter="url(#strongGlow)"/>
+              <text x="400" y="164" text-anchor="middle" font-size="13" font-weight="900" fill="#0a3006">Zürich</text>
+              <text x="400" y="151" text-anchor="middle" font-size="9.5" fill="#1aad0f" font-weight="800">★ Launch 2026</text>
             </g>
             <!-- Winterthur -->
             <g class="city-node phase1" data-city="Winterthur" data-phase="🟢 Phase 1 – Launch 2026" data-detail="Launch-Region Deutschschweiz. Nahe Zürich, ideale Erweiterung zum Start.">
-              <circle cx="448" cy="175" r="18" fill="url(#glowGrad)" class="city-pulse-bg" opacity="0.6"/>
-              <circle cx="448" cy="175" r="10" fill="#2cc917" stroke="white" stroke-width="2.5" filter="url(#cityGlow)"/>
-              <text x="448" y="159" text-anchor="middle" font-size="11" font-weight="700" fill="#0d4a08">Winterthur</text>
+              <circle cx="444" cy="163" r="12" fill="#1aad0f" stroke="white" stroke-width="3" filter="url(#cityGlow)"/>
+              <text x="444" y="145" text-anchor="middle" font-size="11.5" font-weight="800" fill="#0a3006">Winterthur</text>
             </g>
             <!-- St. Gallen -->
             <g class="city-node phase1" data-city="St. Gallen" data-phase="🟢 Phase 1 – Launch 2026" data-detail="Ostschweizer Wirtschaftszentrum. Launch-Region 2026.">
-              <circle cx="520" cy="162" r="18" fill="url(#glowGrad)" class="city-pulse-bg" opacity="0.55"/>
-              <circle cx="520" cy="162" r="10" fill="#2cc917" stroke="white" stroke-width="2.5" filter="url(#cityGlow)"/>
-              <text x="520" y="146" text-anchor="middle" font-size="11" font-weight="700" fill="#0d4a08">St. Gallen</text>
+              <circle cx="495" cy="172" r="11" fill="#1aad0f" stroke="white" stroke-width="3" filter="url(#cityGlow)"/>
+              <text x="495" y="154" text-anchor="middle" font-size="11.5" font-weight="800" fill="#0a3006">St. Gallen</text>
             </g>
             <!-- Luzern -->
             <g class="city-node phase1" data-city="Luzern" data-phase="🟢 Phase 1 – Launch 2026" data-detail="Zentralschweizer Knotenpunkt. Teil des Launch-Gebiets 2026.">
-              <circle cx="352" cy="228" r="18" fill="url(#glowGrad)" class="city-pulse-bg" opacity="0.55"/>
-              <circle cx="352" cy="228" r="10" fill="#2cc917" stroke="white" stroke-width="2.5" filter="url(#cityGlow)"/>
-              <text x="352" y="212" text-anchor="middle" font-size="11" font-weight="700" fill="#0d4a08">Luzern</text>
+              <circle cx="329" cy="237" r="11" fill="#1aad0f" stroke="white" stroke-width="3" filter="url(#cityGlow)"/>
+              <text x="329" y="219" text-anchor="middle" font-size="11.5" font-weight="800" fill="#0a3006">Luzern</text>
             </g>
 
             <!-- PHASE 2 – Gesamte Schweiz 2027 -->
             <!-- Basel -->
             <g class="city-node phase2" data-city="Basel" data-phase="🟡 Phase 2 – Gesamte Schweiz 2027" data-detail="Wirtschaftsregion Nordwestschweiz. Expansion 2027 zur Komplettierung der Schweiz-Abdeckung.">
-              <circle cx="213" cy="148" r="16" fill="rgba(44,201,23,0.15)" class="city-pulse-bg"/>
-              <circle cx="213" cy="148" r="9" fill="#7ed957" stroke="white" stroke-width="2.5"/>
-              <text x="213" y="133" text-anchor="middle" font-size="11" font-weight="700" fill="#1a5c0f">Basel</text>
+              <circle cx="233" cy="141" r="10" fill="#4cbb17" stroke="white" stroke-width="2.5"/>
+              <text x="233" y="123" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0d4a08">Basel</text>
             </g>
             <!-- Bern -->
             <g class="city-node phase2" data-city="Bern" data-phase="🟡 Phase 2 – Gesamte Schweiz 2027" data-detail="Bundeshauptstadt der Schweiz. TUK kommt 2027 in die Hauptstadt.">
-              <circle cx="270" cy="238" r="16" fill="rgba(44,201,23,0.15)" class="city-pulse-bg"/>
-              <circle cx="270" cy="238" r="9" fill="#7ed957" stroke="white" stroke-width="2.5"/>
-              <text x="270" y="222" text-anchor="middle" font-size="11" font-weight="700" fill="#1a5c0f">Bern</text>
+              <circle cx="252" cy="250" r="10" fill="#4cbb17" stroke="white" stroke-width="2.5"/>
+              <text x="252" y="232" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0d4a08">Bern</text>
             </g>
             <!-- Genf -->
             <g class="city-node phase2" data-city="Genf" data-phase="🟡 Phase 2 – Gesamte Schweiz 2027" data-detail="Internationale Metropole am Genfersee. Expansion 2027 in die Romandie.">
-              <circle cx="168" cy="292" r="15" fill="rgba(44,201,23,0.13)" class="city-pulse-bg"/>
-              <circle cx="168" cy="292" r="9" fill="#7ed957" stroke="white" stroke-width="2.5"/>
-              <text x="168" y="277" text-anchor="middle" font-size="11" font-weight="700" fill="#1a5c0f">Genf</text>
+              <circle cx="105" cy="397" r="10" fill="#4cbb17" stroke="white" stroke-width="2.5"/>
+              <text x="105" y="379" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0d4a08">Genf</text>
             </g>
             <!-- Lausanne -->
             <g class="city-node phase2" data-city="Lausanne" data-phase="🟡 Phase 2 – Gesamte Schweiz 2027" data-detail="Olympia-Stadt am Genfersee. Teil der Schweiz-Komplettierung 2027.">
-              <circle cx="212" cy="278" r="14" fill="rgba(44,201,23,0.12)" class="city-pulse-bg"/>
-              <circle cx="212" cy="278" r="8" fill="#7ed957" stroke="white" stroke-width="2"/>
-              <text x="212" y="263" text-anchor="middle" font-size="10.5" font-weight="600" fill="#1a5c0f">Lausanne</text>
+              <circle cx="162" cy="372" r="9" fill="#4cbb17" stroke="white" stroke-width="2"/>
+              <text x="162" y="354" text-anchor="middle" font-size="11" font-weight="600" fill="#0d4a08">Lausanne</text>
             </g>
             <!-- Aarau -->
             <g class="city-node phase2" data-city="Aarau" data-phase="🟡 Phase 2 – Gesamte Schweiz 2027" data-detail="Aargauer Kantonshauptstadt – Verbindungsachse Zürich–Basel.">
-              <circle cx="318" cy="190" r="13" fill="rgba(44,201,23,0.11)" class="city-pulse-bg"/>
-              <circle cx="318" cy="190" r="7" fill="#7ed957" stroke="white" stroke-width="2"/>
-              <text x="318" y="176" text-anchor="middle" font-size="10" font-weight="600" fill="#1a5c0f">Aarau</text>
+              <circle cx="297" cy="194" r="8" fill="#4cbb17" stroke="white" stroke-width="2"/>
+              <text x="297" y="176" text-anchor="middle" font-size="10.5" font-weight="600" fill="#0d4a08">Aarau</text>
             </g>
 
-            <!-- PHASE 3 – Deutschland 2027/2028 -->
-            <!-- Trennlinie Grenze DE andeuten -->
-            <text x="405" y="98" text-anchor="middle" font-size="9" fill="rgba(44,120,20,0.4)" font-style="italic">── 🇩🇪 Deutschland ──</text>
-            <!-- München -->
+            <!-- Trennlinie DE -->
+            <text x="380" y="56" text-anchor="middle" font-size="10" fill="rgba(30,64,175,0.55)" font-weight="700">🇩🇪 Deutschland</text>
+            <line x1="140" y1="115" x2="640" y2="115" stroke="rgba(59,130,246,0.25)" stroke-width="1.5" stroke-dasharray="6,4"/>
+
+            <!-- PHASE 3 – Deutschland -->
             <g class="city-node phase3" data-city="München" data-phase="🔵 Phase 3 – Deutschland 2027/28" data-detail="Bayerische Metropole. Erster Schritt in den deutschen Markt – direkter Bezug zur Schweizer Grenzregion.">
-              <circle cx="540" cy="88" r="14" fill="rgba(30,100,200,0.1)" class="city-pulse-bg"/>
-              <circle cx="540" cy="88" r="8" fill="none" stroke="#3b82f6" stroke-width="2.5" stroke-dasharray="4,2"/>
-              <text x="540" y="73" text-anchor="middle" font-size="10.5" font-weight="600" fill="#1e40af">München</text>
+              <circle cx="540" cy="80" r="9" fill="rgba(59,130,246,0.25)" stroke="#3b82f6" stroke-width="2.5" stroke-dasharray="4,2"/>
+              <text x="540" y="62" text-anchor="middle" font-size="11" font-weight="700" fill="#1e40af">München</text>
             </g>
-            <!-- Konstanz -->
             <g class="city-node phase3" data-city="Konstanz" data-phase="🔵 Phase 3 – Deutschland 2027/28" data-detail="Direkt an der Schweizer Grenze am Bodensee. Idealer Einstieg in den deutschen Markt.">
-              <circle cx="470" cy="102" r="13" fill="rgba(30,100,200,0.1)" class="city-pulse-bg"/>
-              <circle cx="470" cy="102" r="7" fill="none" stroke="#3b82f6" stroke-width="2.5" stroke-dasharray="4,2"/>
-              <text x="470" y="89" text-anchor="middle" font-size="10" font-weight="600" fill="#1e40af">Konstanz</text>
+              <circle cx="470" cy="96" r="8" fill="rgba(59,130,246,0.2)" stroke="#3b82f6" stroke-width="2.5" stroke-dasharray="4,2"/>
+              <text x="470" y="80" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1e40af">Konstanz</text>
             </g>
-            <!-- Freiburg i.Br. -->
             <g class="city-node phase3" data-city="Freiburg i.Br." data-phase="🔵 Phase 3 – Deutschland 2027/28" data-detail="Grenznahe Universitätsstadt. Starke Verbindung zur Schweiz und Frankreich.">
-              <circle cx="175" cy="95" r="13" fill="rgba(30,100,200,0.1)" class="city-pulse-bg"/>
-              <circle cx="175" cy="95" r="7" fill="none" stroke="#3b82f6" stroke-width="2.5" stroke-dasharray="4,2"/>
-              <text x="175" y="81" text-anchor="middle" font-size="10" font-weight="600" fill="#1e40af">Freiburg i.Br.</text>
+              <circle cx="175" cy="90" r="8" fill="rgba(59,130,246,0.2)" stroke="#3b82f6" stroke-width="2.5" stroke-dasharray="4,2"/>
+              <text x="175" y="74" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1e40af">Freiburg i.Br.</text>
             </g>
-            <!-- Stuttgart -->
             <g class="city-node phase3" data-city="Stuttgart" data-phase="🔵 Phase 3 – Deutschland 2027/28" data-detail="Wirtschaftszentrum Baden-Württemberg. Expansion 2028 im deutschen Markt.">
-              <circle cx="310" cy="78" r="13" fill="rgba(30,100,200,0.1)" class="city-pulse-bg"/>
-              <circle cx="310" cy="78" r="7" fill="none" stroke="#3b82f6" stroke-width="2.5" stroke-dasharray="4,2"/>
-              <text x="310" y="64" text-anchor="middle" font-size="10" font-weight="600" fill="#1e40af">Stuttgart</text>
+              <circle cx="310" cy="72" r="8" fill="rgba(59,130,246,0.2)" stroke="#3b82f6" stroke-width="2.5" stroke-dasharray="4,2"/>
+              <text x="310" y="56" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1e40af">Stuttgart</text>
             </g>
 
-            <!-- PHASE 4 – Österreich 2029 -->
-            <text x="620" y="98" text-anchor="middle" font-size="9" fill="rgba(150,30,30,0.35)" font-style="italic">🇦🇹 Österreich</text>
-            <!-- Wien -->
+            <!-- PHASE 4 – Österreich -->
+            <text x="640" y="56" text-anchor="middle" font-size="10" fill="rgba(153,27,27,0.55)" font-weight="700">🇦🇹 Österreich</text>
             <g class="city-node phase4" data-city="Wien" data-phase="🔴 Phase 4 – Österreich 2029" data-detail="Österreichische Bundeshauptstadt. Grosses Marktpotenzial für TUK ab 2029.">
-              <circle cx="690" cy="118" r="14" fill="rgba(200,30,30,0.08)" class="city-pulse-bg"/>
-              <circle cx="690" cy="118" r="8" fill="none" stroke="#dc2626" stroke-width="2" stroke-dasharray="3,3"/>
-              <text x="690" y="105" text-anchor="middle" font-size="10.5" font-weight="600" fill="#991b1b">Wien</text>
+              <circle cx="690" cy="110" r="9" fill="rgba(220,38,38,0.15)" stroke="#dc2626" stroke-width="2.5" stroke-dasharray="3,3"/>
+              <text x="690" y="94" text-anchor="middle" font-size="11" font-weight="700" fill="#991b1b">Wien</text>
             </g>
-            <!-- Salzburg -->
             <g class="city-node phase4" data-city="Salzburg" data-phase="🔴 Phase 4 – Österreich 2029" data-detail="Mozart-Stadt – Grenzregion zu Bayern. Verbindung zwischen Deutschland und Österreich-Rollout.">
-              <circle cx="608" cy="118" r="13" fill="rgba(200,30,30,0.07)" class="city-pulse-bg"/>
-              <circle cx="608" cy="118" r="7" fill="none" stroke="#dc2626" stroke-width="2" stroke-dasharray="3,3"/>
-              <text x="608" y="105" text-anchor="middle" font-size="10" font-weight="600" fill="#991b1b">Salzburg</text>
+              <circle cx="610" cy="110" r="8" fill="rgba(220,38,38,0.12)" stroke="#dc2626" stroke-width="2" stroke-dasharray="3,3"/>
+              <text x="610" y="94" text-anchor="middle" font-size="10.5" font-weight="700" fill="#991b1b">Salzburg</text>
             </g>
-            <!-- Innsbruck -->
             <g class="city-node phase4" data-city="Innsbruck" data-phase="🔴 Phase 4 – Österreich 2029" data-detail="Tiroler Hauptstadt direkt an der Schweizer Grenze. Natürlicher Anschluss an die CH-Expansion.">
-              <circle cx="530" cy="118" r="13" fill="rgba(200,30,30,0.07)" class="city-pulse-bg"/>
-              <circle cx="530" cy="118" r="7" fill="none" stroke="#dc2626" stroke-width="2" stroke-dasharray="3,3"/>
-              <text x="530" y="105" text-anchor="middle" font-size="10" font-weight="600" fill="#991b1b">Innsbruck</text>
+              <circle cx="530" cy="110" r="8" fill="rgba(220,38,38,0.12)" stroke="#dc2626" stroke-width="2" stroke-dasharray="3,3"/>
+              <text x="530" y="94" text-anchor="middle" font-size="10.5" font-weight="700" fill="#991b1b">Innsbruck</text>
             </g>
 
-            <!-- Verbindungslinien Phase 1 (solide, grün) -->
-            <line x1="405" y1="195" x2="448" y2="175" stroke="#2cc917" stroke-width="2" opacity="0.6"/>
-            <line x1="448" y1="175" x2="520" y2="162" stroke="#2cc917" stroke-width="2" opacity="0.55"/>
-            <line x1="405" y1="195" x2="352" y2="228" stroke="#2cc917" stroke-width="2" opacity="0.55"/>
+            <!-- Verbindungslinien Phase 1 -->
+            <line x1="400" y1="181" x2="444" y2="163" stroke="#1aad0f" stroke-width="2.5" opacity="0.8" class="map-line p1-line"/>
+            <line x1="444" y1="163" x2="495" y2="172" stroke="#1aad0f" stroke-width="2.5" opacity="0.75" class="map-line p1-line"/>
+            <line x1="400" y1="181" x2="329" y2="237" stroke="#1aad0f" stroke-width="2.5" opacity="0.75" class="map-line p1-line"/>
 
-            <!-- Verbindungslinien Phase 2 (gestrichelt, hellgrün) -->
-            <line x1="405" y1="195" x2="318" y2="190" stroke="#7ed957" stroke-width="1.8" stroke-dasharray="7,4" opacity="0.6" class="map-line"/>
-            <line x1="318" y1="190" x2="213" y2="148" stroke="#7ed957" stroke-width="1.8" stroke-dasharray="7,4" opacity="0.5" class="map-line"/>
-            <line x1="352" y1="228" x2="270" y2="238" stroke="#7ed957" stroke-width="1.8" stroke-dasharray="7,4" opacity="0.5" class="map-line"/>
-            <line x1="270" y1="238" x2="212" y2="278" stroke="#7ed957" stroke-width="1.8" stroke-dasharray="7,4" opacity="0.45" class="map-line"/>
-            <line x1="212" y1="278" x2="168" y2="292" stroke="#7ed957" stroke-width="1.8" stroke-dasharray="7,4" opacity="0.4" class="map-line"/>
+            <!-- Verbindungslinien Phase 2 -->
+            <line x1="400" y1="181" x2="297" y2="194" stroke="#2cc917" stroke-width="2.2" stroke-dasharray="8,4" opacity="0.75" class="map-line"/>
+            <line x1="297" y1="194" x2="233" y2="141" stroke="#2cc917" stroke-width="2.2" stroke-dasharray="8,4" opacity="0.65" class="map-line"/>
+            <line x1="329" y1="237" x2="252" y2="250" stroke="#2cc917" stroke-width="2.2" stroke-dasharray="8,4" opacity="0.65" class="map-line"/>
+            <line x1="252" y1="250" x2="162" y2="372" stroke="#2cc917" stroke-width="2.2" stroke-dasharray="8,4" opacity="0.6" class="map-line"/>
+            <line x1="162" y1="372" x2="105" y2="397" stroke="#2cc917" stroke-width="2.2" stroke-dasharray="8,4" opacity="0.55" class="map-line"/>
 
-            <!-- Verbindungslinien Phase 3 DE (gepunktet, blau) -->
-            <line x1="213" y1="148" x2="175" y2="95" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="4,5" opacity="0.45" class="map-line"/>
-            <line x1="406" y1="133" x2="310" y2="78" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="4,5" opacity="0.4" class="map-line"/>
-            <line x1="448" y1="175" x2="470" y2="102" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="4,5" opacity="0.4" class="map-line"/>
-            <line x1="520" y1="162" x2="540" y2="88" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="4,5" opacity="0.4" class="map-line"/>
+            <!-- Verbindungslinien Phase 3 DE -->
+            <line x1="233" y1="141" x2="175" y2="90" stroke="#3b82f6" stroke-width="2" stroke-dasharray="5,5" opacity="0.6" class="map-line"/>
+            <line x1="329" y1="237" x2="310" y2="72" stroke="#3b82f6" stroke-width="2" stroke-dasharray="5,5" opacity="0.55" class="map-line"/>
+            <line x1="444" y1="163" x2="470" y2="96" stroke="#3b82f6" stroke-width="2" stroke-dasharray="5,5" opacity="0.55" class="map-line"/>
+            <line x1="495" y1="172" x2="540" y2="80" stroke="#3b82f6" stroke-width="2" stroke-dasharray="5,5" opacity="0.55" class="map-line"/>
 
             <!-- Verbindungslinien Phase 4 AT (gepunktet, rot) -->
-            <line x1="540" y1="88" x2="530" y2="118" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="3,5" opacity="0.35" class="map-line"/>
-            <line x1="530" y1="118" x2="608" y2="118" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="3,5" opacity="0.3" class="map-line"/>
-            <line x1="608" y1="118" x2="690" y2="118" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="3,5" opacity="0.3" class="map-line"/>
+            <line x1="540" y1="80" x2="530" y2="110" stroke="#dc2626" stroke-width="2" stroke-dasharray="4,5" opacity="0.5" class="map-line"/>
+            <line x1="530" y1="110" x2="615" y2="110" stroke="#dc2626" stroke-width="2" stroke-dasharray="4,5" opacity="0.45" class="map-line"/>
+            <line x1="615" y1="110" x2="692" y2="110" stroke="#dc2626" stroke-width="2" stroke-dasharray="4,5" opacity="0.45" class="map-line"/>
 
             <!-- Kompass -->
             <g transform="translate(700,60)">
@@ -2180,8 +2205,8 @@ section{--section-progress:0}
               <line y1="2" y2="10" stroke="#aaa" stroke-width="1.5" stroke-linecap="round"/>
             </g>
 
-            <!-- CH Label -->
-            <text x="480" y="260" font-size="48" font-weight="900" fill="rgba(44,201,23,0.06)" text-anchor="middle" font-family="sans-serif">CH</text>
+            <!-- CH Label –– leicht sichtbar als Wasserzeichen -->
+            <text x="380" y="310" font-size="55" font-weight="900" fill="rgba(26,173,15,0.06)" text-anchor="middle" font-family="sans-serif">CH</text>
           </svg>
 
           <!-- Info-Tooltip -->
@@ -2875,83 +2900,189 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
   });
 });
 
-// ── SWISS MAP TOOLTIP ──
+// ── SWISS MAP – River Flow + Klickbare Städte ──
 (function(){
-  const tooltip = document.getElementById('mapTooltip');
-  const cityBox = document.getElementById('cityInfoBox');
-  const cityName = document.getElementById('cityInfoName');
-  const cityPhase = document.getElementById('cityInfoPhase');
-  const cityDetail = document.getElementById('cityInfoDetail');
-  if(!tooltip) return;
+  const tooltip   = document.getElementById('mapTooltip');
   const container = document.querySelector('.swiss-map-container');
+  const svg       = document.getElementById('swissMapSVG');
+  if(!container || !svg) return;
 
+  // Stadt-Daten mit Extra-Infos
+  const cityData = {
+    'Zürich':         { drivers:'300 Fahrer',  launch:'Anfang 2026', status:'✅ Launch-Stadt',    phase:'p1' },
+    'Winterthur':     { drivers:'~80 Fahrer',  launch:'2026',        status:'🚀 Launch-Region',  phase:'p1' },
+    'St. Gallen':     { drivers:'~60 Fahrer',  launch:'2026',        status:'🚀 Launch-Region',  phase:'p1' },
+    'Luzern':         { drivers:'~70 Fahrer',  launch:'2026',        status:'🚀 Launch-Region',  phase:'p1' },
+    'Basel':          { drivers:'~120 Fahrer', launch:'2027',        status:'📅 Expansion 2027', phase:'p2' },
+    'Bern':           { drivers:'~100 Fahrer', launch:'2027',        status:'📅 Expansion 2027', phase:'p2' },
+    'Genf':           { drivers:'~90 Fahrer',  launch:'2027',        status:'📅 Expansion 2027', phase:'p2' },
+    'Lausanne':       { drivers:'~75 Fahrer',  launch:'2027',        status:'📅 Expansion 2027', phase:'p2' },
+    'Aarau':          { drivers:'~40 Fahrer',  launch:'2027',        status:'📅 Expansion 2027', phase:'p2' },
+    'München':        { drivers:'Geplant',     launch:'2027/28',     status:'🔵 DE-Expansion',   phase:'p3' },
+    'Konstanz':       { drivers:'Geplant',     launch:'2027/28',     status:'🔵 DE-Expansion',   phase:'p3' },
+    'Freiburg i.Br.': { drivers:'Geplant',     launch:'2028',        status:'🔵 DE-Expansion',   phase:'p3' },
+    'Stuttgart':      { drivers:'Geplant',     launch:'2028',        status:'🔵 DE-Expansion',   phase:'p3' },
+    'Wien':           { drivers:'Geplant',     launch:'2029',        status:'🔴 AT-Expansion',   phase:'p4' },
+    'Salzburg':       { drivers:'Geplant',     launch:'2029',        status:'🔴 AT-Expansion',   phase:'p4' },
+    'Innsbruck':      { drivers:'Geplant',     launch:'2029',        status:'🔴 AT-Expansion',   phase:'p4' },
+  };
+  const phaseColors = { p1:'#2cc917', p2:'#7ed957', p3:'#3b82f6', p4:'#dc2626' };
+
+  // Popup erstellen
+  const popup = document.createElement('div');
+  popup.className = 'city-popup';
+  popup.innerHTML = `
+    <div class="city-popup-inner">
+      <button class="city-popup-close" id="popupClose">✕</button>
+      <div class="city-popup-header">
+        <div class="city-popup-dot" id="popupDot"></div>
+        <div class="city-popup-name" id="popupName"></div>
+      </div>
+      <div class="city-popup-phase" id="popupPhase"></div>
+      <div class="city-popup-detail" id="popupDetail"></div>
+      <div class="city-popup-stats" id="popupStats"></div>
+    </div>`;
+  container.style.position = 'relative';
+  container.appendChild(popup);
+
+  document.getElementById('popupClose').addEventListener('click', () => {
+    popup.classList.remove('visible');
+    document.querySelectorAll('.city-node').forEach(n => n.classList.remove('active-city'));
+  });
+
+  // Hover Tooltip
   document.querySelectorAll('.city-node').forEach(node => {
     node.addEventListener('mouseenter', function(e) {
       tooltip.querySelector('.map-tooltip-city').textContent = '📍 ' + this.dataset.city;
       tooltip.querySelector('.map-tooltip-status').textContent = this.dataset.phase;
-      tooltip.querySelector('.map-tooltip-rides').textContent = this.dataset.detail.substring(0,60) + '…';
+      tooltip.querySelector('.map-tooltip-rides').textContent = (cityData[this.dataset.city]?.drivers || '') + ' · Launch ' + (cityData[this.dataset.city]?.launch || '');
       tooltip.style.display = 'block';
-      tooltip.style.transform = '';
     });
     node.addEventListener('mousemove', function(e) {
       const rect = container.getBoundingClientRect();
       let x = e.clientX - rect.left + 14;
       let y = e.clientY - rect.top - 70;
-      if(x + 185 > rect.width) x = e.clientX - rect.left - 195;
+      if(x + 200 > rect.width) x = e.clientX - rect.left - 210;
       if(y < 0) y = 8;
       tooltip.style.left = x + 'px';
-      tooltip.style.top = y + 'px';
+      tooltip.style.top  = y + 'px';
     });
-    node.addEventListener('mouseleave', function() {
+    node.addEventListener('mouseleave', () => { tooltip.style.display = 'none'; });
+
+    // Klick → Popup
+    node.addEventListener('click', function(e) {
+      e.stopPropagation();
       tooltip.style.display = 'none';
-    });
-    // Klick → Info Panel links befüllen
-    node.addEventListener('click', function() {
-      if(cityBox && cityName && cityPhase && cityDetail) {
-        cityName.textContent = '📍 ' + this.dataset.city;
-        cityPhase.textContent = this.dataset.phase;
-        cityDetail.textContent = this.dataset.detail;
-        cityBox.style.display = 'block';
-      }
+      const city = this.dataset.city;
+      const data = cityData[city] || {};
+      const phase = this.dataset.phase;
+      const pKey  = data.phase || 'p1';
+      const color = phaseColors[pKey];
+
+      // Popup befüllen
+      document.getElementById('popupDot').style.background = color;
+      document.getElementById('popupName').textContent = '📍 ' + city;
+      const phaseEl = document.getElementById('popupPhase');
+      phaseEl.textContent = phase;
+      phaseEl.className = 'city-popup-phase ' + pKey;
+      document.getElementById('popupDetail').textContent = this.dataset.detail;
+      document.getElementById('popupStats').innerHTML =
+        `<span class="city-popup-stat">👥 ${data.drivers||'–'}</span>` +
+        `<span class="city-popup-stat">📅 ${data.launch||'–'}</span>` +
+        `<span class="city-popup-stat">${data.status||'–'}</span>`;
+
+      // Popup positionieren (nahe der Stadt im SVG)
+      const svgRect   = svg.getBoundingClientRect();
+      const ctnrRect  = container.getBoundingClientRect();
+      const nodeRect  = this.getBoundingClientRect();
+      let px = nodeRect.left - ctnrRect.left + nodeRect.width / 2 + 10;
+      let py = nodeRect.top  - ctnrRect.top  - 10;
+      // Rand-Check
+      if(px + 260 > container.offsetWidth)  px = nodeRect.left - ctnrRect.left - 260;
+      if(py < 0) py = nodeRect.bottom - ctnrRect.top + 6;
+      popup.style.left = px + 'px';
+      popup.style.top  = py + 'px';
+
+      // Active-Klasse
+      document.querySelectorAll('.city-node').forEach(n => n.classList.remove('active-city'));
+      this.classList.add('active-city');
+      popup.classList.add('visible');
     });
   });
 
-  // Städte nacheinander einblenden beim Scrollen
-  const cityObserver = new IntersectionObserver(entries => {
-    if(entries[0].isIntersecting) {
-      const nodes = document.querySelectorAll('.city-node');
-      nodes.forEach((node, i) => {
-        node.style.opacity = '0';
-        node.style.transform = 'scale(0.5)';
-        setTimeout(() => {
-          node.style.transition = 'opacity .5s ease, transform .5s cubic-bezier(.34,1.56,.64,1)';
-          node.style.opacity = '1';
-          node.style.transform = 'scale(1)';
-        }, i * 180 + 200);
-      });
-      cityObserver.disconnect();
+  // Klick ausserhalb schliesst Popup
+  document.addEventListener('click', (e) => {
+    if(!popup.contains(e.target) && !e.target.closest('.city-node')) {
+      popup.classList.remove('visible');
+      document.querySelectorAll('.city-node').forEach(n => n.classList.remove('active-city'));
     }
-  }, { threshold: 0.25 });
-  const mapEl = document.querySelector('.swiss-map-section');
-  if(mapEl) cityObserver.observe(mapEl);
+  });
 
-  // Driver Counter Animation
+  // ═══════════════════════════════════════════════════════════════
+  // SCHWEIZER KARTE – Umriss-Hintergrund + Städte einblenden
+  // ═══════════════════════════════════════════════════════════════
+  const mapEl = document.querySelector('.swiss-map-section');
+
+  // ─── Karte einblenden ────────────────────────────────────────────────────────
+  function showMap() {
+    // 1) Kantonslinien
+    const kl = document.getElementById('kantons-layer');
+    if(kl){ setTimeout(()=>{ kl.style.transition='opacity 1.4s ease'; kl.style.opacity='1'; }, 400); }
+    // 3) Verbindungslinien
+    document.querySelectorAll('.map-line,#swissMapSVG line').forEach((l,i)=>{
+      setTimeout(()=>{
+        l.style.transition = 'opacity 0.8s ease';
+        l.style.opacity    = l.getAttribute('opacity') || '0.6';
+      }, 900 + i*50);
+    });
+    // 4) Städte
+    document.querySelectorAll('.city-node').forEach((n,i)=>{
+      setTimeout(()=>{
+        n.style.transition = 'opacity 0.5s ease, transform 0.7s cubic-bezier(.34,1.56,.64,1)';
+        n.style.opacity    = '1';
+        n.style.transform  = 'scale(1)';
+      }, 1300 + i*90);
+    });
+    // 5) Phasen-Animationen
+    document.querySelectorAll('.map-line:not(.p1-line)').forEach(line=>{
+      line.classList.add('map-line-anim');
+      const s = line.getAttribute('stroke') || '';
+      if(s.includes('7ed9')) line.classList.add('phase2');
+      else if(s.includes('3b82')) line.classList.add('phase3');
+      else if(s.includes('dc26')) line.classList.add('phase4');
+    });
+  }
+
+  // Alles verstecken beim Start
+  document.querySelectorAll('.city-node').forEach(n=>{
+    n.style.opacity='0'; n.style.transform='scale(0.2)'; n.style.transition='none';
+  });
+  document.querySelectorAll('.map-line,#swissMapSVG line').forEach(l=>{
+    l.style.opacity='0'; l.style.transition='none';
+  });
+  const klInit = document.getElementById('kantons-layer');
+  if(klInit){ klInit.style.opacity='0'; klInit.style.transition='none'; }
+
+  // Startet wenn Map sichtbar
+  const mapObs = new IntersectionObserver(entries=>{
+    if(entries[0].isIntersecting){
+      setTimeout(showMap, 300);
+      mapObs.disconnect();
+    }
+  },{ threshold:0.15 });
+  if(mapEl) mapObs.observe(mapEl);
+
+  // Driver Counter
   const counterEl = document.getElementById('driverCounter');
-  if(counterEl) {
-    const counterObs = new IntersectionObserver(entries => {
-      if(entries[0].isIntersecting) {
-        let val = 0;
-        const target = 300;
-        const step = Math.ceil(target / 60);
-        const timer = setInterval(() => {
-          val = Math.min(val + step, target);
-          counterEl.textContent = val;
-          if(val >= target) clearInterval(timer);
-        }, 25);
-        counterObs.disconnect();
+  if(counterEl){
+    const cObs = new IntersectionObserver(entries=>{
+      if(entries[0].isIntersecting){
+        let v=0; const tgt=300, step=Math.ceil(tgt/60);
+        const t=setInterval(()=>{ v=Math.min(v+step,tgt); counterEl.textContent=v; if(v>=tgt)clearInterval(t); },25);
+        cObs.disconnect();
       }
-    }, { threshold: 0.5 });
-    counterObs.observe(counterEl);
+    },{ threshold:0.5 });
+    cObs.observe(counterEl);
   }
 })();
 
